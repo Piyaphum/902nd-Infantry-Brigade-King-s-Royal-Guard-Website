@@ -72,7 +72,10 @@
     '#adminToast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#1A2332;color:#fff;padding:.7rem 1.5rem;border-radius:999px;font-size:.85rem;font-weight:600;z-index:9999999;transition:transform .3s;font-family:Sarabun,sans-serif;white-space:nowrap;}',
     '#adminToast.show{transform:translateX(-50%) translateY(0);}',
     '#adminToast.ok{background:#28A745;}',
-    '#adminToast.err{background:#DC3545;}'
+    '#adminToast.err{background:#DC3545;}',
+    '@keyframes lbFadeIn{from{opacity:0}to{opacity:1}}',
+    '@keyframes lbZoomIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}',
+    '.phase-img-slot{transition:transform .2s ease;}'
   ].join('');
 
   var _editCallback = null;
@@ -239,12 +242,75 @@
       var el;
       if (f.type === 'textarea') {
         el = document.createElement('textarea'); el.className = 'aem-textarea'; el.rows = f.rows || 4;
+        el.id = 'aemF_' + f.key; el.value = f.value || '';
+        if (f.placeholder) el.placeholder = f.placeholder;
+        g.appendChild(el); body.appendChild(g);
+      } else if (f.type === 'image') {
+        var wrap = document.createElement('div');
+        wrap.style.cssText = 'display:flex;align-items:center;gap:1rem;background:#F5F6F8;padding:.75rem;border-radius:10px;border:2px dashed #DDE1E7;';
+        
+        var imgPreview = document.createElement('div');
+        imgPreview.style.cssText = 'width:80px;height:60px;background:#e2e8f0;border-radius:6px;background-size:cover;background-position:center;flex-shrink:0;';
+        if(f.value) imgPreview.style.backgroundImage = 'url('+f.value+')';
+        
+        var uploadCol = document.createElement('div');
+        uploadCol.style.flex = '1';
+        
+        var fileInp = document.createElement('input');
+        fileInp.type = 'file';
+        fileInp.accept = 'image/*';
+        fileInp.style.display = 'block';
+        fileInp.style.width = '100%';
+        fileInp.style.fontSize = '.8rem';
+        fileInp.style.marginBottom = '.35rem';
+        
+        var statusTxt = document.createElement('div');
+        statusTxt.style.cssText = 'font-size:.75rem;color:#5A6478;';
+        
+        var hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.id = 'aemF_' + f.key;
+        hiddenInput.value = f.value || '';
+        
+        fileInp.onchange = function(e) {
+          if (!e.target.files.length) return;
+          var file = e.target.files[0];
+          statusTxt.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังอัปโหลด...';
+          statusTxt.style.color = '#0066cc';
+          var reader = new FileReader();
+          reader.onload = function(re) { imgPreview.style.backgroundImage = 'url('+re.target.result+')'; };
+          reader.readAsDataURL(file);
+          
+          if (window._adm && window._adm.fsUploadImage) {
+             window._adm.fsUploadImage(file, function(prog) {
+               statusTxt.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> อัปโหลด... ' + Math.round(prog) + '%';
+             }, function(url) {
+               hiddenInput.value = url;
+               statusTxt.innerHTML = '<i class="fa-solid fa-check" style="color:#28A745"></i> อัปโหลดสำเร็จ';
+               statusTxt.style.color = '#28A745';
+             }, function(err) {
+               statusTxt.innerHTML = '<i class="fa-solid fa-xmark" style="color:#DC3545"></i> ล้มเหลว: ' + err.message;
+               statusTxt.style.color = '#DC3545';
+             });
+          } else {
+             statusTxt.innerHTML = 'ระบบอัปโหลดไม่พร้อม';
+             statusTxt.style.color = '#DC3545';
+          }
+        };
+        
+        uploadCol.appendChild(fileInp);
+        uploadCol.appendChild(statusTxt);
+        wrap.appendChild(imgPreview);
+        wrap.appendChild(uploadCol);
+        wrap.appendChild(hiddenInput);
+        
+        g.appendChild(wrap); body.appendChild(g);
       } else {
         el = document.createElement('input'); el.type = f.type || 'text'; el.className = 'aem-input';
+        el.id = 'aemF_' + f.key; el.value = f.value || '';
+        if (f.placeholder) el.placeholder = f.placeholder;
+        g.appendChild(el); body.appendChild(g);
       }
-      el.id = 'aemF_' + f.key; el.value = f.value || '';
-      if (f.placeholder) el.placeholder = f.placeholder;
-      g.appendChild(el); body.appendChild(g);
     });
     _editCallback = function() {
       var r = {};
@@ -296,6 +362,27 @@
         .then(function(){ showToast('บันทึกสำเร็จ ✓', 'ok'); if(cb) cb(); })
         .catch(function(e){ showToast('บันทึกไม่สำเร็จ: '+e.message,'err'); });
     });
+  }
+
+  function fsUploadImage(file, onProg, onSucc, onErr) {
+    if (!isFirebaseOK()) { if(onErr) onErr(new Error('ตั้งค่า Firebase ก่อน')); return; }
+    Promise.all([
+      import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js'),
+      import('https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js')
+    ]).then(function(m) {
+      var app; try { app=m[0].getApp('_adm'); } catch(e) { app=m[0].initializeApp(window.FIREBASE_CONFIG,'_adm'); }
+      var storage = m[1].getStorage(app);
+      var ext = file.name.split('.').pop() || 'jpg';
+      var path = 'uploads/' + Date.now() + '_' + Math.random().toString(36).substring(2,8) + '.' + ext;
+      var storageRef = m[1].ref(storage, path);
+      var uploadTask = m[1].uploadBytesResumable(storageRef, file);
+      
+      uploadTask.on('state_changed',
+        function(snap) { if(onProg) onProg((snap.bytesTransferred / snap.totalBytes) * 100); },
+        function(err) { if(onErr) onErr(err); },
+        function() { m[1].getDownloadURL(uploadTask.snapshot.ref).then(function(url) { if(onSucc) onSucc(url); }); }
+      );
+    }).catch(function(e){ if(onErr) onErr(e); });
   }
 
   function addEditBtn(labelText, fn, container, prepend) {
@@ -627,6 +714,7 @@
   /* ── PAGE: ABOUT ─────────────────────────────── */
   function initAbout() {
     fsLoad('about',function(data){
+      if(!data) return;
       if(data.heading){ var h=document.querySelector('.about-intro h2'); if(h) h.textContent=data.heading; }
       if(data.body){ var b=document.querySelector('.about-intro>div>p'); if(b) b.textContent=data.body; }
       if(data.mission){ var mp=document.querySelector('.mission-p'); if(mp) mp.textContent=data.mission; }
@@ -681,6 +769,7 @@
   /* ── PAGE: CONTACT ───────────────────────────── */
   function initContact() {
     fsLoad('contact',function(data){
+      if(!data) return;
       var items=document.querySelectorAll('.contact-item');
       if(data.address&&items[0]){ var d=items[0].querySelector('[style*="875rem"]'); if(d) d.innerHTML=data.address; }
       if(data.phone1&&items[1]){ var a=items[1].querySelector('a:first-of-type'); if(a){a.textContent=data.phone1;a.href='tel:'+data.phone1.replace(/[^0-9]/g,'');} }
@@ -717,11 +806,11 @@
       var qtData = data || {
         banner: '',
         phases: [
-          { title: '๑. ภาคปรับสภาพร่างกายและจิตใจ (๔ สัปดาห์)', image: '' },
-          { title: '๒. ภาคป่า-ภูเขา (๔ สัปดาห์)', image: '' },
-          { title: '๓. ภาคทะเล (๓ สัปดาห์)', image: '' },
-          { title: '๔. ภาคปฏิบัติการในเมือง (๓ สัปดาห์)', image: '' },
-          { title: '๕. ภาคอากาศ (๒ สัปดาห์)', image: '' }
+          { title: '๑. ภาคปรับสภาพร่างกายและจิตใจ (๔ สัปดาห์)', image: '', images: ['','','',''], desc: '' },
+          { title: '๒. ภาคป่า-ภูเขา (๔ สัปดาห์)', image: '', images: ['','','',''], desc: '' },
+          { title: '๓. ภาคทะเล (๓ สัปดาห์)', image: '', images: ['','','',''], desc: '' },
+          { title: '๔. ภาคปฏิบัติการในเมือง (๓ สัปดาห์)', image: '', images: ['','','',''], desc: '' },
+          { title: '๕. ภาคอากาศ (๒ สัปดาห์)', image: '', images: ['','','',''], desc: '' }
         ],
         youtube: [
           { code: '' },
@@ -732,11 +821,11 @@
       if (!qtData.youtube) qtData.youtube = [{code:''},{code:''},{code:''}];
       if (!qtData.phases || qtData.phases.length !== 5) {
         qtData.phases = [
-          { title: '๑. ภาคปรับสภาพร่างกายและจิตใจ (๔ สัปดาห์)', image: '' },
-          { title: '๒. ภาคป่า-ภูเขา (๔ สัปดาห์)', image: '' },
-          { title: '๓. ภาคทะเล (๓ สัปดาห์)', image: '' },
-          { title: '๔. ภาคปฏิบัติการในเมือง (๓ สัปดาห์)', image: '' },
-          { title: '๕. ภาคอากาศ (๒ สัปดาห์)', image: '' }
+          { title: '๑. ภาคปรับสภาพร่างกายและจิตใจ (๔ สัปดาห์)', image: '', images: ['','','',''], desc: '' },
+          { title: '๒. ภาคป่า-ภูเขา (๔ สัปดาห์)', image: '', images: ['','','',''], desc: '' },
+          { title: '๓. ภาคทะเล (๓ สัปดาห์)', image: '', images: ['','','',''], desc: '' },
+          { title: '๔. ภาคปฏิบัติการในเมือง (๓ สัปดาห์)', image: '', images: ['','','',''], desc: '' },
+          { title: '๕. ภาคอากาศ (๒ สัปดาห์)', image: '', images: ['','','',''], desc: '' }
         ];
       } else {
         qtData.phases[0].title = '๑. ภาคปรับสภาพร่างกายและจิตใจ (๔ สัปดาห์)';
@@ -744,7 +833,14 @@
         qtData.phases[2].title = '๓. ภาคทะเล (๓ สัปดาห์)';
         qtData.phases[3].title = '๔. ภาคปฏิบัติการในเมือง (๓ สัปดาห์)';
         qtData.phases[4].title = '๕. ภาคอากาศ (๒ สัปดาห์)';
+        // Ensure images array exists on each phase (backward compat)
+        qtData.phases.forEach(function(p) {
+          if (!p.images || p.images.length < 4) p.images = ['','','',''];
+          if (!p.desc) p.desc = '';
+        });
       }
+      // Share phase data globally so the page's openPhaseModal can access Firebase images
+      window._qtPhaseData = qtData.phases;
       renderQueensTiger(qtData);
     });
   }
@@ -755,62 +851,43 @@
     var youtubeC = document.getElementById('qt-youtube-container');
     if (!banner || !phasesC || !youtubeC) return;
 
-    // Render Banner
-    banner.style.backgroundImage = "url('" + (data.banner || '') + "')";
-    banner.innerHTML = '';
-    if (!data.banner) {
-      banner.innerHTML = '<i class="fa-solid fa-image" style="font-size:3.5rem;margin-bottom:1rem;color:rgba(255,255,255,0.3);"></i><span style="font-size:1.2rem;font-weight:600;margin-bottom:0.5rem;">[ รูปแบนเนอร์หลักสูตร ]</span>';
-    }
-    if (isAdmin()) {
-      var editBannerBtn = document.createElement('button');
-      editBannerBtn.className = 'admin-edit-btn';
-      editBannerBtn.style.position = 'absolute';
-      editBannerBtn.style.top = '10px';
-      editBannerBtn.style.right = '10px';
-      editBannerBtn.innerHTML = '<i class="fa-solid fa-pen"></i> แก้ไขแบนเนอร์';
-      editBannerBtn.onclick = function() {
-        openEdit('แก้ไขแบนเนอร์', [{key:'banner',label:'URL รูปแบนเนอร์',value:data.banner||''}], function(r){
-          data.banner = r.banner;
-          fsSave('queensTiger', data, function(){ renderQueensTiger(data); });
-        });
-      };
-      banner.appendChild(editBannerBtn);
-    }
+    // Banner is now hardcoded in queens-tiger.html
 
-    // Render Phases
-    phasesC.innerHTML = '';
+    // Inject Phase Text Edit Buttons into static HTML cards
     if (isAdmin()) {
-      var phaseAdmin = document.createElement('div');
-      phaseAdmin.style.position = 'absolute'; phaseAdmin.style.top = '-40px'; phaseAdmin.style.right = '0';
-      var editPhasesBtn = document.createElement('button');
-      editPhasesBtn.className = 'admin-edit-btn';
-      editPhasesBtn.innerHTML = '<i class="fa-solid fa-pen"></i> แก้ไขภาพทั้ง 5 ภาค';
-      editPhasesBtn.onclick = function() {
-        var fields = [];
-        data.phases.forEach(function(p, i) {
-          fields.push({key:'p'+i, label:'ภาพ ' + p.title, value:p.image||''});
-        });
-        openEdit('แก้ไขภาพการฝึก', fields, function(r){
-          data.phases.forEach(function(p, i) { p.image = r['p'+i]; });
-          fsSave('queensTiger', data, function(){ renderQueensTiger(data); });
-        });
-      };
-      phaseAdmin.appendChild(editPhasesBtn);
-      phasesC.appendChild(phaseAdmin);
+      var phaseCards = phasesC.querySelectorAll('.phase-card');
+      phaseCards.forEach(function(card, idx) {
+        // Prevent duplicate buttons if called multiple times
+        if (card.querySelector('.admin-section-controls')) return;
+
+        var p = data.phases[idx];
+        var ctrl = document.createElement('div');
+        ctrl.className = 'admin-section-controls';
+        ctrl.style.justifyContent = 'center';
+        ctrl.style.padding = '.5rem';
+        
+        var editTextBtn = document.createElement('button');
+        editTextBtn.className = 'admin-edit-btn';
+        editTextBtn.innerHTML = '<i class="fa-solid fa-pen"></i> แก้ไขเนื้อหา';
+        editTextBtn.onclick = function(e) {
+          e.stopPropagation(); // Prevent opening the modal
+          var fields = [
+            {key:'objective', label:'ความมุ่งหมาย', value: p.objective || '', type:'textarea', rows:3},
+            {key:'desc', label:'เนื้อหาเพิ่มเติม', value: p.desc || '', type:'textarea', rows:8}
+          ];
+          openEdit('แก้ไขเนื้อหา ' + p.title, fields, function(r) {
+            p.objective = r.objective;
+            p.desc = r.desc;
+            fsSave('queensTiger', data, function(){ 
+              // Reload page or re-render to reflect changes if modal is open, but usually just saving is fine
+              renderQueensTiger(data); 
+            });
+          });
+        };
+        ctrl.appendChild(editTextBtn);
+        card.appendChild(ctrl);
+      });
     }
-    data.phases.forEach(function(p) {
-      var div = document.createElement('div');
-      div.style.cssText = 'background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm);';
-      var imgDiv = document.createElement('div');
-      imgDiv.style.cssText = 'width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:1rem; background-size:cover; background-position:center; background-image:url(\''+(p.image||'')+'\');';
-      if (!p.image) imgDiv.innerHTML = '<i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.75rem; opacity:0.5;"></i><span style="font-size:.9rem; font-weight:600;">[ ไม่มีรูปภาพ ]</span>';
-      var titleDiv = document.createElement('div');
-      titleDiv.style.cssText = 'padding:1.25rem; text-align:center;';
-      titleDiv.innerHTML = '<h4 style="color:var(--color-text-dark); margin:0; font-size:1.1rem;">'+p.title+'</h4>';
-      div.appendChild(imgDiv);
-      div.appendChild(titleDiv);
-      phasesC.appendChild(div);
-    });
 
     // Render YouTube
     youtubeC.innerHTML = '';
@@ -867,6 +944,118 @@
     });
   }
 
+  /* ── Open Phase Detail Modal with Firebase images ── */
+  function openPhaseDetail(idx, data) {
+    var phase = data.phases[idx];
+    var phaseNum = idx + 1;
+
+    // Use the page's hardcoded phaseData for title/location/objective/body if available
+    var pageData = window.phaseData && window.phaseData[phaseNum] ? window.phaseData[phaseNum] : {};
+    var title = pageData.title || phase.title;
+    var location = pageData.location || '';
+    var objective = pageData.objective || '';
+    var body = pageData.body || '';
+
+    // Override body with Firebase desc if admin has set it
+    if (phase.desc && phase.desc.trim()) {
+      body = phase.desc;
+    }
+
+    var modal = document.getElementById('phaseModal');
+    if (!modal) return;
+
+    // Set title
+    var titleEl = document.getElementById('phaseModalTitle');
+    if (titleEl) titleEl.textContent = title;
+
+    // Set location
+    var locEl = document.getElementById('phaseModalLocationText');
+    var locWrap = document.getElementById('phaseModalLocation');
+    if (locEl) locEl.textContent = location;
+    if (locWrap) locWrap.style.display = location ? '' : 'none';
+
+    // Set objective
+    var objEl = document.getElementById('phaseModalObjective');
+    if (objEl) objEl.textContent = objective;
+
+    // Set body
+    var bodyEl = document.getElementById('phaseModalBody');
+    if (bodyEl) {
+      bodyEl.innerHTML = '';
+      if (body) {
+        body.split('\n\n').forEach(function(para) {
+          var p = document.createElement('p');
+          p.style.cssText = 'margin-bottom:1rem; text-indent:2rem;';
+          p.textContent = para;
+          bodyEl.appendChild(p);
+        });
+      }
+    }
+
+    // Render 4 images from Firebase data
+    var imgsContainer = document.getElementById('phaseModalImages');
+    if (imgsContainer) {
+      imgsContainer.innerHTML = '';
+      var imgs = phase.images || ['','','',''];
+      var thaiNums = ['๑','๒','๓','๔'];
+      for (var i = 0; i < 4; i++) {
+        var slot = document.createElement('div');
+        slot.className = 'phase-img-slot';
+        slot.style.cssText = 'width:100%; height:200px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md); background-size:cover; background-position:center; overflow:hidden; cursor:pointer; transition:transform .2s;';
+        if (imgs[i] && imgs[i].trim()) {
+          slot.style.backgroundImage = "url('" + imgs[i] + "')";
+          slot.innerHTML = '';
+          // Lightbox on click
+          (function(imgUrl) {
+            slot.onclick = function() { openImageLightbox(imgUrl); };
+            slot.onmouseenter = function() { this.style.transform = 'scale(1.03)'; };
+            slot.onmouseleave = function() { this.style.transform = ''; };
+          })(imgs[i]);
+        } else {
+          slot.style.cursor = 'default';
+          slot.innerHTML = '<i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.8rem; font-weight:600;">[ ภาพที่ ' + thaiNums[i] + ' ]</span>';
+        }
+        imgsContainer.appendChild(slot);
+      }
+    }
+
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  /* ── Image Lightbox ── */
+  function openImageLightbox(imgUrl) {
+    var existing = document.getElementById('imgLightbox');
+    if (existing) existing.remove();
+
+    var overlay = document.createElement('div');
+    overlay.id = 'imgLightbox';
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out;animation:lbFadeIn .25s ease;';
+    overlay.onclick = function() { overlay.remove(); document.body.style.overflow = 'hidden'; };
+
+    var img = document.createElement('img');
+    img.src = imgUrl;
+    img.style.cssText = 'max-width:90vw;max-height:85vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);object-fit:contain;animation:lbZoomIn .3s ease;';
+    img.onclick = function(e) { e.stopPropagation(); };
+
+    var closeBtn = document.createElement('button');
+    closeBtn.style.cssText = 'position:absolute;top:1.5rem;right:1.5rem;background:rgba(255,255,255,.15);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:background .2s;';
+    closeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    closeBtn.onmouseenter = function() { this.style.background = 'rgba(255,255,255,.3)'; };
+    closeBtn.onmouseleave = function() { this.style.background = 'rgba(255,255,255,.15)'; };
+    closeBtn.onclick = function(e) { e.stopPropagation(); overlay.remove(); document.body.style.overflow = 'hidden'; };
+
+    overlay.appendChild(img);
+    overlay.appendChild(closeBtn);
+    document.body.appendChild(overlay);
+
+    // Close on Escape
+    var escHandler = function(e) {
+      if (e.key === 'Escape') { overlay.remove(); document.body.style.overflow = 'hidden'; document.removeEventListener('keydown', escHandler); }
+    };
+    document.addEventListener('keydown', escHandler);
+  }
+
   function init() {
     injectCSS();
     buildLoginModal();
@@ -893,8 +1082,12 @@
     closeEdit:  function(){ closeEdit(); },
     saveEdit:   function(){ saveEdit(); },
     showToast:  function(m,t){ showToast(m,t); },
-    isAdmin:    function(){ return isAdmin(); }
+    isAdmin:    function(){ return isAdmin(); },
+    fsUploadImage: function(f,p,s,e){ fsUploadImage(f,p,s,e); }
   };
+
+  // Expose lightbox globally for page scripts
+  window.openImageLightbox = openImageLightbox;
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

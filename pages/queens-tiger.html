@@ -65,10 +65,7 @@
       <div class="animate-on-scroll">
         <div style="background:#fff;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-md);border:1px solid var(--color-border);">
           <!-- 1. Banner Placeholder -->
-          <div id="qt-banner" style="width:100%;height:400px;background:#1A2332;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);border-bottom:1px solid var(--color-border);text-align:center;background-size:cover;background-position:center;background-image:url(''); position:relative;">
-            <i class="fa-solid fa-image" style="font-size:3.5rem;margin-bottom:1rem;color:rgba(255,255,255,0.3);"></i>
-            <span style="font-size:1.2rem;font-weight:600;margin-bottom:0.5rem;">[ วาง URL ภาพแบนเนอร์หลักสูตรที่นี่ ]</span>
-            <span style="font-size:0.9rem;color:rgba(255,255,255,0.4);">แก้ไขโค้ดที่ไฟล์ queens-tiger.html ตรง background-image:url('')</span>
+          <div id="qt-banner" style="width:100%;height:400px;border-bottom:1px solid var(--color-border);background-size:cover;background-position:center;background-image:url('../images/ทหารเสือ/1_เครื่องหมายทหารเสือ.png'); position:relative;">
           </div>
           <div style="padding:3.5rem 4rem;">
             <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text);margin-bottom:2rem;">
@@ -86,66 +83,495 @@
 
       <!-- 2. Training Phases Section -->
       <div class="animate-on-scroll" style="margin-top: 5rem;">
-        <h3 style="color:var(--color-green-dark); margin-bottom:2rem; border-bottom:2px solid var(--color-green-pale); padding-bottom:.75rem; font-size:1.5rem;"><i class="fa-solid fa-map-location-dot"></i> การฝึกทั้ง ๕ ภาค</h3>
+        <h3 style="color:var(--color-green-dark); margin-bottom:1rem; border-bottom:2px solid var(--color-green-pale); padding-bottom:.75rem; font-size:1.5rem;"><i class="fa-solid fa-map-location-dot"></i> การฝึกทั้ง ๕ ภาค</h3>
+        <p style="color:var(--color-text); margin-bottom:2rem; font-size:.95rem;">คลิกที่แต่ละภาคเพื่อดูรายละเอียดเพิ่มเติม</p>
         <div id="qt-phases-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem; position:relative;">
           
           <!-- Phase 1 -->
-          <div style="background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm);">
-            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:1rem; background-size:cover; background-position:center; background-image:url('');">
+          <div class="phase-card" onclick="openPhaseModal(1)" style="background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); cursor:pointer; transition:transform .3s ease, box-shadow .3s ease;">
+            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:1rem; background-size:cover; background-position:center; background-image:url('../images/ทหารเสือ/cover_1.jpg');">
               <i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.75rem; opacity:0.5;"></i>
               <span style="font-size:.9rem; font-weight:600;">[ วาง URL ภาพ ]</span>
             </div>
             <div style="padding:1.25rem; text-align:center;">
-              <h4 style="color:var(--color-text-dark); margin:0; font-size:1.1rem;">๑. ภาคที่ตั้ง (๔ สัปดาห์)</h4>
+              <h4 style="color:var(--color-text-dark); margin:0; font-size:1.1rem;">๑. ภาคที่ตั้ง<br><small style="font-weight:400; color:var(--color-text);">(๔ สัปดาห์)</small></h4>
+              <p style="margin:.5rem 0 0; font-size:.8rem; color:var(--color-green);"><i class="fa-solid fa-arrow-right"></i> ดูรายละเอียด</p>
             </div>
           </div>
 
           <!-- Phase 2 -->
-          <div style="background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm);">
-            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:1rem; background-size:cover; background-position:center; background-image:url('');">
+          <div class="phase-card" onclick="openPhaseModal(2)" style="background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); cursor:pointer; transition:transform .3s ease, box-shadow .3s ease;">
+            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:1rem; background-size:cover; background-position:center; background-image:url('../images/ทหารเสือ/cover_2.jpg');">
               <i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.75rem; opacity:0.5;"></i>
               <span style="font-size:.9rem; font-weight:600;">[ วาง URL ภาพ ]</span>
             </div>
             <div style="padding:1.25rem; text-align:center;">
-              <h4 style="color:var(--color-text-dark); margin:0; font-size:1.1rem;">๒. ภาคป่า-ภูเขา (๔ สัปดาห์)</h4>
+              <h4 style="color:var(--color-text-dark); margin:0; font-size:1.1rem;">๒. ภาคป่า-ภูเขา<br><small style="font-weight:400; color:var(--color-text);">(๔ สัปดาห์)</small></h4>
+              <p style="margin:.5rem 0 0; font-size:.8rem; color:var(--color-green);"><i class="fa-solid fa-arrow-right"></i> ดูรายละเอียด</p>
             </div>
           </div>
 
           <!-- Phase 3 -->
-          <div style="background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm);">
-            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:1rem; background-size:cover; background-position:center; background-image:url('');">
+          <div class="phase-card" onclick="openPhaseModal(3)" style="background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); cursor:pointer; transition:transform .3s ease, box-shadow .3s ease;">
+            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:1rem; background-size:cover; background-position:center; background-image:url('../images/ทหารเสือ/cover_3.jpg');">
               <i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.75rem; opacity:0.5;"></i>
               <span style="font-size:.9rem; font-weight:600;">[ วาง URL ภาพ ]</span>
             </div>
             <div style="padding:1.25rem; text-align:center;">
-              <h4 style="color:var(--color-text-dark); margin:0; font-size:1.1rem;">๓. ภาคทะเล (๓ สัปดาห์)</h4>
+              <h4 style="color:var(--color-text-dark); margin:0; font-size:1.1rem;">๓. ภาคทะเล<br><small style="font-weight:400; color:var(--color-text);">(๓ สัปดาห์)</small></h4>
+              <p style="margin:.5rem 0 0; font-size:.8rem; color:var(--color-green);"><i class="fa-solid fa-arrow-right"></i> ดูรายละเอียด</p>
             </div>
           </div>
 
           <!-- Phase 4 -->
-          <div style="background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm);">
-            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:1rem; background-size:cover; background-position:center; background-image:url('');">
+          <div class="phase-card" onclick="openPhaseModal(4)" style="background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); cursor:pointer; transition:transform .3s ease, box-shadow .3s ease;">
+            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:1rem; background-size:cover; background-position:center; background-image:url('../images/ทหารเสือ/cover_4.jpg');">
               <i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.75rem; opacity:0.5;"></i>
               <span style="font-size:.9rem; font-weight:600;">[ วาง URL ภาพ ]</span>
             </div>
             <div style="padding:1.25rem; text-align:center;">
-              <h4 style="color:var(--color-text-dark); margin:0; font-size:1.1rem;">๔. ภาคปฏิบัติการในเมือง (๓ สัปดาห์)</h4>
+              <h4 style="color:var(--color-text-dark); margin:0; font-size:1.1rem;">๔. ภาคปฏิบัติการในเมือง<br><small style="font-weight:400; color:var(--color-text);">(๓ สัปดาห์)</small></h4>
+              <p style="margin:.5rem 0 0; font-size:.8rem; color:var(--color-green);"><i class="fa-solid fa-arrow-right"></i> ดูรายละเอียด</p>
             </div>
           </div>
 
           <!-- Phase 5 -->
-          <div style="background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm);">
-            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:1rem; background-size:cover; background-position:center; background-image:url('');">
+          <div class="phase-card" onclick="openPhaseModal(5)" style="background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); cursor:pointer; transition:transform .3s ease, box-shadow .3s ease;">
+            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; text-align:center; padding:1rem; background-size:cover; background-position:center; background-image:url('../images/ทหารเสือ/cover_5.jpg');">
               <i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.75rem; opacity:0.5;"></i>
               <span style="font-size:.9rem; font-weight:600;">[ วาง URL ภาพ ]</span>
             </div>
             <div style="padding:1.25rem; text-align:center;">
-              <h4 style="color:var(--color-text-dark); margin:0; font-size:1.1rem;">๕. ภาคอากาศ (๒ สัปดาห์)</h4>
+              <h4 style="color:var(--color-text-dark); margin:0; font-size:1.1rem;">๕. ภาคอากาศ<br><small style="font-weight:400; color:var(--color-text);">(๒ สัปดาห์)</small></h4>
+              <p style="margin:.5rem 0 0; font-size:.8rem; color:var(--color-green);"><i class="fa-solid fa-arrow-right"></i> ดูรายละเอียด</p>
             </div>
           </div>
 
         </div>
       </div>
+
+      <!-- 3. Insignia Section -->
+      <div class="animate-on-scroll" style="margin-top: 5rem;">
+        <h3 style="color:var(--color-gold-dark); margin-bottom:1.5rem; border-bottom:2px solid rgba(201,168,76,.3); padding-bottom:.75rem; font-size:1.5rem;"><i class="fa-solid fa-medal"></i> เครื่องหมายแสดงขีดความสามารถทหารเสือ</h3>
+        <p style="font-size:1.1rem; line-height:1.8; color:var(--color-text-dark); margin-bottom:2rem; text-indent:2rem;">
+          เมื่อจบการฝึกแล้วกำลังพลที่สำเร็จการฝึกหลักสูตรทหารเสือทุกนาย จะได้พระราชทานเครื่องหมายแสดงขีดความสามารถทหารเสือจาก พระบาทสมเด็จพระบรมชนกาธิเบศร มหาภูมิพลอดุลยเดชมหาราช บรมนาถบพิตร สมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชินีนาถ พระบรมราชชนนีพันปีหลวง องค์ผู้บังคับการพิเศษ กรมทหารราบที่ ๒๑ รักษาพระองค์ฯ พระบาทสมเด็จพระปรเมนทรรามาธิบดีศรีสินทรมหาวชิราลงกรณ พระวชิรเกล้าเจ้าอยู่หัว และ สมเด็จพระกนิษฐาธิราชเจ้า กรมสมเด็จพระเทพรัตนราชสุดาฯ สยามบรมราชกุมารี
+        </p>
+
+        <!-- 4 Image placeholders for Insignia -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
+          <div style="width:100%; height:200px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md); background-size:cover; background-position:center; background-image:url('../images/ทหารเสือ/มอบเครื่องหมาย_1.jpg');">
+            <i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.5rem; opacity:.5;"></i>
+            <span style="font-size:.8rem; font-weight:600;">[ วาง URL ภาพ ]</span>
+          </div>
+          <div style="width:100%; height:200px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md); background-size:cover; background-position:center; background-image:url('../images/ทหารเสือ/มอบเครื่องหมาย_2.jpg');">
+            <i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.5rem; opacity:.5;"></i>
+            <span style="font-size:.8rem; font-weight:600;">[ วาง URL ภาพ ]</span>
+          </div>
+          <div style="width:100%; height:200px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md); background-size:cover; background-position:center; background-image:url('../images/ทหารเสือ/มอบเครื่องหมาย_3.jpg');">
+            <i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.5rem; opacity:.5;"></i>
+            <span style="font-size:.8rem; font-weight:600;">[ วาง URL ภาพ ]</span>
+          </div>
+          <div style="width:100%; height:200px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md); background-size:cover; background-position:center; background-image:url('../images/ทหารเสือ/มอบเครื่องหมาย_4.jpg');">
+            <i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.5rem; opacity:.5;"></i>
+            <span style="font-size:.8rem; font-weight:600;">[ วาง URL ภาพ ]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Sports Clubs Section -->
+      <div class="animate-on-scroll" style="margin-top: 5rem; margin-bottom: 3rem;">
+        <h3 style="color:var(--color-green-dark); margin-bottom:1.5rem; border-bottom:2px solid var(--color-green-pale); padding-bottom:.75rem; font-size:1.5rem;"><i class="fa-solid fa-person-running"></i> ชมรมยุทธกีฬา</h3>
+        <p style="font-size:1.1rem; line-height:1.8; color:var(--color-text-dark); margin-bottom:2rem; text-indent:2rem;">
+          นอกจากนี้เพื่อให้กำลังพลที่ผ่านการฝึกแล้ว ได้มีโอกาสทบทวนและฝึกฝนในขั้นก้าวหน้า อย่างต่อเนื่อง กรมทหารราบที่ ๒๑ รักษาพระองค์ ฯ จึงได้รวบรวมวิชาที่เป็นวิชาหลักในหลักสูตรทหารเสือ มาจัดตั้งเป็นชมรมยุทธกีฬา เพื่อให้กำลังพลทหารเสือ ได้มีการฝึกฝนอีก ๗ ชมรม คือ
+        </p>
+
+        <!-- 7 Sports Clubs Grid -->
+        <style>
+          .club-card {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-size: cover;
+            background-position: center;
+          }
+          .club-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+          }
+          .club-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 75%;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+            z-index: 1;
+          }
+          .club-card-content {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%;
+            padding: 1.25rem;
+            z-index: 2;
+            text-align: left;
+          }
+          .club-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: #ab1f24; /* deep red to match the image */
+            color: #ffffff;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.6rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+          }
+          .club-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff !important; /* Force white text over any global h4 rules */
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+            line-height: 1.3;
+          }
+        </style>
+        
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1.25rem;">
+          
+          <div class="club-card" style="background-image:url('../images/ทหารเสือ/motorbike.jpg');">
+            <div class="club-card-content">
+              <span class="club-badge">ชมรมที่ ๑</span>
+              <h4 class="club-title">ชมรมขับขี่จักรยานยนต์ทางยุทธวิธี</h4>
+            </div>
+          </div>
+          
+          <div class="club-card" style="background-image:url('../images/ทหารเสือ/horse.jpg');">
+            <div class="club-card-content">
+              <span class="club-badge">ชมรมที่ ๒</span>
+              <h4 class="club-title">ชมรมขี่ม้าทางยุทธวิธี</h4>
+            </div>
+          </div>
+          
+          <div class="club-card" style="background-image:url('../images/ทหารเสือ/airborne.jpg');">
+            <div class="club-card-content">
+              <span class="club-badge">ชมรมที่ ๓</span>
+              <h4 class="club-title">ชมรมกระโดดร่ม</h4>
+            </div>
+          </div>
+          
+          <div class="club-card" style="background-image:url('../images/ทหารเสือ/diving.jpg');">
+            <div class="club-card-content">
+              <span class="club-badge">ชมรมที่ ๔</span>
+              <h4 class="club-title">ชมรมดำน้ำ</h4>
+            </div>
+          </div>
+          
+          <div class="club-card" style="background-image:url('../images/ทหารเสือ/martial_art.jpg');">
+            <div class="club-card-content">
+              <span class="club-badge">ชมรมที่ ๕</span>
+              <h4 class="club-title">ชมรมต่อสู้ป้องกันตัว</h4>
+            </div>
+          </div>
+          
+          <div class="club-card" style="background-image:url('../images/ทหารเสือ/shooting.jpg');">
+            <div class="club-card-content">
+              <span class="club-badge">ชมรมที่ ๖</span>
+              <h4 class="club-title">ชมรมยิงปืน</h4>
+            </div>
+          </div>
+          
+          <div class="club-card" style="background-image:url('../images/ทหารเสือ/ancient_weapons.jpg');">
+            <div class="club-card-content">
+              <span class="club-badge">ชมรมที่ ๗</span>
+              <h4 class="club-title">ชมรมอาวุธโบราณ</h4>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 5. Insignia Meaning Section -->
+      <div class="animate-on-scroll" style="margin-top: 5rem; margin-bottom: 3rem;">
+        <h3 style="color:var(--color-gold-dark); margin-bottom:2rem; border-bottom:2px solid rgba(201,168,76,.3); padding-bottom:.75rem; font-size:1.6rem; text-align:center;">ความหมายของเครื่องหมายเชิดชูเกียรติทหารเสือ</h3>
+        
+        <div style="text-align:center; margin-bottom:3rem;">
+          <div style="width:100%; max-width:600px; margin:0 auto 1.5rem auto; min-height:250px; background:#f8fafc; display:flex; align-items:center; justify-content:center; border-radius:var(--radius-md); border:2px dashed #cbd5e1; position:relative;">
+            <img src="../images/ทหารเสือ/insignia_full.png" alt="เครื่องหมายเชิดชูเกียรติทหารเสือ" style="max-height:250px; max-width:100%; position:relative; z-index:2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div style="display:none; flex-direction:column; align-items:center; justify-content:center; color:#94a3b8; position:absolute; inset:0; z-index:1;">
+              <i class="fa-solid fa-image" style="font-size:2.5rem; margin-bottom:.75rem; opacity:.5;"></i>
+              <span style="font-size:.9rem; font-weight:600;">[ รูปเครื่องหมายรวม ]</span>
+              <span style="font-size:.75rem; opacity:.7; margin-top:.25rem;">(รอใส่ภาพ insignia_full.png)</span>
+            </div>
+          </div>
+          <p style="font-size:1.1rem; line-height:1.8; color:var(--color-text-dark); text-align:justify; text-indent:2rem; max-width:900px; margin:0 auto;">
+            <strong>เครื่องหมายเชิดชูเกียรติทหารเสือ</strong> เป็นเครื่องหมายทำด้วยโลหะ ประดับหน้าอก เสื้อชุดปกติ และเป็นเครื่องหมายปักด้วยไหมสีดำ ประดับที่หน้าอกเสื้อชุดฝึก เบื้องขวาของทหารเสือทุกนาย คือเครื่องหมายที่ได้รับพระราชทานจากสมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชินีนาถ พระบรมราชชนนีพันปีหลวง ทรงพระราชทานพระราชดำริ ให้มีการฝึกในหลักสูตรทหารเสือนี้ ซึ่งความหมายของเครื่องหมายเชิดชูเกียรติมี ดังนี้.-
+          </p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:2.5rem; max-width:900px; margin:0 auto;">
+          
+          <!-- Part 1: Heart -->
+          <div style="display:flex; flex-direction:column; align-items:center; text-align:center; background:#fff; padding:2rem 3rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-sm); border:1px solid var(--color-border);">
+            <div style="width:100%; max-width:300px; min-height:140px; background:#f8fafc; display:flex; align-items:center; justify-content:center; border-radius:var(--radius-md); border:2px dashed #cbd5e1; margin-bottom:1.5rem; position:relative;">
+              <img src="../images/ทหารเสือ/insignia_heart.png" alt="หัวใจสีม่วง" style="max-height:140px; max-width:100%; position:relative; z-index:2; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div style="display:none; flex-direction:column; align-items:center; justify-content:center; color:#94a3b8; position:absolute; inset:0; z-index:1;">
+                <i class="fa-solid fa-heart" style="font-size:2rem; margin-bottom:.5rem; opacity:.5;"></i>
+                <span style="font-size:.85rem; font-weight:600;">[ รูปหัวใจสีม่วง ]</span>
+              </div>
+            </div>
+            <h4 style="color:var(--color-green-dark); font-size:1.3rem; margin-bottom:1.25rem;">หัวใจสีม่วงประดับพระนามาภิไธยย่อ สก.</h4>
+            <p style="font-size:1.05rem; line-height:1.7; color:var(--color-text-dark); margin-bottom:1rem; text-align:justify; text-indent:2rem;">
+              สมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชินีนาถ พระบรมราชชนนีพันปีหลวง ทรงมีพระราชดำรัส <strong>“หัวใจสีม่วง”</strong> หมายถึงผู้บริสุทธิ์ ผู้มีความซื่อสัตย์ สุจริต และจริงใจเป็นที่ตั้ง ทั้งนี้เพราะผู้ที่ใกล้ตายหัวใจจะกลายจากสีแดงเป็นสีม่วง และในห้วงเวลานั้น บุคคลผู้นั้นจะไม่มีการพูดปดโกหกหรือปิดบังสิ่งใดๆ
+            </p>
+            <p style="font-size:1.05rem; line-height:1.7; color:var(--color-text-dark); margin:0; text-align:justify; text-indent:2rem;">
+              ซึ่งหัวใจสีม่วงได้ทรงพระราชทานแก่กำลังพลในกรมทหารราบที่ ๒๑ รักษาพระองค์ ฯ ทุกนาย ด้วยทรงมุ่งหวังให้กำลังพลทหารเสือทุกนาย เป็นผู้มีความซื่อสัตย์ สุจริต และจงรักภักดีต่อชาติ ศาสนา และพระมหากษัตริย์ ส่วนพระนามาภิไธยย่อ <strong>“ สก ”</strong> หมายถึง สมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชินีนาถ พระบรมราชชนนีพันปีหลวง องค์ผู้พระราชทานกำเนิดทหารเสือ
+            </p>
+          </div>
+
+          <!-- Part 2: Tigers -->
+          <div style="display:flex; flex-direction:column; align-items:center; text-align:center; background:#fff; padding:2rem 3rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-sm); border:1px solid var(--color-border);">
+            <div style="width:100%; max-width:300px; min-height:90px; background:#f8fafc; display:flex; align-items:center; justify-content:center; border-radius:var(--radius-md); border:2px dashed #cbd5e1; margin-bottom:1.5rem; position:relative;">
+              <img src="../images/ทหารเสือ/insignia_tigers.png" alt="เสือประคองหัวใจ" style="max-height:80px; max-width:100%; position:relative; z-index:2; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div style="display:none; flex-direction:column; align-items:center; justify-content:center; color:#94a3b8; position:absolute; inset:0; z-index:1;">
+                <i class="fa-solid fa-cat" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i>
+                <span style="font-size:.85rem; font-weight:600;">[ รูปเสือประคอง ]</span>
+              </div>
+            </div>
+            <h4 style="color:var(--color-green-dark); font-size:1.3rem; margin-bottom:1.25rem;">เสือประคองหัวใจสีม่วง</h4>
+            <p style="font-size:1.05rem; line-height:1.7; color:var(--color-text-dark); margin:0;">
+              หมายถึง กำลังพลทหารเสือทุกนาย ที่เทิดทูนความซื่อสัตย์ สุจริต และจงรักภักดีแทบเบื้องยุคลบาท องค์พระมหากษัตริย์ และราชวงศ์ด้วยความจริงใจ
+            </p>
+          </div>
+
+          <!-- Part 3: Mountains, Waves, Clouds -->
+          <div style="display:flex; flex-direction:column; align-items:center; text-align:center; background:#fff; padding:2rem 3rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-sm); border:1px solid var(--color-border);">
+            <div style="width:100%; max-width:300px; min-height:80px; background:#f8fafc; display:flex; align-items:center; justify-content:center; border-radius:var(--radius-md); border:2px dashed #cbd5e1; margin-bottom:1.5rem; position:relative;">
+              <img src="../images/ทหารเสือ/insignia_bg.png" alt="ภูเขา เกลียวคลื่น ก้อนเมฆ" style="max-height:70px; max-width:100%; position:relative; z-index:2; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div style="display:none; flex-direction:column; align-items:center; justify-content:center; color:#94a3b8; position:absolute; inset:0; z-index:1;">
+                <i class="fa-solid fa-mountain" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i>
+                <span style="font-size:.85rem; font-weight:600;">[ รูปฐาน/ภูเขา ]</span>
+              </div>
+            </div>
+            <h4 style="color:var(--color-green-dark); font-size:1.3rem; margin-bottom:1.25rem;">ภูเขา / เกลียวคลื่น / ก้อนเมฆ</h4>
+            <p style="font-size:1.05rem; line-height:1.7; color:var(--color-text-dark); margin:0;">
+              หมายถึง ทุกหนทุกแห่ง ไม่ว่าจะเป็น บนฟ้า พื้นดิน ภูเขา หรือในทะเล ทหารเสือทุกนาย พร้อมที่จะดั้นด้นไป เพื่อรักษาไว้ซึ่งความปลอดภัยของชาติ และองค์พระมหากษัตริย์ เหล่าทหารเสือมีความพร้อมและสามารถปฏิบัติภารกิจได้ทุกพื้นที่ ทุกภูมิประเทศ และทุกรูปแบบ ไม่ว่าจะเป็นในเมือง ที่ราบ ป่าภูเขา บนท้องฟ้า และในทะเล
+            </p>
+          </div>
+
+          <!-- Part 4: Usage -->
+          <div style="background:rgba(201,168,76,.1); border-left:4px solid var(--color-gold); padding:2rem 2.5rem; border-radius:0 var(--radius-md) var(--radius-md) 0;">
+            <h4 style="color:var(--color-gold-dark); margin-bottom:1rem; font-size:1.2rem;"><i class="fa-solid fa-shirt"></i> การประดับเครื่องหมายทหารเสือ</h4>
+            <p style="font-size:1.05rem; color:var(--color-text-dark); line-height:1.6; margin-bottom:0;">
+              <strong>เครื่องหมายทหารเสือชนิดโลหะ</strong> ใช้ประดับที่อกเสื้อเบื้องขวากับชุดเครื่องแบบ ชุดปกติ
+              <br>
+              <strong>เครื่องหมายปักด้วยไหมสีดำ</strong> ใช้ประดับที่อกเสื้อเบื้องขวาเครื่องแบบชุดฝึก และ เครื่องหมายทหารเสือทั้งสองชนิดนี้  จะต้องประดับรองจากพระปรมาภิไธยย่อ หรือพระนามาภิไธยย่อ เท่านั้น และจะต้องประดับ เหนือเครื่องหมายอื่นๆ ทุกชนิด
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Phase Detail Modal -->
+      <div id="phaseModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.65); z-index:10000; justify-content:center; align-items:center; padding:1rem;">
+        <div id="phaseModalInner" style="background:#fff; width:100%; max-width:850px; border-radius:var(--radius-xl); position:relative; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,.4); animation:modalSlideIn .3s ease;">
+          <!-- Close button -->
+          <button onclick="closePhaseModal()" style="position:sticky; top:1rem; float:right; margin-right:1rem; background:rgba(0,0,0,.06); border:none; width:40px; height:40px; border-radius:50%; font-size:1.4rem; cursor:pointer; color:#333; z-index:10; display:flex; align-items:center; justify-content:center; transition:background .2s;" onmouseover="this.style.background='rgba(0,0,0,.12)'" onmouseout="this.style.background='rgba(0,0,0,.06)'">&times;</button>
+          
+          <div style="padding:2.5rem 3rem 3rem;">
+            <!-- Title -->
+            <h3 id="phaseModalTitle" style="color:var(--color-green-dark); margin-bottom:.5rem; font-size:1.6rem;"></h3>
+            <p id="phaseModalLocation" style="color:var(--color-text); font-size:.95rem; margin-bottom:2rem;"><i class="fa-solid fa-location-dot" style="color:var(--color-green);"></i> <span id="phaseModalLocationText"></span></p>
+
+            <!-- 4 Image placeholders in 2x2 grid -->
+            <div id="phaseModalImages" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:2rem;">
+              <div class="phase-img-slot" style="width:100%; height:200px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md); background-size:cover; background-position:center;">
+                <i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i>
+                <span style="font-size:.8rem; font-weight:600;">[ ภาพที่ ๑ ]</span>
+              </div>
+              <div class="phase-img-slot" style="width:100%; height:200px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md); background-size:cover; background-position:center;">
+                <i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i>
+                <span style="font-size:.8rem; font-weight:600;">[ ภาพที่ ๒ ]</span>
+              </div>
+              <div class="phase-img-slot" style="width:100%; height:200px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md); background-size:cover; background-position:center;">
+                <i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i>
+                <span style="font-size:.8rem; font-weight:600;">[ ภาพที่ ๓ ]</span>
+              </div>
+              <div class="phase-img-slot" style="width:100%; height:200px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md); background-size:cover; background-position:center;">
+                <i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i>
+                <span style="font-size:.8rem; font-weight:600;">[ ภาพที่ ๔ ]</span>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div style="background:rgba(201,168,76,.06); border-left:4px solid var(--color-gold); padding:1.5rem 2rem; border-radius:0 var(--radius-md) var(--radius-md) 0; margin-bottom:1.5rem;">
+              <h4 style="color:var(--color-gold-dark); margin-bottom:.75rem; font-size:1.1rem;"><i class="fa-solid fa-bullseye"></i> ความมุ่งหมาย</h4>
+              <p id="phaseModalObjective" style="font-size:1.05rem; line-height:1.8; color:var(--color-text-dark); margin:0;"></p>
+            </div>
+
+            <div id="phaseModalBody" style="font-size:1.05rem; line-height:1.8; color:var(--color-text-dark); text-indent:2rem;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        .phase-card:hover {
+          transform: translateY(-6px);
+          box-shadow: var(--shadow-md) !important;
+        }
+        @keyframes modalSlideIn {
+          from { opacity:0; transform:translateY(30px) scale(.97); }
+          to   { opacity:1; transform:translateY(0) scale(1); }
+        }
+        @media (max-width: 600px) {
+          #phaseModalInner { max-height:95vh; }
+          #phaseModalInner > div { padding:1.5rem !important; }
+          #phaseModalImages { grid-template-columns:1fr !important; }
+        }
+      </style>
+
+      <script>
+        var phaseData = {
+          1: {
+            title: '๑. ภาคที่ตั้ง (๔ สัปดาห์)',
+            location: 'ค่ายนวมินทราชินี จังหวัดชลบุรี',
+            objective: 'ปรับสภาพร่างกายและจิตใจ เตรียมร่างกายในการเข้ารับการฝึกในภาคต่อๆ ไป',
+            body: 'ทางด้านความรู้ จะปูพื้นฐานด้านการยิงปืนฉับพลัน การฝึกหน่วยทหารขนาดเล็ก พื้นฐานการดำน้ำ การกระโดดร่ม การต่อต้านการก่อการร้ายสากล การต่อสู้ป้องกันตัว รวมทั้งภาษาประเทศใกล้เคียง เนื่องจากกรมทหารราบที่ ๒๑ รักษาพระองค์ ฯ ได้จัดกำลังพลขึ้นปฏิบัติหน้าที่โครงการพัฒนาตามพระราชดำริในหลายพื้นที่ โดยเฉพาะภาคเหนือ วิชาภาษามือ เป็นต้น\n\nนอกจากการฝึกแล้ว ยังกำหนดให้มีการทดสอบมาตรฐานทั้งในด้านสภาพร่างกาย ได้แก่ การทดสอบวิ่ง ๑ ไมล์, ๓ ไมล์, ๕ ไมล์, การวิ่งประกอบอาวุธและเครื่องสนาม ๑๒ ไมล์, การทดสอบสมรรถภาพร่างกาย, การว่ายน้ำ และการเดินเร่งรีบพร้อมรบ ระยะทาง ๖๕ กิโลเมตร ตลอดจนการทดสอบการใช้อาวุธทั้งปืนเล็กยาว เอ็ม.๑๖ และปืนพก ๘๖ ในลักษณะการยิงฉับพลันบันทึกผล\n\nผู้ที่ผ่านเกณฑ์การทดสอบทั้งสมรรถภาพร่างกายและการยิงปืน จึงจะสามารถเข้ารับการฝึกในภาคต่อไป',
+            images: [
+              '../images/ทหารเสือ/base_1.jpg',
+              '../images/ทหารเสือ/base_2.jpg',
+              '../images/ทหารเสือ/base_3.jpg',
+              '../images/ทหารเสือ/base_4.jpg'
+            ]
+          },
+          2: {
+            title: '๒. ภาคป่า-ภูเขา (๔ สัปดาห์)',
+            location: 'จังหวัดเชียงใหม่ และจังหวัดแม่ฮ่องสอน',
+            objective: 'นำความรู้ในภาคที่ตั้งมาปฏิบัติจริงในภูมิประเทศทุรกันดาร และภูมิประเทศที่เป็นภูเขาสูง',
+            body: '(รอเพิ่มเนื้อหาจากเอกสาร)',
+            images: [
+              '../images/ทหารเสือ/forest_1.jpg',
+              '../images/ทหารเสือ/forest_2.png',
+              '../images/ทหารเสือ/forest_3.jpg',
+              '../images/ทหารเสือ/forest_4.jpg'
+            ]
+          },
+          3: {
+            title: '๓. ภาคทะเล (๓ สัปดาห์)',
+            location: 'บริเวณชายฝั่ง จังหวัดชลบุรี และจังหวัดระยอง',
+            objective: 'เน้นการแทรกซึมทางน้ำ การดำน้ำทางยุทธวิธี และการยุทธสะเทินน้ำสะเทินบก',
+            body: '(รอเพิ่มเนื้อหาจากเอกสาร)',
+            images: [
+              '../images/ทหารเสือ/sea_1.png',
+              '../images/ทหารเสือ/sea_2.jpg',
+              '../images/ทหารเสือ/sea_3.jpg',
+              '../images/ทหารเสือ/sea_4.jpg'
+            ]
+          },
+          4: {
+            title: '๔. ภาคปฏิบัติการในเมือง (๓ สัปดาห์)',
+            location: 'จังหวัดชลบุรี และกรุงเทพมหานคร',
+            objective: 'เน้นการปฏิบัติในพื้นที่สิ่งปลูกสร้าง การต่อต้านการก่อการร้ายสากล และการชิงตัวประกัน',
+            body: '(รอเพิ่มเนื้อหาจากเอกสาร)',
+            images: [
+              '../images/ทหารเสือ/urban_1.jpg',
+              '../images/ทหารเสือ/urban_2.jpg',
+              '../images/ทหารเสือ/urban_3.jpg',
+              '../images/ทหารเสือ/urban_4.jpg'
+            ]
+          },
+          5: {
+            title: '๕. ภาคอากาศ (๒ สัปดาห์)',
+            location: 'อ.วัฒนานคร จ.สระแก้ว',
+            objective: 'ให้ผู้เข้ารับการฝึกมีขีดความสามารถในพื้นฐานของการกระโดดร่มแบบกระตุกเอง',
+            body: '(รอเพิ่มเนื้อหาจากเอกสาร)',
+            images: [
+              '../images/ทหารเสือ/air_1.png',
+              '../images/ทหารเสือ/air_2.jpg',
+              '../images/ทหารเสือ/air_3.png',
+              '../images/ทหารเสือ/air_4.jpg'
+            ]
+          }
+        };
+
+        function openPhaseModal(id) {
+          var d = phaseData[id];
+          
+          var titleText = d.title;
+          var locText = d.location;
+          var objText = d.objective;
+          var bodyText = d.body;
+
+          // Override with Firebase data if available
+          if (window._qtPhaseData && window._qtPhaseData[id-1]) {
+            var fbData = window._qtPhaseData[id-1];
+            if (fbData.objective && fbData.objective.trim()) objText = fbData.objective;
+            if (fbData.desc && fbData.desc.trim()) bodyText = fbData.desc;
+          }
+
+          document.getElementById('phaseModalTitle').textContent = titleText;
+          document.getElementById('phaseModalLocationText').textContent = locText;
+          document.getElementById('phaseModalObjective').textContent = objText;
+          
+          // Render body with paragraph breaks
+          var bodyEl = document.getElementById('phaseModalBody');
+          bodyEl.innerHTML = '';
+          bodyText.split('\n\n').forEach(function(para) {
+            var p = document.createElement('p');
+            p.style.cssText = 'margin-bottom:1rem; text-indent:2rem;';
+            p.textContent = para;
+            bodyEl.appendChild(p);
+          });
+
+          // Render 4 images from local phaseData
+          var imgsContainer = document.getElementById('phaseModalImages');
+          if (imgsContainer) {
+            imgsContainer.innerHTML = '';
+            var imgs = d.images || ['','','',''];
+            var thaiNums = ['๑','๒','๓','๔'];
+            for (var i = 0; i < 4; i++) {
+              var slot = document.createElement('div');
+              slot.className = 'phase-img-slot';
+              slot.style.cssText = 'width:100%; height:200px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md); background-size:cover; background-position:center; overflow:hidden; cursor:pointer; transition:transform .2s;';
+              if (imgs[i] && imgs[i].trim()) {
+                slot.style.backgroundImage = "url('" + imgs[i] + "')";
+                slot.innerHTML = '';
+                (function(imgUrl) {
+                  slot.onclick = function() {
+                    if (typeof openImageLightbox === 'function') openImageLightbox(imgUrl);
+                  };
+                  slot.onmouseenter = function() { this.style.transform = 'scale(1.03)'; };
+                  slot.onmouseleave = function() { this.style.transform = ''; };
+                })(imgs[i]);
+              } else {
+                slot.style.cursor = 'default';
+                slot.innerHTML = '<i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.8rem; font-weight:600;">[ ภาพที่ ' + thaiNums[i] + ' ]</span>';
+              }
+              imgsContainer.appendChild(slot);
+            }
+          }
+
+          document.getElementById('phaseModal').style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closePhaseModal() {
+          document.getElementById('phaseModal').style.display = 'none';
+          document.body.style.overflow = '';
+        }
+
+        document.getElementById('phaseModal').addEventListener('click', function(e) {
+          if (e.target === this) closePhaseModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') closePhaseModal();
+        });
+      </script>
 
       <!-- 3. YouTube Videos Section -->
       <div class="animate-on-scroll" style="margin-top: 5rem;">
