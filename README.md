@@ -1,6 +1,6 @@
 # 902nd Infantry Brigade King's Royal Guard Website
 
-This repository contains the source code for the official website of the 902nd Infantry Brigade, King's Royal Guard (กรมทหารราบที่ 902 รักษาพระองค์).
+This repository contains the source code for the official website of the 902nd Infantry Brigade, King's Royal Guard (กรมทหารราบ 902 รักษาพระองค์).
 
 ## Project Overview
 
