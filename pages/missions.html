@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="ประวัติหน่วย กรมทหารราบ ๙๐๒ รักษาพระองค์ — ก่อตั้ง พ.ศ. ๒๔๙๓ ทหารเสือนวมินทราชินี ค่ายมหาวชิราลงกรณ์ราชวัลลภ ชลบุรี">
+  <title>ประวัติหน่วย | ร.๙๐๒ รอ.</title>
+  <link rel="icon" href="../images/logo 902.png" type="image/jpeg">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+
+    .about-intro img {
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .info-boxes {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .info-box {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      border: 1px solid var(--color-border);
+      border-top: 4px solid var(--color-green-mid);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-box .info-label {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--color-text-light);
+      margin-bottom: .4rem;
+    }
+
+    .info-box .info-value {
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .about-intro {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+
+
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="../index.html" class="navbar-brand">
+          <img src="../images/logo 902.png" alt="ตราหน่วย ร.๙๐๒ รอ.">
+          <div class="brand-text">
+            <div class="unit-name">กรมทหารราบ ๙๐๒ รักษาพระองค์</div>
+            <div class="unit-sub">ในพระบาทสมเด็จพระเจ้าอยู่หัว</div>
+          </div>
+        </a>
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="../index.html" class="nav-link">หน้าหลัก</a></li>
+          <li class="nav-item">
+            <a href="commanders.html" class="nav-link">ผู้บังคับบัญชา <span class="chevron">▾</span></a>
+            <div class="dropdown">
+              <a href="commanders-history.html" class="dropdown-item"><span class="dd-icon"></span>ทำเนียบอดีตผู้บังคับการ</a>
+              <a href="commanders.html" class="dropdown-item"><span class="dd-icon"></span>ผู้บังคับบัญชาปัจจุบัน</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link active">เกี่ยวกับกรม <span class="chevron">▾</span></a>
+            <div class="dropdown">
+              <a href="about.html" class="dropdown-item"><span class="dd-icon"></span>ประวัติหน่วย</a>
+              <a href="queens-tiger.html" class="dropdown-item"><span class="dd-icon"></span>หลักสูตรทหารเสือราชินี</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="nkt.html" class="nav-link">นขต.ร.๙๐๒ รอ.</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">ติดต่อเรา</a></li>
+        </ul>
+        <button class="navbar-toggle" id="navToggle"
+          aria-label="เปิดเมนู"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+          <a href="../index.html">หน้าหลัก</a><span>›</span>
+          <span>เกี่ยวกับกรม</span><span>›</span>
+          <span>ประวัติหน่วย</span>
+        </nav>
+        <h1>ประวัติหน่วย</h1>
+        <p style="color:rgba(255,255,255,.8);margin-top:.5rem;">กรมทหารราบ ๙๐๒ รักษาพระองค์ ในพระบาทสมเด็จพระเจ้าอยู่หัว
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+
+      <!-- Intro -->
+      <div class="about-intro animate-on-scroll">
+        <div>
+          <div
+            style="display:inline-flex;align-items:center;gap:8px;background:var(--color-green-pale);border:1px solid var(--color-green-light);color:var(--color-green);padding:4px 14px;border-radius:999px;font-size:.8rem;font-weight:700;margin-bottom:1.25rem;">
+            ทหารเสือนวมินทราชินี</div>
+          <h2 style="font-size:2rem;color:var(--color-green-dark);margin-bottom:1rem;">กรมทหารราบ ๙๐๒ รักษาพระองค์</h2>
+          <p style="font-size:1rem;line-height:1.85;color:var(--color-text-muted);">
+            กรมทหารราบ ๙๐๒ รักษาพระองค์ ในพระบาทสมเด็จพระเจ้าอยู่หัว เป็นหน่วยทหารราบระดับกรมของกองทัพบกไทย
+            ขึ้นตรงต่อกองพลทหารราบที่ ๒ รักษาพระองค์ กองทัพภาคที่ ๑
+            มีภารกิจหลักในการถวายความปลอดภัยแด่พระบาทสมเด็จพระเจ้าอยู่หัว และพระบรมวงศานุวงศ์ทุกพระองค์
+            รวมถึงการป้องกันประเทศและการช่วยเหลือประชาชน
+          </p>
+          <div class="info-boxes">
+            <div class="info-box">
+              <div class="info-label"> ปีที่ก่อตั้ง</div>
+              <div class="info-value">พ.ศ. ๒๔๙๓ (อายุ <span id="unitAge">๗๖</span> ปี)</div>
+            </div>
+            <div class="info-box">
+              <div class="info-label"> ที่ตั้งหน่วย</div>
+              <div class="info-value">ค่ายมหาวชิราลงกรณ์ราชวัลลภ<br>อ.เมืองชลบุรี จ.ชลบุรี</div>
+            </div>
+            <div class="info-box">
+              <div class="info-label"> สมญานาม</div>
+              <div class="info-value">ทหารเสือนวมินทราชินี / ทหารเสือราชินี / Little Tiger</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="../images/photo_2.jpg" alt="บู้บังคับการกรม" style="width:100%;height:auto;">
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div style="margin-top: 4rem;">
+        <h2 class="section-title">เส้นทางประวัติศาสตร์หน่วย</h2>
+        <div class="timeline animate-on-scroll">
+
+          <div class="timeline-item">
+            <div class="timeline-year">พ.ศ. ๒๔๙๓</div>
+            <div class="timeline-title">ก่อตั้งหน่วย — กรมผสมที่ ๒๑</div>
+            <div class="timeline-desc">จัดตั้งขึ้นในนาม <em>กรมผสมที่ ๒๑</em>
+              เพื่อปฏิบัติภารกิจรักษาพระองค์และป้องกันราชอาณาจักร</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">พ.ศ. ๒๔๙๓–๒๔๙๗</div>
+            <div class="timeline-title">สงครามเกาหลี</div>
+            <div class="timeline-desc">เข้าร่วมปฏิบัติการในสงครามเกาหลีภายใต้กองกำลังสหประชาชาติ
+              สร้างชื่อเสียงให้แก่ทหารไทยในเวทีแห่งการรบระดับสากล</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">พ.ศ. ๒๕๒๕</div>
+            <div class="timeline-title">กรมทหารราบที่ ๒๑ รักษาพระองค์</div>
+            <div class="timeline-desc">เปลี่ยนชื่อหน่วยจากกรมผสมเป็นหน่วยระดับกรมทหารราบอย่างเต็มรูปแบบ
+              ยกระดับความพร้อมรบและขีดความสามารถในภารกิจรักษาพระองค์ สมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชินีนาถ
+              ทรงพระกรุณาโปรดเกล้าฯ พระราชทานสมญานามอันทรงเกียรติแก่หน่วยว่า "ทหารเสือราชินี"</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">พ.ศ. ๒๕๖๒</div>
+            <div class="timeline-title">เปลี่ยนชื่อเป็น กรมทหารราบ ๙๐๒ รักษาพระองค์</div>
+            <div class="timeline-desc">เปลี่ยนชื่อหน่วยจาก <em>กรมทหารราบที่ ๒๑ รักษาพระองค์</em> เป็น
+              <strong>กรมทหารราบ ๙๐๒ รักษาพระองค์</strong> ในพระบาทสมเด็จพระเจ้าอยู่หัว</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">พ.ศ. ๒๕๖๕</div>
+            <div class="timeline-title">ได้รับสมญานาม "ทหารเสือนวมินทราชินี"</div>
+            <div class="timeline-desc">ทรงพระกรุณาโปรดเกล้าฯ พระราชทานสมญานาม "ทหารเสือนวมินทราชินี"
+              เพื่อเป็นสิริมงคลและเชิดชูเกียรติแก่หน่วย</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Mission -->
+      <div
+        style="margin-top:4rem;background:linear-gradient(135deg,var(--color-green-dark),var(--color-green));border-radius:var(--radius-xl);padding:3rem;color:#fff;text-align:center;"
+        class="animate-on-scroll">
+        <div style="font-size:3rem;margin-bottom:1rem;"></div>
+        <h3 style="color:#fff;font-size:1.5rem;margin-bottom:1rem;">ภารกิจหลักของหน่วย</h3>
+        <p style="color:rgba(255,255,255,.85);max-width:600px;margin:0 auto;line-height:1.8;" class="mission-p">
+          ถวายความปลอดภัยแด่พระบาทสมเด็จพระเจ้าอยู่หัว และพระบรมวงศานุวงศ์ทุกพระองค์
+          รักษาความสงบเรียบร้อยภายในประเทศ ป้องกันประเทศจากการคุกคามทุกรูปแบบ
+          และปฏิบัติภารกิจช่วยเหลือประชาชนที่ประสบภัยพิบัติต่างๆ
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../images/logo 902.png" alt="ตราหน่วย">
+          <p><strong style="color:#fff;">กรมทหารราบ ๙๐๒
+              รักษาพระองค์</strong><br>ค่ายมหาวชิราลงกรณ์ราชวัลลภ<br>อ.เมืองชลบุรี จ.ชลบุรี 20000</p>
+        </div>
+        <div><div class="footer-heading">เมนูหลัก</div><div class="footer-links"><a href="../index.html">หน้าหลัก</a><a href="commanders.html">ผู้บังคับบัญชา</a><a href="about.html">ประวัติหน่วย</a><a href="queens-tiger.html">หลักสูตรทหารเสือราชินี</a><a href="nkt.html">นขต.ร.๙๐๒ รอ.</a><a href="contact.html">ติดต่อเรา</a></div></div>
+        <div>
+          <div class="footer-heading">ติดต่อ</div>
+          <div class="footer-links">
+            <a href="tel:038200902"> 038-200-902</a>
+            <a href="../admin/index.html" style="color:var(--color-red-pale);margin-top:1rem;display:inline-block;">
+              ระบบผู้ดูแล</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 กรมทหารราบ ๙๐๒ รักษาพระองค์</span>
+        <span>สงวนลิขสิทธิ์ ตามพระราชบัญญัติ</span>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+  <!-- Admin System -->
+  <script>
+    window.FIREBASE_CONFIG = {
+      apiKey: "AIzaSyAgyNRJoA0zOu4cwOEmlt5p4FXdi0_fOPQ",
+      authDomain: "r902-website.firebaseapp.com",
+      projectId: "r902-website",
+      storageBucket: "r902-website.firebasestorage.app",
+      messagingSenderId: "759289155849",
+      appId: "1:759289155849:web:ffbadffc85e4633e5103d8"
+    };
+  </script>
+  <script src="../js/admin.js"></script>
+</body>
+
+</html>

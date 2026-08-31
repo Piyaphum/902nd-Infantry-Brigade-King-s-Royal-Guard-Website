@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบผู้ดูแล | ร.๙๐๒ รอ.</title>
+  <link rel="icon" href="../images/logo 902.png" type="image/png">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    body { background: var(--color-bg); }
+
+    /* ── Auth overlay ─────────────────────────────────────── */
+    #authOverlay {
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg,#8B1A28 0%,#B22234 50%,#922030 100%);
+      z-index: 9999; display: flex; align-items: center; justify-content: center;
+    }
+    .auth-card { background:#fff; border-radius:var(--radius-xl); padding:2.5rem 2rem; max-width:380px; width:90%; box-shadow:0 30px 80px rgba(0,0,0,.3); text-align:center; animation:slideUp .4s cubic-bezier(.4,0,.2,1); }
+    @keyframes slideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .auth-logo { width:80px; height:80px; object-fit:contain; margin-bottom:1rem; }
+    .auth-title { font-size:1.1rem; font-weight:800; color:var(--color-red-dark); margin-bottom:.25rem; }
+    .auth-sub { font-size:.85rem; color:var(--color-text-muted); margin-bottom:1.5rem; }
+    .auth-input { width:100%; border:2px solid var(--color-border); border-radius:var(--radius-lg); padding:.75rem 1rem; font-size:1rem; font-family:var(--font-thai); text-align:center; letter-spacing:.15em; outline:none; transition:var(--transition); margin-bottom:.5rem; }
+    .auth-input:focus { border-color:var(--color-red); }
+    .auth-input.error { border-color:var(--color-danger); animation:shake .3s; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+    .auth-btn { width:100%; padding:.8rem; background:linear-gradient(135deg,var(--color-red-dark),var(--color-red)); color:#fff; border:none; border-radius:var(--radius-lg); font-size:1rem; font-weight:700; cursor:pointer; font-family:var(--font-thai); transition:var(--transition); margin-top:.5rem; }
+    .auth-btn:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(178,34,52,.4); }
+    .auth-err { color:var(--color-danger); font-size:.85rem; margin-top:.5rem; min-height:1.2em; }
+
+    /* ── Admin page ───────────────────────────────────────── */
+    #adminPage { display:none; min-height:100vh; }
+    .admin-header { background:linear-gradient(135deg,var(--color-red-dark),var(--color-red)); padding:1.25rem 0; border-bottom:3px solid var(--color-gold); }
+    .admin-header .container { display:flex; align-items:center; justify-content:space-between; }
+    .admin-brand { display:flex; align-items:center; gap:.9rem; }
+    .admin-brand img { width:42px; height:42px; object-fit:contain; }
+    .admin-brand .title { color:#fff; font-size:1rem; font-weight:700; }
+    .admin-brand .sub { color:rgba(255,255,255,.7); font-size:.78rem; }
+    .hdr-actions { display:flex; gap:.6rem; }
+    .btn-hdr { padding:.4rem 1rem; border-radius:var(--radius-full); font-size:.82rem; font-weight:600; cursor:pointer; font-family:var(--font-thai); transition:var(--transition); border:none; }
+    .btn-out { background:rgba(255,255,255,.9); color:var(--color-red-dark); }
+    .btn-out:hover { background:#fff; }
+
+    /* ── Layout ───────────────────────────────────────────── */
+    .admin-body { padding:4rem 0; }
+    .admin-welcome { text-align:center; margin-bottom:3rem; }
+    .admin-welcome h1 { font-size:2rem; font-weight:800; color:var(--color-text); margin-bottom:.5rem; }
+    .admin-welcome p { color:var(--color-text-muted); font-size:1rem; }
+
+    .module-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:2rem; max-width:900px; margin:0 auto; }
+    .module-card { background:#fff; border-radius:var(--radius-xl); border:1px solid var(--color-border); padding:2rem; text-align:center; text-decoration:none; color:var(--color-text); transition:var(--transition); box-shadow:var(--shadow-md); position:relative; overflow:hidden; }
+    .module-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); border-color:var(--color-red-pale); }
+    .module-icon { font-size:3.5rem; margin-bottom:1rem; }
+    .module-title { font-size:1.25rem; font-weight:800; color:var(--color-text); margin-bottom:.5rem; }
+    .module-desc { font-size:.9rem; color:var(--color-text-muted); margin-bottom:1.5rem; line-height:1.5; }
+    .module-btn { display:inline-block; padding:.6rem 1.5rem; border-radius:var(--radius-full); background:var(--color-red-pale); color:var(--color-red-dark); font-weight:700; font-size:.85rem; transition:var(--transition); }
+    .module-card:hover .module-btn { background:var(--color-red); color:#fff; box-shadow:0 4px 12px rgba(178,34,52,.3); }
+    .module-badge { position:absolute; top:1rem; right:1rem; background:var(--color-success); color:#fff; padding:.2rem .6rem; border-radius:var(--radius-full); font-size:.7rem; font-weight:700; }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- ── Auth Overlay ──────────────────────────────────────── -->
+  <div id="authOverlay">
+    <div class="auth-card">
+      <img src="../images/logo 902.png" alt="ตราหน่วย" class="auth-logo">
+      <div class="auth-title">ศูนย์ควบคุมระบบ (Admin)</div>
+      <div class="auth-sub">กรมทหารราบ ๙๐๒ รักษาพระองค์<br>เฉพาะผู้ดูแลระบบ</div>
+      <input type="password" id="authInput" class="auth-input" placeholder="รหัสผ่าน" maxlength="30"
+        onkeydown="if(event.key==='Enter')checkAuth()">
+      <button class="auth-btn" onclick="checkAuth()"> เข้าสู่ระบบ</button>
+      <div class="auth-err" id="authErr"></div>
+    </div>
+  </div>
+
+  <!-- ── Admin Page ─────────────────────────────────────────── -->
+  <div id="adminPage">
+
+    <div class="admin-header">
+      <div class="container">
+        <div class="admin-brand">
+          <img src="../images/logo 902.png" alt="ตราหน่วย">
+          <div>
+            <div class="title">ศูนย์ควบคุมระบบ</div>
+            <div class="sub">ร.๙๐๒ รอ. — ผู้ดูแลระบบ</div>
+          </div>
+        </div>
+        <div class="hdr-actions">
+          <a href="../index.html" class="btn-hdr btn-out" style="background:rgba(255,255,255,.15);color:#fff;text-decoration:none;" onmouseover="this.style.background='rgba(255,255,255,.25)'" onmouseout="this.style.background='rgba(255,255,255,.15)'"> หน้าหลักเว็บ</a>
+          <button class="btn-hdr btn-out" onclick="logout()">ออกจากระบบ</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-body">
+      <div class="container">
+        
+        <div class="admin-welcome">
+          <h1>จัดการระบบเว็บไซต์</h1>
+          <p>เลือกระบบที่ต้องการจัดการด้านล่าง</p>
+        </div>
+
+        <div class="module-grid">
+          
+          <a href="news.html" class="module-card">
+            <span class="module-badge">พร้อมใช้งาน</span>
+            <div class="module-icon"><i class="fa-solid fa-newspaper" style="color:var(--color-green);"></i></div>
+            <h2 class="module-title">ระบบข่าวและกิจกรรม</h2>
+            <div class="module-desc">เพิ่ม ลบ หรือแก้ไขข่าวสารบนหน้าแรกของเว็บไซต์ พร้อมอัปโหลดรูปภาพประกอบข่าว</div>
+            <span class="module-btn">จัดการข่าวสาร →</span>
+          </a>
+
+          <a href="../pages/commanders.html" class="module-card">
+            <span class="module-badge" style="background:var(--color-blue);">ใหม่</span>
+            <div class="module-icon"><i class="fa-solid fa-users-viewfinder" style="color:var(--color-gold);"></i></div>
+            <h2 class="module-title">ระบบทำเนียบผู้บังคับบัญชา</h2>
+            <div class="module-desc">จัดการรายชื่อ ยศ ตำแหน่ง และรูปภาพของผู้บังคับบัญชาปัจจุบันและอดีตผู้บังคับการ</div>
+            <span class="module-btn">จัดการผู้บังคับบัญชา →</span>
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ── Password ─────────────────────────────────────────── */
+    const ADMIN_PASSWORD = 'r902admin'; // รหัสผ่านหลักสำหรับศูนย์กลางควบคุม
+
+    // ถ้ารหัสผ่านตรงกัน ให้จำลองการตั้งค่า auth ของโมดูลย่อยไปด้วยเลยเพื่อไม่ให้ต้องล็อกอินซ้ำ
+    function checkAuth() {
+      if (document.getElementById('authInput').value === ADMIN_PASSWORD) {
+        document.getElementById('authOverlay').style.display = 'none';
+        document.getElementById('adminPage').style.display   = 'block';
+        sessionStorage.setItem('masterAdminAuth', '1');
+        // ให้ทะลุไปยังโมดูลย่อยได้โดยไม่ต้องล็อกอินซ้ำ
+        sessionStorage.setItem('newsAdminAuth', '1');
+      } else {
+        const inp = document.getElementById('authInput');
+        inp.classList.add('error');
+        document.getElementById('authErr').textContent = 'รหัสผ่านไม่ถูกต้อง';
+        setTimeout(() => inp.classList.remove('error'), 500);
+        inp.value = ''; inp.focus();
+      }
+    }
+    
+    function logout() { 
+      sessionStorage.removeItem('masterAdminAuth'); 
+      sessionStorage.removeItem('newsAdminAuth'); 
+      location.reload(); 
+    }
+    
+    if (sessionStorage.getItem('masterAdminAuth') === '1') {
+      document.getElementById('authOverlay').style.display = 'none';
+      document.getElementById('adminPage').style.display   = 'block';
+    }
+  </script>
+</body>
+</html>
+
+

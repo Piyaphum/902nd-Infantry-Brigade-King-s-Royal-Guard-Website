@@ -1,0 +1,593 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="เว็บไซต์ทางการของ กรมทหารราบ ๙๐๒ รักษาพระองค์ ในพระบาทสมเด็จพระเจ้าอยู่หัว — ทหารเสือนวมินทราชินี ค่ายมหาวชิราลงกรณ์ราชวัลลภ จังหวัดชลบุรี">
+  <meta name="keywords" content="กรมทหารราบ 902, ร.902 รอ, ทหารเสือราชินี, กองทัพบก, ชลบุรี">
+  <title>กรมทหารราบ ๙๐๒ รักษาพระองค์ | ร.๙๐๒ รอ.</title>
+  <link rel="icon" href="images/logo 902.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+
+
+  <!-- ── Navbar ───────────────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-brand">
+          <img src="images/logo 902.png" alt="ตราหน่วย ร.๙๐๒ รอ.">
+          <div class="brand-text">
+            <div class="unit-name">กรมทหารราบ ๙๐๒ รักษาพระองค์</div>
+            <div class="unit-sub">ในพระบาทสมเด็จพระเจ้าอยู่หัว</div>
+          </div>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link active">หน้าหลัก</a></li>
+          <li class="nav-item">
+            <a href="pages/commanders.html" class="nav-link">ผู้บังคับบัญชา <span class="chevron">▾</span></a>
+            <div class="dropdown">
+              <a href="pages/commanders-history.html" class="dropdown-item"><span
+                  class="dd-icon"></span>ทำเนียบอดีตผู้บังคับการ</a>
+              <a href="pages/commanders.html" class="dropdown-item"><span
+                  class="dd-icon"></span>ผู้บังคับบัญชาปัจจุบัน</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="pages/about.html" class="nav-link">เกี่ยวกับกรม <span class="chevron">▾</span></a>
+            <div class="dropdown">
+              <a href="pages/about.html" class="dropdown-item"><span class="dd-icon"></span>ประวัติหน่วย</a>
+              <a href="pages/queens-tiger.html" class="dropdown-item"><span class="dd-icon"></span>หลักสูตรทหารเสือราชินี</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="pages/nkt.html" class="nav-link">นขต.ร.๙๐๒ รอ.</a></li>
+
+          <li class="nav-item"><a href="pages/contact.html" class="nav-link">ติดต่อเรา</a></li>
+
+        </ul>
+
+        <button class="navbar-toggle" id="navToggle" aria-label="เปิดเมนู">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div id="navOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:150;"
+    onclick="document.querySelector('.nav-menu').classList.remove('open');this.style.display='none';"></div>
+
+  <!-- ── Hero Section ─────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge"> ทหารเสือนวมินทราชินี</div>
+        <h1 class="hero-title">
+          กรมทหารราบ ๙๐๒<br>
+          <span class="highlight">รักษาพระองค์</span>
+        </h1>
+        <p class="hero-subtitle">
+          ในพระบาทสมเด็จพระเจ้าอยู่หัว<br>
+          ค่ายมหาวชิราลงกรณ์ราชวัลลภ จังหวัดชลบุรี
+        </p>
+        <div class="hero-actions">
+          <a href="pages/about.html" class="btn btn-primary"> ประวัติหน่วย</a>
+
+        </div>
+      </div>
+    </div>
+    <img src="images/logo 902.png" alt="ตราหน่วย ร.๙๐๒ รอ." class="hero-emblem">
+  </section>
+
+  <!-- ── Stats Bar ─────────────────────────────────────────── -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-number"><span class="count-up" id="unit-age" data-target="76" data-suffix=" ปี">76 ปี</span>
+          </div>
+          <div class="stat-label">ก่อตั้งหน่วย (พ.ศ. ๒๔๙๓)</div>
+        </div>
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-number"><span class="count-up" data-target="3">0</span></div>
+          <div class="stat-label">กองพันทหารราบ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Banners Section ──────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="home-banners-grid">
+        <a href="#" class="home-banner-left" id="banner-1-link">
+          <img src="images/banner-bless.jpg" alt="แบนเนอร์ 1" id="banner-1-img">
+          <button class="admin-edit-btn banner-edit-btn" onclick="event.preventDefault(); openMediaEdit('banner-1', 'banners', 'แก้ไขแบนเนอร์')"><i class="fa-solid fa-pen"></i> แก้ไข</button>
+        </a>
+        <div class="home-banner-right">
+          <a href="#" class="home-banner-item" id="banner-2-link">
+            <img src="images/banner-royal.jpg" alt="แบนเนอร์ 2" id="banner-2-img">
+            <button class="admin-edit-btn banner-edit-btn" onclick="event.preventDefault(); openMediaEdit('banner-2', 'banners', 'แก้ไขแบนเนอร์')"><i class="fa-solid fa-pen"></i> แก้ไข</button>
+          </a>
+          <a href="#" class="home-banner-item" id="banner-3-link">
+            <img src="images/banner-recruit.jpg" alt="แบนเนอร์ 3" id="banner-3-img">
+            <button class="admin-edit-btn banner-edit-btn" onclick="event.preventDefault(); openMediaEdit('banner-3', 'banners', 'แก้ไขแบนเนอร์')"><i class="fa-solid fa-pen"></i> แก้ไข</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── News Section ─────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title-line">
+        <h2>ข่าวสารประชาสัมพันธ์</h2>
+      </div>
+      <div id="prSkeleton" style="text-align:center;padding:2rem;color:var(--color-text-muted);">กำลังโหลด...</div>
+      <div id="prList" class="news-4col" style="display:none;"></div>
+    </div>
+  </section>
+
+  <!-- ── Pride Section ────────────────────────────────────── -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-title-line">
+        <h2>ความภาคภูมิใจ</h2>
+      </div>
+      <div class="pride-grid">
+        <div class="pride-item pride-main" id="pride-1-container">
+          <!-- YouTube embed -->
+          <iframe src="https://www.youtube.com/embed/g2qJj3NIsB8?autoplay=0&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen id="pride-1-frame"></iframe>
+          <img src="" id="pride-1-img" style="display:none;" alt="ความภาคภูมิใจ">
+          <button class="admin-edit-btn banner-edit-btn" onclick="event.preventDefault(); openMediaEdit('pride-1', 'pride', 'แก้ไขความภาคภูมิใจ')"><i class="fa-solid fa-pen"></i> แก้ไข</button>
+        </div>
+        <div class="pride-item pride-side-1" id="pride-2-container">
+          <iframe src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen id="pride-2-frame" style="display:none;"></iframe>
+          <img src="images/pride-topright.jpg" alt="ความภาคภูมิใจ" id="pride-2-img">
+          <button class="admin-edit-btn banner-edit-btn" onclick="event.preventDefault(); openMediaEdit('pride-2', 'pride', 'แก้ไขความภาคภูมิใจ')"><i class="fa-solid fa-pen"></i> แก้ไข</button>
+        </div>
+        <div class="pride-item pride-side-2" id="pride-3-container">
+          <iframe src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen id="pride-3-frame" style="display:none;"></iframe>
+          <img src="images/pride-midright.jpg" alt="ความภาคภูมิใจ" id="pride-3-img">
+          <button class="admin-edit-btn banner-edit-btn" onclick="event.preventDefault(); openMediaEdit('pride-3', 'pride', 'แก้ไขความภาคภูมิใจ')"><i class="fa-solid fa-pen"></i> แก้ไข</button>
+        </div>
+        <div class="pride-item pride-side-3" id="pride-4-container">
+          <iframe src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen id="pride-4-frame" style="display:none;"></iframe>
+          <img src="images/pride-botright.jpg" alt="ความภาคภูมิใจ" id="pride-4-img">
+          <button class="admin-edit-btn banner-edit-btn" onclick="event.preventDefault(); openMediaEdit('pride-4', 'pride', 'แก้ไขความภาคภูมิใจ')"><i class="fa-solid fa-pen"></i> แก้ไข</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Media Edit Modal ────────────────────────────────── -->
+  <div id="mediaEditModal" style="position:fixed;inset:0;z-index:999998;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;padding:1rem;">
+    <div class="aem-card" style="width:100%;max-width:500px;background:#fff;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.3);">
+      <div class="aem-header" style="background:var(--color-red-dark);padding:1rem 1.5rem;border-radius:20px 20px 0 0;display:flex;justify-content:space-between;align-items:center;">
+        <div class="aem-title" id="mediaEditTitle" style="color:#fff;font-weight:700;">แก้ไขสื่อ</div>
+        <button class="aem-close" onclick="closeMediaEdit()" style="background:transparent;border:none;color:#fff;cursor:pointer;font-size:1.2rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="aem-body" style="padding:1.5rem;">
+        <input type="hidden" id="editMediaId">
+        <input type="hidden" id="editMediaCollection">
+        
+        <div class="form-group">
+          <label class="aem-label" style="display:block;margin-bottom:0.5rem;font-weight:700;font-size:0.85rem;">อัปโหลดรูปภาพ/วิดีโอ จากเครื่อง</label>
+          <input type="file" id="editMediaFile" class="aem-input" accept="image/*,video/*" style="width:100%;padding:0.5rem;border:1px solid #ccc;border-radius:8px;">
+          <div style="font-size:0.75rem;color:#888;margin-top:0.25rem;">(หากเลือกไฟล์ จะใช้ไฟล์อัปโหลดนี้แทนลิงก์ URL ด้านล่าง)</div>
+        </div>
+
+        <div style="text-align:center;margin:1rem 0;color:#aaa;font-weight:700;font-size:0.85rem;">หรือ</div>
+
+        <div class="form-group">
+          <label class="aem-label" style="display:block;margin-bottom:0.5rem;font-weight:700;font-size:0.85rem;">วางลิงก์รูปภาพ / วิดีโอ URL (รองรับลิงก์ YouTube)</label>
+          <input type="text" id="editMediaUrl" class="aem-input" placeholder="https://..." style="width:100%;padding:0.6rem;border:1px solid #ccc;border-radius:8px;">
+        </div>
+        
+        <hr style="margin:1.5rem 0;border:0;border-top:1px solid #eee;">
+
+        <div class="form-group">
+          <label class="aem-label" style="display:block;margin-bottom:0.5rem;font-weight:700;font-size:0.85rem;">ลิงก์เมื่อคลิกแบนเนอร์ (ปลายทาง)</label>
+          <input type="text" id="editMediaLink" class="aem-input" placeholder="https://..." style="width:100%;padding:0.6rem;border:1px solid #ccc;border-radius:8px;">
+        </div>
+      </div>
+      <div class="aem-footer" style="padding:1rem 1.5rem;border-top:1px solid #eee;display:flex;justify-content:flex-end;gap:0.5rem;">
+        <button class="aem-cancel" onclick="closeMediaEdit()" style="padding:0.6rem 1.2rem;border:1px solid #ccc;background:#f9f9f9;border-radius:8px;cursor:pointer;font-weight:600;">ยกเลิก</button>
+        <button class="aem-save" id="saveMediaBtn" onclick="saveMediaEdit()" style="padding:0.6rem 1.5rem;background:var(--color-green);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">บันทึกข้อมูล</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Modal for reading news (index) ───────────────────── -->
+  <div id="newsModal"
+    style="position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:1rem;backdrop-filter:blur(5px);"
+    onclick="if(event.target===this)closeNewsModal()">
+    <div
+      style="background:#fff;border-radius:var(--radius-xl);width:100%;max-width:650px;max-height:85vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .3s;box-shadow:0 25px 50px -12px rgba(0,0,0,.5);"
+      id="newsModalContent">
+      <button onclick="closeNewsModal()"
+        style="position:sticky;top:1rem;float:right;right:1rem;width:40px;height:40px;background:rgba(0,0,0,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;font-size:1.2rem;cursor:pointer;transition:background .2s;z-index:2;margin-bottom:-40px;backdrop-filter:blur(5px);"><i
+          class="fa-solid fa-xmark"></i></button>
+      <img id="modalImg" src=""
+        style="width:100%;max-height:350px;object-fit:cover;background:var(--color-bg-alt);display:none;">
+      <div style="padding:2.5rem;">
+        <div
+          style="display:flex;align-items:center;gap:1rem;font-size:.9rem;color:var(--color-text-muted);font-weight:500;margin-bottom:1rem;">
+          <span id="modalCat"
+            style="background:var(--color-red-pale);color:var(--color-red-dark);padding:.3rem .8rem;border-radius:var(--radius-full);font-size:.8rem;font-weight:700;"></span>
+          <span id="modalDate"></span>
+        </div>
+        <h2 id="modalTitle"
+          style="font-size:1.75rem;font-weight:800;color:var(--color-text);line-height:1.4;margin-bottom:1.5rem;"></h2>
+        <div id="modalText" style="font-size:1.05rem;line-height:1.8;color:var(--color-text);white-space:pre-wrap;">
+        </div>
+        <a id="modalLink" href="#" target="_blank"
+          style="display:none;align-items:center;gap:.5rem;margin-top:2rem;padding:.75rem 1.5rem;background:var(--color-blue);color:#fff;text-decoration:none;border-radius:var(--radius-lg);font-weight:700;transition:background .2s;"
+          onmouseover="this.style.background='var(--color-blue-dark)'"
+          onmouseout="this.style.background='var(--color-blue)'"><i class="fa-solid fa-external-link-alt"></i>
+          ดูรายละเอียดเพิ่มเติม</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Commanders Preview ─────────────────────────────────── -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">ผู้บังคับบัญชา</h2>
+      <div class="commanders-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));">
+
+        <div class="commander-card featured animate-on-scroll">
+          <div class="commander-img-wrap">
+            <img src="images/photo_2.jpg" alt="ผู้บังคับการ">
+          </div>
+          <div class="commander-order">1</div>
+          <div class="commander-body">
+            <div class="commander-rank">พันเอก</div>
+            <div class="commander-name">ณัฐวุฒิ สมพรหม</div>
+            <div class="commander-position">ผู้บังคับการกรมทหารราบ ๙๐๒ รักษาพระองค์</div>
+          </div>
+        </div>
+
+        <div class="commander-card animate-on-scroll">
+          <div class="commander-img-wrap"><img src="images/photo_6.jpg" alt="สุดแดน ศรีดำมา"></div>
+          <div class="commander-order">2</div>
+          <div class="commander-body">
+            <div class="commander-rank">พันเอก</div>
+            <div class="commander-name">สุดแดน ศรีดำมา</div>
+            <div class="commander-position">รองผู้บังคับการฯ ท่านที่ ๑</div>
+          </div>
+        </div>
+
+        <div class="commander-card animate-on-scroll">
+          <div class="commander-img-wrap"><img src="images/photo_3.jpg" alt="นาวิน กุลไทย"></div>
+          <div class="commander-order">3</div>
+          <div class="commander-body">
+            <div class="commander-rank">พันเอก</div>
+            <div class="commander-name">นาวิน กุลไทย</div>
+            <div class="commander-position">รองผู้บังคับการฯ ท่านที่ ๒</div>
+          </div>
+        </div>
+
+        <div class="commander-card animate-on-scroll">
+          <div class="commander-img-wrap"><img src="images/photo_8.jpg" alt="กฤษรินทร์ ดวงอุไร"></div>
+          <div class="commander-order">4</div>
+          <div class="commander-body">
+            <div class="commander-rank">พันเอก</div>
+            <div class="commander-name">กฤษรินทร์ ดวงอุไร</div>
+            <div class="commander-position">เสนาธิการกรมทหารราบ ๙๐๒ รักษาพระองค์</div>
+          </div>
+        </div>
+
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <a href="pages/commanders.html" class="btn btn-green">ดูทำเนียบผู้บังคับบัญชาทั้งหมด →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo 902.png" alt="ตราหน่วย">
+          <p><strong style="color:#fff;">กรมทหารราบ ๙๐๒
+              รักษาพระองค์</strong><br>ในพระบาทสมเด็จพระเจ้าอยู่หัว<br>ค่ายมหาวชิราลงกรณ์ราชวัลลภ
+            ต.บ้านสวน<br>อ.เมืองชลบุรี จ.ชลบุรี ๒๐๐๐๐</p>
+        </div>
+        <div>
+          <div class="footer-heading">เมนูหลัก</div>
+          <div class="footer-links">
+            <a href="index.html">หน้าหลัก</a>
+            <a href="pages/commanders.html">ผู้บังคับบัญชา</a>
+            <a href="pages/about.html">ประวัติหน่วย</a>
+            <a href="pages/queens-tiger.html">หลักสูตรทหารเสือราชินี</a>
+            <a href="pages/nkt.html">นขต.ร.๙๐๒ รอ.</a>
+            <a href="pages/contact.html">ติดต่อเรา</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">ติดต่อ</div>
+          <div class="footer-links">
+            <a href="tel:038200902"> 038-200-902</a>
+            <a href="#"> 038-200-903</a>
+            <a href="mailto:info@r902.rta.mi.th"> info@r902.rta.mi.th</a>
+            <a href="admin/index.html" style="color:var(--color-red-pale);margin-top:1rem;display:inline-block;">
+              ระบบผู้ดูแล</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© ๒๕๖๙ กรมทหารราบ ๙๐๒ รักษาพระองค์ — สงวนลิขสิทธิ์</span>
+        <span>พัฒนาโดย ฝ่ายกรรมวิธีข้อมูล ร.๙๐๒ รอ.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <!-- Admin System -->
+  <script>
+    window.FIREBASE_CONFIG = {
+      apiKey: "AIzaSyAgyNRJoA0zOu4cwOEmlt5p4FXdi0_fOPQ",
+      authDomain: "r902-website.firebaseapp.com",
+      projectId: "r902-website",
+      storageBucket: "r902-website.firebasestorage.app",
+      messagingSenderId: "759289155849",
+      appId: "1:759289155849:web:ffbadffc85e4633e5103d8"
+    };
+  </script>
+  <script src="js/admin.js"></script>
+
+
+<!-- ── Firebase (News & Banners) ────────────────────────── -->
+<script type="module">
+  const firebaseConfig = window.FIREBASE_CONFIG;
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, getDocs, doc, getDoc, setDoc, query, orderBy, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+  let app, db, storage;
+  if (!firebaseConfig.apiKey.startsWith('YOUR_')) {
+    try {
+      app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      storage = getStorage(app);
+
+      // --- 1. Load Banners ---
+      const bannersRef = doc(db, 'siteContent', 'banners');
+      getDoc(bannersRef).then(snap => {
+        if (snap.exists()) {
+          const data = snap.data();
+          ['banner-1', 'banner-2', 'banner-3'].forEach(id => {
+            if (data[id]) {
+              const b = data[id];
+              const imgEl = document.getElementById(id + '-img');
+              const linkEl = document.getElementById(id + '-link');
+              if (imgEl && b.imageUrl) imgEl.src = b.imageUrl;
+              if (linkEl && b.targetUrl) linkEl.href = b.targetUrl;
+            }
+          });
+        }
+      }).catch(e => console.error("Error loading banners:", e));
+
+      // --- 1.5 Load Pride ---
+      const prideRef = doc(db, 'siteContent', 'pride');
+      getDoc(prideRef).then(snap => {
+        if (snap.exists()) {
+          const data = snap.data();
+          ['pride-1', 'pride-2', 'pride-3', 'pride-4'].forEach(id => {
+            if (data[id]) {
+              const p = data[id];
+              const frameEl = document.getElementById(id + '-frame');
+              const imgEl = document.getElementById(id + '-img');
+              if (p.imageUrl) {
+                if (p.imageUrl.includes('youtube.com/embed/')) {
+                  if (frameEl) { frameEl.src = p.imageUrl; frameEl.style.display = 'block'; }
+                  if (imgEl) { imgEl.style.display = 'none'; }
+                } else {
+                  if (imgEl) { imgEl.src = p.imageUrl; imgEl.style.display = 'block'; }
+                  if (frameEl) { frameEl.style.display = 'none'; }
+                }
+              }
+            }
+          });
+        }
+      }).catch(e => console.error("Error loading pride:", e));
+
+      // --- 2. Load PR News ---
+      const q = query(collection(db, 'news'), orderBy('publishedAt', 'desc'), limit(20));
+      const snap = await getDocs(q);
+
+      document.getElementById('prSkeleton').style.display = 'none';
+
+      if (snap.empty) {
+        document.getElementById('prList').outerHTML = '<div style="text-align:center;color:#666;">ยังไม่มีข่าวประชาสัมพันธ์</div>';
+      } else {
+        window._homeNewsData = {};
+        let prHtml = '';
+        let count = 0;
+
+        snap.forEach(docSnap => {
+          const n = { id: docSnap.id, ...docSnap.data() };
+          const fullDt = n.publishedAt?.toDate ? n.publishedAt.toDate().toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' }) : (n.date || '');
+          n.formattedDate = fullDt;
+          window._homeNewsData[n.id] = n;
+
+          prHtml += `
+            <div class="news-4col-item" onclick="openNewsModal('${n.id}')" style="cursor:pointer;">
+              ${n.imageUrl ? `<img src="${n.imageUrl}" class="news-4col-thumb" alt="news thumbnail">` : ''}
+              <div class="news-4col-title" title="${n.title}">${n.title}</div>
+              <div class="news-4col-date">${fullDt}</div>
+            </div>
+          `;
+          count++;
+        });
+
+        if (count === 0) prHtml = '<div style="text-align:center;color:#666;">ยังไม่มีข่าวประชาสัมพันธ์</div>';
+        const prListElem = document.getElementById('prList');
+        if(prListElem) {
+          prListElem.innerHTML = prHtml;
+          prListElem.style.display = 'grid';
+        }
+      }
+    } catch (e) {
+      console.error("Firebase Initialization Error:", e);
+      document.getElementById('prSkeleton').textContent = 'ไม่สามารถโหลดข้อมูลได้ (ตั้งค่า Firebase ไม่ถูกต้อง)';
+    }
+  }
+
+  // --- Media Editing Logic ---
+  window.openMediaEdit = function(mediaId, collection, titleText) {
+    document.getElementById('editMediaId').value = mediaId;
+    document.getElementById('editMediaCollection').value = collection;
+    document.getElementById('mediaEditTitle').textContent = titleText || 'แก้ไขสื่อ';
+    document.getElementById('editMediaFile').value = '';
+    document.getElementById('editMediaUrl').value = '';
+    document.getElementById('editMediaLink').value = '';
+    
+    // Pre-fill existing data
+    const imgEl = document.getElementById(mediaId + '-img');
+    const frameEl = document.getElementById(mediaId + '-frame');
+    const linkEl = document.getElementById(mediaId + '-link');
+    
+    if (frameEl && frameEl.style.display !== 'none' && frameEl.src) {
+      document.getElementById('editMediaUrl').value = frameEl.src;
+    } else if (imgEl && imgEl.src && !imgEl.src.includes('images/banner-') && !imgEl.src.includes('images/pride-')) {
+      document.getElementById('editMediaUrl').value = imgEl.src;
+    }
+
+    if (linkEl && linkEl.href && linkEl.getAttribute('href') !== '#') {
+      document.getElementById('editMediaLink').value = linkEl.getAttribute('href');
+    }
+
+    document.getElementById('mediaEditModal').style.display = 'flex';
+  };
+
+  window.closeMediaEdit = function() {
+    document.getElementById('mediaEditModal').style.display = 'none';
+  };
+
+  function convertToEmbedUrl(url) {
+    if (!url) return url;
+    const youtubeMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+    if (youtubeMatch && youtubeMatch[1]) {
+      return `https://www.youtube.com/embed/${youtubeMatch[1]}`;
+    }
+    return url;
+  }
+
+  window.saveMediaEdit = async function() {
+    if(!db) {
+      alert("Firebase is not initialized.");
+      return;
+    }
+    const btn = document.getElementById('saveMediaBtn');
+    btn.textContent = 'กำลังบันทึก...';
+    btn.disabled = true;
+
+    try {
+      const mediaId = document.getElementById('editMediaId').value;
+      const collectionName = document.getElementById('editMediaCollection').value || 'banners';
+      const fileInput = document.getElementById('editMediaFile');
+      let finalUrl = document.getElementById('editMediaUrl').value;
+      const targetLink = document.getElementById('editMediaLink').value;
+
+      // Handle File Upload
+      if (fileInput.files && fileInput.files.length > 0 && storage) {
+        const file = fileInput.files[0];
+        const ext = file.name.split('.').pop();
+        const path = `${collectionName}/${mediaId}_${Date.now()}.${ext}`;
+        const storageRef = ref(storage, path);
+        
+        const uploadTask = uploadBytes(storageRef, file);
+        const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('Upload timeout (Storage might not be enabled)')), 10000));
+        await Promise.race([uploadTask, timeout]);
+        finalUrl = await getDownloadURL(storageRef);
+      }
+
+      if (!finalUrl) {
+        alert("กรุณาอัปโหลดรูปหรือใส่ลิงก์ URL");
+        btn.textContent = 'บันทึกข้อมูล';
+        btn.disabled = false;
+        return;
+      }
+
+      // Convert YouTube links to embed format
+      finalUrl = convertToEmbedUrl(finalUrl);
+
+      // Save to Firestore
+      const mediaRef = doc(db, 'siteContent', collectionName);
+      await setDoc(mediaRef, {
+        [mediaId]: {
+          imageUrl: finalUrl,
+          targetUrl: targetLink,
+          updatedAt: serverTimestamp()
+        }
+      }, { merge: true });
+
+      // Update DOM
+      const imgEl = document.getElementById(mediaId + '-img');
+      const frameEl = document.getElementById(mediaId + '-frame');
+      const linkEl = document.getElementById(mediaId + '-link');
+      
+      if (finalUrl.includes('youtube.com/embed/')) {
+        if (frameEl) { frameEl.src = finalUrl; frameEl.style.display = 'block'; }
+        if (imgEl) { imgEl.style.display = 'none'; }
+      } else {
+        if (imgEl) { imgEl.src = finalUrl; imgEl.style.display = 'block'; }
+        if (frameEl) { frameEl.style.display = 'none'; }
+      }
+      
+      if (linkEl) linkEl.href = targetLink || '#';
+
+      window.closeMediaEdit();
+      if(window._adm) window._adm.showToast('บันทึกสำเร็จ', 'ok');
+    } catch (e) {
+      console.error("Error saving media:", e);
+      alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล: " + e.message);
+    } finally {
+      btn.textContent = 'บันทึกข้อมูล';
+      btn.disabled = false;
+    }
+  };
+
+  window.openNewsModal = function (id) {
+    const n = window._homeNewsData[id];
+    if (!n) return;
+    const img = document.getElementById('modalImg');
+    if (n.imageUrl) { img.src = n.imageUrl; img.style.display = 'block'; }
+    else { img.style.display = 'none'; }
+    document.getElementById('modalCat').textContent = n.category || 'ข่าวหน่วย';
+    document.getElementById('modalDate').textContent = ` ${n.formattedDate}`;
+    document.getElementById('modalTitle').textContent = n.title || '';
+    document.getElementById('modalText').textContent = n.content || '';
+    const link = document.getElementById('modalLink');
+    if (n.link) { link.href = n.link; link.style.display = 'inline-flex'; }
+    else { link.style.display = 'none'; }
+
+    const modal = document.getElementById('newsModal');
+    modal.style.opacity = '1';
+    modal.style.pointerEvents = 'auto';
+    document.getElementById('newsModalContent').style.transform = 'translateY(0)';
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeNewsModal = function () {
+    const modal = document.getElementById('newsModal');
+    modal.style.opacity = '0';
+    modal.style.pointerEvents = 'none';
+    document.getElementById('newsModalContent').style.transform = 'translateY(20px)';
+    document.body.style.overflow = '';
+  };
+</script>
+</body>
+</html>
