@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8">
@@ -58,6 +58,10 @@
     .module-badge { position:absolute; top:1rem; right:1rem; background:var(--color-success); color:#fff; padding:.2rem .6rem; border-radius:var(--radius-full); font-size:.7rem; font-weight:700; }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .auth-input-email { margin-bottom:.5rem; }
+    #authLoading { color:var(--color-text-muted); font-size:.82rem; margin-top:.5rem; min-height:1.2em; }
+  </style>
 </head>
 <body>
 
@@ -67,10 +71,13 @@
       <img src="../images/logo 902.png" alt="ตราหน่วย" class="auth-logo">
       <div class="auth-title">ศูนย์ควบคุมระบบ (Admin)</div>
       <div class="auth-sub">กรมทหารราบ ๙๐๒ รักษาพระองค์<br>เฉพาะผู้ดูแลระบบ</div>
-      <input type="password" id="authInput" class="auth-input" placeholder="รหัสผ่าน" maxlength="30"
+      <input type="email" id="authEmail" class="auth-input auth-input-email" placeholder="อีเมล Admin"
+        onkeydown="if(event.key==='Enter')document.getElementById('authInput').focus()">
+      <input type="password" id="authInput" class="auth-input" placeholder="รหัสผ่าน"
         onkeydown="if(event.key==='Enter')checkAuth()">
-      <button class="auth-btn" onclick="checkAuth()"> เข้าสู่ระบบ</button>
+      <button class="auth-btn" id="loginBtn" onclick="checkAuth()"> เข้าสู่ระบบ</button>
       <div class="auth-err" id="authErr"></div>
+      <div id="authLoading"></div>
     </div>
   </div>
 
@@ -125,37 +132,79 @@
     </div>
   </div>
 
-  <script>
-    /* ── Password ─────────────────────────────────────────── */
-    const ADMIN_PASSWORD = 'r902admin'; // รหัสผ่านหลักสำหรับศูนย์กลางควบคุม
+  <!-- ── Firebase Auth (module) ──────────────────────────────── -->
+  <script type="module">
+    import { initializeApp }            from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut }
+      from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 
-    // ถ้ารหัสผ่านตรงกัน ให้จำลองการตั้งค่า auth ของโมดูลย่อยไปด้วยเลยเพื่อไม่ให้ต้องล็อกอินซ้ำ
-    function checkAuth() {
-      if (document.getElementById('authInput').value === ADMIN_PASSWORD) {
+    /* ── Firebase config (API key ปลอดภัยอยู่ใน public code ตาม Firebase design) ── */
+    const firebaseConfig = {
+      apiKey:            "AIzaSyAgyNRJoA0zOu4cwOEmlt5p4FXdi0_fOPQ",
+      authDomain:        "r902-website.firebaseapp.com",
+      projectId:         "r902-website",
+      storageBucket:     "r902-website.firebasestorage.app",
+      messagingSenderId: "759289155849",
+      appId:             "1:759289155849:web:ffbadffc85e4633e5103d8"
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    /* ── ฟังการเปลี่ยนสถานะ login (persistent) ─────────────── */
+    onAuthStateChanged(auth, user => {
+      if (user) {
         document.getElementById('authOverlay').style.display = 'none';
         document.getElementById('adminPage').style.display   = 'block';
-        sessionStorage.setItem('masterAdminAuth', '1');
-        // ให้ทะลุไปยังโมดูลย่อยได้โดยไม่ต้องล็อกอินซ้ำ
-        sessionStorage.setItem('newsAdminAuth', '1');
       } else {
+        document.getElementById('authOverlay').style.display = 'flex';
+        document.getElementById('adminPage').style.display   = 'none';
+        document.getElementById('authEmail').focus();
+      }
+    });
+
+    /* ── Login ──────────────────────────────────────────────── */
+    window.checkAuth = async function() {
+      const email    = document.getElementById('authEmail').value.trim();
+      const password = document.getElementById('authInput').value;
+      const errEl    = document.getElementById('authErr');
+      const loadEl   = document.getElementById('authLoading');
+      const btn      = document.getElementById('loginBtn');
+
+      if (!email || !password) {
+        errEl.textContent = 'กรุณากรอกอีเมลและรหัสผ่าน';
+        return;
+      }
+
+      btn.disabled = true;
+      loadEl.textContent = 'กำลังเข้าสู่ระบบ...';
+      errEl.textContent  = '';
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        // onAuthStateChanged จะจัดการแสดง UI ให้อัตโนมัติ
+      } catch (e) {
+        const msg = e.code === 'auth/invalid-credential'
+          ? 'อีเมลหรือรหัสผ่านไม่ถูกต้อง'
+          : e.code === 'auth/too-many-requests'
+            ? 'พยายามเข้าสู่ระบบบ่อยเกินไป กรุณารอสักครู่'
+            : 'เกิดข้อผิดพลาด: ' + e.message;
+        errEl.textContent = msg;
         const inp = document.getElementById('authInput');
         inp.classList.add('error');
-        document.getElementById('authErr').textContent = 'รหัสผ่านไม่ถูกต้อง';
         setTimeout(() => inp.classList.remove('error'), 500);
         inp.value = ''; inp.focus();
+      } finally {
+        btn.disabled       = false;
+        loadEl.textContent = '';
       }
-    }
+    };
 
-    function logout() { 
-      sessionStorage.removeItem('masterAdminAuth'); 
-      sessionStorage.removeItem('newsAdminAuth'); 
-      location.reload(); 
-    }
-
-    if (sessionStorage.getItem('masterAdminAuth') === '1') {
-      document.getElementById('authOverlay').style.display = 'none';
-      document.getElementById('adminPage').style.display   = 'block';
-    }
+    /* ── Logout ─────────────────────────────────────────────── */
+    window.logout = async function() {
+      await signOut(auth);
+      // onAuthStateChanged จะ redirect ให้อัตโนมัติ
+    };
   </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8">
@@ -20,13 +20,15 @@
     .auth-logo { width:80px; height:80px; object-fit:contain; margin-bottom:1rem; }
     .auth-title { font-size:1.1rem; font-weight:800; color:var(--color-red-dark); margin-bottom:.25rem; }
     .auth-sub { font-size:.85rem; color:var(--color-text-muted); margin-bottom:1.5rem; }
-    .auth-input { width:100%; border:2px solid var(--color-border); border-radius:var(--radius-lg); padding:.75rem 1rem; font-size:1rem; font-family:var(--font-thai); text-align:center; letter-spacing:.15em; outline:none; transition:var(--transition); margin-bottom:.5rem; }
+    .auth-input { width:100%; border:2px solid var(--color-border); border-radius:var(--radius-lg); padding:.75rem 1rem; font-size:1rem; font-family:var(--font-thai); text-align:center; letter-spacing:.15em; outline:none; transition:var(--transition); margin-bottom:.5rem; box-sizing:border-box; }
     .auth-input:focus { border-color:var(--color-red); }
     .auth-input.error { border-color:var(--color-danger); animation:shake .3s; }
     @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
     .auth-btn { width:100%; padding:.8rem; background:linear-gradient(135deg,var(--color-red-dark),var(--color-red)); color:#fff; border:none; border-radius:var(--radius-lg); font-size:1rem; font-weight:700; cursor:pointer; font-family:var(--font-thai); transition:var(--transition); margin-top:.5rem; }
     .auth-btn:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(178,34,52,.4); }
+    .auth-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
     .auth-err { color:var(--color-danger); font-size:.85rem; margin-top:.5rem; min-height:1.2em; }
+    .auth-loading { color:var(--color-text-muted); font-size:.82rem; margin-top:.4rem; min-height:1.2em; }
 
     /* ── Admin page ───────────────────────────────────────── */
     #adminPage { display:none; min-height:100vh; }
@@ -53,18 +55,11 @@
     .form-card h2::before { content:''; display:inline-block; width:4px; height:1em; background:var(--color-red); border-radius:2px; }
     .form-group { margin-bottom:1.1rem; }
     .form-group label { display:block; font-size:.78rem; font-weight:700; color:var(--color-text-muted); margin-bottom:.35rem; text-transform:uppercase; letter-spacing:.05em; }
-    .form-control { width:100%; border:2px solid var(--color-border); border-radius:var(--radius-md); padding:.6rem .9rem; font-size:.9rem; font-family:var(--font-thai); outline:none; transition:var(--transition); color:var(--color-text); }
+    .form-control { width:100%; border:2px solid var(--color-border); border-radius:var(--radius-md); padding:.6rem .9rem; font-size:.9rem; font-family:var(--font-thai); outline:none; transition:var(--transition); color:var(--color-text); box-sizing:border-box; }
     .form-control:focus { border-color:var(--color-red-mid); }
     .cat-chips { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.4rem; }
     .cat-chip { padding:.3rem .8rem; border-radius:var(--radius-full); font-size:.78rem; font-weight:600; border:2px solid var(--color-border); background:#fff; color:var(--color-text-muted); cursor:pointer; font-family:var(--font-thai); transition:var(--transition); }
     .cat-chip.sel, .cat-chip:hover { border-color:var(--color-red); color:var(--color-red); background:var(--color-red-pale); }
-
-    /* Image upload */
-    .img-dropzone { border:3px dashed var(--color-red-mid); border-radius:var(--radius-lg); background:var(--color-red-pale); padding:2rem; text-align:center; cursor:pointer; transition:var(--transition); position:relative; }
-    .img-dropzone.drag { border-color:var(--color-red-dark); background:#f7d6da; }
-    .img-dropzone input { position:absolute; inset:0; opacity:0; cursor:pointer; }
-    .img-dropzone-text { font-size:.85rem; font-weight:600; color:var(--color-red-dark); }
-    .img-preview { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:var(--radius-md); margin-top:.75rem; display:none; }
 
     .btn-submit { width:100%; padding:.85rem; background:linear-gradient(135deg,var(--color-red-dark),var(--color-red)); color:#fff; border:none; border-radius:var(--radius-lg); font-size:1rem; font-weight:700; cursor:pointer; font-family:var(--font-thai); transition:var(--transition); margin-top:.5rem; }
     .btn-submit:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 6px 20px rgba(178,34,52,.35); }
@@ -76,11 +71,6 @@
     .upload-prog { background:var(--color-bg-alt); border-radius:var(--radius-full); height:8px; overflow:hidden; margin-top:.75rem; display:none; }
     .upload-prog-fill { height:100%; background:linear-gradient(90deg,var(--color-red),var(--color-gold)); border-radius:var(--radius-full); transition:width .3s; }
     .prog-msg { font-size:.78rem; color:var(--color-text-muted); margin-top:.4rem; text-align:center; }
-
-    /* Config notice */
-    .config-box { background:linear-gradient(135deg,#fff8e1,#fff3e0); border:1px solid #ffe082; border-radius:var(--radius-xl); padding:2rem; text-align:center; }
-    .config-box h3 { color:#e65100; font-size:1rem; margin-bottom:.5rem; }
-    .config-box pre { background:rgba(0,0,0,.07); padding:1rem; border-radius:var(--radius-md); text-align:left; font-size:.75rem; overflow-x:auto; margin-top:1rem; line-height:1.6; }
 
     /* ── News list ────────────────────────────────────────── */
     .news-list-card { background:#fff; border-radius:var(--radius-xl); border:1px solid var(--color-border); box-shadow:var(--shadow-sm); padding:1.5rem; }
@@ -123,10 +113,7 @@
       <div style="display:inline-block;background:var(--color-red-pale);color:var(--color-red-dark);border-radius:var(--radius-full);padding:.3rem .9rem;font-size:.72rem;font-weight:700;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.06em;">&#x1F512; Admin Only</div>
       <div class="auth-title">ระบบจัดการข่าวและกิจกรรม</div>
       <div class="auth-sub">กรมทหารราบ ๙๐๒ รักษาพระองค์<br>เฉพาะผู้ดูแลระบบที่ได้รับอนุญาตเท่านั้น</div>
-      <input type="password" id="authInput" class="auth-input" placeholder="รหัสผ่าน Admin" maxlength="30"
-        onkeydown="if(event.key==='Enter')checkAuth()" autocomplete="current-password">
-      <button class="auth-btn" onclick="checkAuth()">&#x1F513; เข้าสู่ระบบ</button>
-      <div class="auth-err" id="authErr"></div>
+      <div class="auth-loading" id="authLoading">กำลังตรวจสอบสถานะ...</div>
       <div style="margin-top:1rem;"><a href="index.html" style="color:var(--color-text-muted);font-size:.82rem;text-decoration:none;">&#x2190; กลับหน้า Admin หลัก</a></div>
     </div>
   </div>
@@ -152,20 +139,6 @@
 
     <div class="admin-body">
       <div class="container">
-        <div id="configBox" style="display:none;">
-          <div class="config-box">
-            <h3> ต้องตั้งค่า Firebase ก่อนใช้งาน</h3>
-            <p>แก้ไขค่า <code>firebaseConfig</code> ในไฟล์นี้ (เหมือนกับที่ตั้งใน gallery.html)</p>
-            <pre>const firebaseConfig = {
-  apiKey: "AIzaSyAgyNRJoA0zOu4cwOEmlt5p4FXdi0_fOPQ",
-  authDomain: "r902-website.firebaseapp.com",
-  projectId: "r902-website",
-  storageBucket: "r902-website.firebasestorage.app",
-  messagingSenderId: "759289155849",
-  appId: "1:759289155849:web:ffbadffc85e4633e5103d8"
-};</pre>
-          </div>
-        </div>
 
         <div id="mainUI">
           <div class="admin-grid">
@@ -221,7 +194,7 @@
               <div class="form-group">
                 <label>ลิงก์รูปภาพปก (URL)</label>
                 <input type="url" id="newsImageUrl" class="form-control" placeholder="https://..." oninput="previewImgUrl(this.value)">
-                <img id="imgPreview" class="img-preview" alt="Preview" style="margin-top:0.5rem;display:none;width:100%;max-height:300px;object-fit:contain;border-radius:var(--radius-md);">
+                <img id="imgPreview" alt="Preview" style="margin-top:0.5rem;display:none;width:100%;max-height:300px;object-fit:contain;border-radius:var(--radius-md);">
                 <div style="font-size:.75rem;color:var(--color-text-light);margin-top:.3rem;">นำ URL ของรูปภาพจากที่อื่น (เช่น Facebook, Google Drive, เว็บฝากรูป) มาวางที่นี่</div>
               </div>
 
@@ -251,47 +224,55 @@
 
   <div id="toast"></div>
 
-  <!-- ── Firebase ───────────────────────────────────────────── -->
+  <!-- ── Firebase (Firestore + Auth) ─────────────────────────── -->
   <script type="module">
-    // ════════════════════════════════════════════════════════
-    //   วางค่า Firebase Config ของคุณที่นี่
-    // ════════════════════════════════════════════════════════
+    import { initializeApp }   from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+    import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, getDoc, query, orderBy, serverTimestamp }
+      from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+    import { getAuth, onAuthStateChanged, signOut }
+      from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+
+    /* Firebase config — API key ปลอดภัยอยู่ใน public code ตาม Firebase design
+       (ความปลอดภัยมาจาก Firebase Security Rules ไม่ใช่การซ่อน config) */
     const firebaseConfig = {
-      apiKey: "AIzaSyAgyNRJoA0zOu4cwOEmlt5p4FXdi0_fOPQ",
-      authDomain: "r902-website.firebaseapp.com",
-      projectId: "r902-website",
-      storageBucket: "r902-website.firebasestorage.app",
+      apiKey:            "AIzaSyAgyNRJoA0zOu4cwOEmlt5p4FXdi0_fOPQ",
+      authDomain:        "r902-website.firebaseapp.com",
+      projectId:         "r902-website",
+      storageBucket:     "r902-website.firebasestorage.app",
       messagingSenderId: "759289155849",
-      appId: "1:759289155849:web:ffbadffc85e4633e5103d8"
+      appId:             "1:759289155849:web:ffbadffc85e4633e5103d8"
     };
-    // ════════════════════════════════════════════════════════
 
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, orderBy, serverTimestamp }
-      from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    const app  = initializeApp(firebaseConfig);
+    const db   = getFirestore(app);
+    const auth = getAuth(app);
 
-    const IS_CONFIGURED = !firebaseConfig.apiKey.startsWith('YOUR_');
+    /* ── ตรวจสอบ Auth Session ─────────────────────────────────── */
+    onAuthStateChanged(auth, user => {
+      const loadEl = document.getElementById('authLoading');
+      if (user) {
+        document.getElementById('authOverlay').style.display = 'none';
+        document.getElementById('adminPage').style.display   = 'block';
+        loadNews();
+      } else {
+        /* ไม่ได้ login → กลับไปหน้า login */
+        if (loadEl) loadEl.textContent = 'กำลังเปลี่ยนหน้า...';
+        window.location.href = 'index.html';
+      }
+    });
 
-    if (!IS_CONFIGURED) {
-      document.getElementById('configBox').style.display = 'block';
-      document.getElementById('mainUI').style.display = 'none';
-    } else {
-      const app     = initializeApp(firebaseConfig);
-      const db      = getFirestore(app);
+    /* ── Logout ────────────────────────────────────────────────── */
+    window.logout = async function() {
+      await signOut(auth);
+      window.location.href = 'index.html';
+    };
 
-      window._db      = db;
-      window._fbImport = { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, orderBy, serverTimestamp };
-
-      loadNews();
-    }
-
-    /* ── Load & render news list ─────────────────────────── */
+    /* ── Load & render news list ──────────────────────────────── */
     async function loadNews() {
-      const { collection, getDocs, query, orderBy } = window._fbImport;
       try {
-        const q = query(collection(window._db, 'news'), orderBy('publishedAt', 'desc'));
+        const q    = query(collection(db, 'news'), orderBy('publishedAt', 'desc'));
         const snap = await getDocs(q);
-        const list = document.getElementById('newsList');
+        const list  = document.getElementById('newsList');
         const count = document.getElementById('newsCount');
 
         if (snap.empty) {
@@ -303,8 +284,10 @@
         count.textContent = `(${snap.size} รายการ)`;
         list.innerHTML = '';
         snap.forEach(d => {
-          const n = d.data();
-          const dt = n.publishedAt?.toDate ? n.publishedAt.toDate().toLocaleDateString('th-TH', {day:'numeric',month:'long',year:'numeric'}) : (n.date || '');
+          const n  = d.data();
+          const dt = n.publishedAt?.toDate
+            ? n.publishedAt.toDate().toLocaleDateString('th-TH', {day:'numeric',month:'long',year:'numeric'})
+            : (n.date || '');
           const item = document.createElement('div');
           item.className = 'news-item';
           item.innerHTML = `
@@ -319,7 +302,7 @@
               </div>
               <div class="news-item-actions">
                 <button class="btn-edit" onclick="editNews('${d.id}')"><i class="fa-solid fa-pen"></i> แก้ไข</button>
-                <button class="btn-del" onclick="deleteNews('${d.id}','${(n.storagePath||'').replace(/'/g,"\\'")}')"> ลบ</button>
+                <button class="btn-del"  onclick="deleteNews('${d.id}')"> ลบ</button>
               </div>
             </div>`;
           list.appendChild(item);
@@ -328,7 +311,7 @@
     }
     window.loadNews = loadNews;
 
-    /* ── Save (add / update) ─────────────────────────────── */
+    /* ── Save (add / update) ──────────────────────────────────── */
     window.saveNews = async function() {
       const title    = document.getElementById('newsTitle').value.trim();
       const category = document.getElementById('newsCategory').value.trim() || 'ข่าวหน่วย';
@@ -344,58 +327,54 @@
       btn.disabled = true;
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังบันทึก...';
 
-      let finalImageUrl = imageUrl;
-      let storagePath = '';
-
-      const { collection, addDoc, updateDoc, doc, serverTimestamp } = window._fbImport;
-      const data = { title, category, content, date: dateVal, link, imageUrl: finalImageUrl, storagePath, publishedAt: serverTimestamp() };
+      const data = { title, category, content, date: dateVal, link, imageUrl, storagePath: '', publishedAt: serverTimestamp() };
 
       try {
         if (editId) {
-          await updateDoc(doc(window._db, 'news', editId), data);
-          showToast('แก้ไขข่าวสำเร็จ ', 'success');
+          await updateDoc(doc(db, 'news', editId), data);
+          showToast('แก้ไขข่าวสำเร็จ ✓', 'success');
         } else {
-          await addDoc(collection(window._db, 'news'), data);
-          showToast('เผยแพร่ข่าวสำเร็จ ', 'success');
+          await addDoc(collection(db, 'news'), data);
+          showToast('เผยแพร่ข่าวสำเร็จ ✓', 'success');
         }
         resetForm();
         await loadNews();
       } catch(e) { showToast('บันทึกไม่สำเร็จ: ' + e.message, 'error'); }
 
       btn.disabled = false;
-      btn.innerHTML = editId ? '<i class="fa-solid fa-floppy-disk"></i> บันทึกการแก้ไข' : '<i class="fa-solid fa-paper-plane"></i> เผยแพร่ข่าว';
+      btn.innerHTML = editId
+        ? '<i class="fa-solid fa-floppy-disk"></i> บันทึกการแก้ไข'
+        : '<i class="fa-solid fa-paper-plane"></i> เผยแพร่ข่าว';
     };
 
-    /* ── Edit ────────────────────────────────────────────── */
+    /* ── Edit ─────────────────────────────────────────────────── */
     window.editNews = async function(id) {
-      const { doc } = window._fbImport;
-      const { getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-      const snap = await getDoc(doc(window._db, 'news', id));
+      const snap = await getDoc(doc(db, 'news', id));
       if (!snap.exists()) return;
       const n = snap.data();
 
-      document.getElementById('editingId').value = id;
-      document.getElementById('newsTitle').value    = n.title || '';
-      document.getElementById('newsCategory').value = n.category || 'ข่าวทั่วไป';
-      document.getElementById('newsContent').innerHTML  = n.content || '';
-      document.getElementById('newsDate').value     = n.date || '';
-      document.getElementById('newsLink').value     = n.link || '';
-      document.getElementById('newsImageUrl').value = n.imageUrl || '';
+      document.getElementById('editingId').value         = id;
+      document.getElementById('newsTitle').value          = n.title    || '';
+      document.getElementById('newsCategory').value       = n.category || 'ข่าวทั่วไป';
+      document.getElementById('newsContent').innerHTML    = n.content  || '';
+      document.getElementById('newsDate').value           = n.date     || '';
+      document.getElementById('newsLink').value           = n.link     || '';
+      document.getElementById('newsImageUrl').value       = n.imageUrl || '';
       if (n.imageUrl) { const p=document.getElementById('imgPreview'); p.src=n.imageUrl; p.style.display='block'; }
 
-      document.getElementById('formTitle').textContent = ' แก้ไขข่าว';
-      document.getElementById('submitBtn').innerHTML = '<i class="fa-solid fa-floppy-disk"></i> บันทึกการแก้ไข';
+      document.getElementById('formTitle').textContent   = ' แก้ไขข่าว';
+      document.getElementById('submitBtn').innerHTML     = '<i class="fa-solid fa-floppy-disk"></i> บันทึกการแก้ไข';
       document.getElementById('cancelBtn').style.display = 'block';
 
       syncCatChip(n.category);
       document.querySelector('.form-card').scrollIntoView({behavior:'smooth'});
     };
 
+    /* ── Delete ───────────────────────────────────────────────── */
     window.deleteNews = async function(id) {
       if (!confirm('ยืนยันการลบข่าวนี้?')) return;
-      const { deleteDoc, doc } = window._fbImport;
       try {
-        await deleteDoc(doc(window._db, 'news', id));
+        await deleteDoc(doc(db, 'news', id));
         showToast('ลบข่าวเรียบร้อย', 'success');
         await loadNews();
       } catch(e) { showToast('ลบไม่สำเร็จ: ' + e.message, 'error'); }
@@ -403,72 +382,14 @@
   </script>
 
   <script>
+    /* ── Image URL preview ────────────────────────────────────── */
     function previewImgUrl(url) {
       const img = document.getElementById('imgPreview');
-      if (url) {
-        img.src = url;
-        img.style.display = 'block';
-      } else {
-        img.style.display = 'none';
-        img.src = '';
-      }
+      if (url) { img.src = url; img.style.display = 'block'; }
+      else      { img.style.display = 'none'; img.src = ''; }
     }
 
-    /* ── Authentication — Admin Only ────────────────────────── */
-    const ADMIN_PASSWORD = 'r902admin'; // เฉพาะ Admin เท่านั้น
-
-    function checkAuth() {
-      if (document.getElementById('authInput').value === ADMIN_PASSWORD) {
-        grantAccess();
-      } else {
-        var inp = document.getElementById('authInput');
-        inp.classList.add('error');
-        document.getElementById('authErr').textContent = 'รหัสผ่านไม่ถูกต้อง';
-        setTimeout(function(){ inp.classList.remove('error'); }, 400);
-        inp.value = ''; inp.focus();
-      }
-    }
-
-    function grantAccess() {
-      document.getElementById('authOverlay').style.display = 'none';
-      document.getElementById('adminPage').style.display   = 'block';
-      sessionStorage.setItem('newsAdminAuth', '1');
-    }
-
-    function logout() {
-      sessionStorage.removeItem('newsAdminAuth');
-      sessionStorage.removeItem('masterAdminAuth');
-      location.href = 'index.html';
-    }
-
-    // Auto-login: ถ้า login ผ่าน admin/index.html (masterAdminAuth) หรือมี session ไว้แล้ว
-    (function() {
-      if (sessionStorage.getItem('masterAdminAuth') === '1' ||
-          sessionStorage.getItem('newsAdminAuth')   === '1') {
-        grantAccess();
-      }
-    })();
-
-    /* ── Image preview ────────────────────────────────────── */
-    function previewImg(input) {
-      const file = input.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = e => { const p=document.getElementById('imgPreview'); p.src=e.target.result; p.style.display='block'; };
-      reader.readAsDataURL(file);
-    }
-    function handleImgDrop(e) {
-      e.preventDefault();
-      document.getElementById('imgDropzone').classList.remove('drag');
-      const files = e.dataTransfer.files;
-      if (files.length) {
-        const dt = new DataTransfer(); dt.items.add(files[0]);
-        const inp = document.getElementById('imgFile'); inp.files = dt.files;
-        previewImg(inp);
-      }
-    }
-
-    /* ── Category chips ───────────────────────────────────── */
+    /* ── Category chips ───────────────────────────────────────── */
     function selCat(name, el) {
       document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('sel'));
       el.classList.add('sel');
@@ -478,27 +399,27 @@
       document.querySelectorAll('.cat-chip').forEach(c => c.classList.toggle('sel', c.textContent === name));
     }
 
-    /* ── Reset form ───────────────────────────────────────── */
+    /* ── Reset form ───────────────────────────────────────────── */
     function resetForm() {
-      document.getElementById('editingId').value = '';
-      document.getElementById('newsTitle').value    = '';
-      document.getElementById('newsCategory').value = 'ข่าวหน่วย';
-      document.getElementById('newsContent').innerHTML = '';
-      document.getElementById('newsDate').value     = '';
-      document.getElementById('newsLink').value     = '';
-      document.getElementById('newsImageUrl').value = '';
+      document.getElementById('editingId').value         = '';
+      document.getElementById('newsTitle').value          = '';
+      document.getElementById('newsCategory').value       = 'ข่าวหน่วย';
+      document.getElementById('newsContent').innerHTML    = '';
+      document.getElementById('newsDate').value           = '';
+      document.getElementById('newsLink').value           = '';
+      document.getElementById('newsImageUrl').value       = '';
       const p = document.getElementById('imgPreview'); p.src=''; p.style.display='none';
-      document.getElementById('formTitle').textContent = 'เพิ่มข่าวใหม่';
-      document.getElementById('submitBtn').innerHTML = '<i class="fa-solid fa-paper-plane"></i> เผยแพร่ข่าว';
+      document.getElementById('formTitle').textContent   = 'เพิ่มข่าวใหม่';
+      document.getElementById('submitBtn').innerHTML     = '<i class="fa-solid fa-paper-plane"></i> เผยแพร่ข่าว';
       document.getElementById('cancelBtn').style.display = 'none';
       syncCatChip('ข่าวหน่วย');
     }
     window.resetForm = resetForm;
 
-    /* ── Set today's date ─────────────────────────────────── */
+    /* ── Set today's date ─────────────────────────────────────── */
     document.getElementById('newsDate').value = new Date().toISOString().slice(0,10);
 
-    /* ── Toast ────────────────────────────────────────────── */
+    /* ── Toast ────────────────────────────────────────────────── */
     function showToast(msg, type='') {
       const t = document.getElementById('toast');
       t.textContent = msg; t.className = type ? `show ${type}` : 'show';
@@ -508,5 +429,3 @@
   </script>
 </body>
 </html>
-
-
