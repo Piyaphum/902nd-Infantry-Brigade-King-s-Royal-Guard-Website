@@ -14,8 +14,6 @@
 
 <body>
 
-
-
   <!-- ── Navbar ───────────────────────────────────────────── -->
   <nav class="navbar">
     <div class="container">
@@ -43,7 +41,8 @@
             <a href="pages/about.html" class="nav-link">เกี่ยวกับกรม <span class="chevron">▾</span></a>
             <div class="dropdown">
               <a href="pages/about.html" class="dropdown-item"><span class="dd-icon"></span>ประวัติหน่วย</a>
-                <a href="pages/heroic-deeds.html" class="dropdown-item"><span class="dd-icon"></span>วีรกรรมหน่วย</a>
+              <a href="pages/heroic-deeds.html" class="dropdown-item"><span class="dd-icon"></span>วีรกรรมหน่วย</a>
+
                 <a href="pages/queens-tiger.html" class="dropdown-item"><span class="dd-icon"></span>หลักสูตรทหารเสือราชินี</a>
             </div>
           </li>
@@ -178,7 +177,7 @@
       <div class="aem-body" style="padding:1.5rem;">
         <input type="hidden" id="editMediaId">
         <input type="hidden" id="editMediaCollection">
-        
+
         <div class="form-group">
           <label class="aem-label" style="display:block;margin-bottom:0.5rem;font-weight:700;font-size:0.85rem;">อัปโหลดรูปภาพ/วิดีโอ จากเครื่อง</label>
           <input type="file" id="editMediaFile" class="aem-input" accept="image/*,video/*" style="width:100%;padding:0.5rem;border:1px solid #ccc;border-radius:8px;">
@@ -191,7 +190,7 @@
           <label class="aem-label" style="display:block;margin-bottom:0.5rem;font-weight:700;font-size:0.85rem;">วางลิงก์รูปภาพ / วิดีโอ URL (รองรับลิงก์ YouTube)</label>
           <input type="text" id="editMediaUrl" class="aem-input" placeholder="https://..." style="width:100%;padding:0.6rem;border:1px solid #ccc;border-radius:8px;">
         </div>
-        
+
         <hr style="margin:1.5rem 0;border:0;border-top:1px solid #eee;">
 
         <div class="form-group">
@@ -348,7 +347,6 @@
   </script>
   <script src="js/admin.js"></script>
 
-
 <!-- ── Firebase (News & Banners) ────────────────────────── -->
 <script type="module">
   const firebaseConfig = window.FIREBASE_CONFIG;
@@ -454,12 +452,12 @@
     document.getElementById('editMediaFile').value = '';
     document.getElementById('editMediaUrl').value = '';
     document.getElementById('editMediaLink').value = '';
-    
+
     // Pre-fill existing data
     const imgEl = document.getElementById(mediaId + '-img');
     const frameEl = document.getElementById(mediaId + '-frame');
     const linkEl = document.getElementById(mediaId + '-link');
-    
+
     if (frameEl && frameEl.style.display !== 'none' && frameEl.src) {
       document.getElementById('editMediaUrl').value = frameEl.src;
     } else if (imgEl && imgEl.src && !imgEl.src.includes('images/banner-') && !imgEl.src.includes('images/pride-')) {
@@ -508,7 +506,7 @@
         const ext = file.name.split('.').pop();
         const path = `${collectionName}/${mediaId}_${Date.now()}.${ext}`;
         const storageRef = ref(storage, path);
-        
+
         const uploadTask = uploadBytes(storageRef, file);
         const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('Upload timeout (Storage might not be enabled)')), 10000));
         await Promise.race([uploadTask, timeout]);
@@ -539,7 +537,7 @@
       const imgEl = document.getElementById(mediaId + '-img');
       const frameEl = document.getElementById(mediaId + '-frame');
       const linkEl = document.getElementById(mediaId + '-link');
-      
+
       if (finalUrl.includes('youtube.com/embed/')) {
         if (frameEl) { frameEl.src = finalUrl; frameEl.style.display = 'block'; }
         if (imgEl) { imgEl.style.display = 'none'; }
@@ -547,7 +545,7 @@
         if (imgEl) { imgEl.src = finalUrl; imgEl.style.display = 'block'; }
         if (frameEl) { frameEl.style.display = 'none'; }
       }
-      
+
       if (linkEl) linkEl.href = targetLink || '#';
 
       window.closeMediaEdit();
@@ -592,3 +590,5 @@
 </script>
 </body>
 </html>
+
+

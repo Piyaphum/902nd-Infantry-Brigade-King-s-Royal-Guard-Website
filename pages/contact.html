@@ -11,8 +11,6 @@
 </head>
 <body>
 
-
-
   <nav class="navbar">
     <div class="container">
       <div class="navbar-inner">
@@ -37,6 +35,7 @@
             <div class="dropdown">
               <a href="about.html" class="dropdown-item"><span class="dd-icon"></span>ประวัติหน่วย</a>
               <a href="heroic-deeds.html" class="dropdown-item"><span class="dd-icon"></span>วีรกรรมหน่วย</a>
+
               <a href="queens-tiger.html" class="dropdown-item"><span class="dd-icon"></span>หลักสูตรทหารเสือราชินี</a>
             </div>
           </li>
@@ -135,7 +134,7 @@
             <input type="hidden" name="_subject" value="มีข้อความติดต่อใหม่จากเว็บไซต์ ร.๙๐๒ รอ.">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
-            
+
             <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
               <div class="form-group">
                 <label class="form-label" for="contact-name">ชื่อ-นามสกุล *</label>
@@ -146,22 +145,22 @@
                 <input class="form-control" type="tel" id="contact-phone" name="phone" placeholder="08X-XXX-XXXX">
               </div>
             </div>
-            
+
             <div class="form-group">
               <label class="form-label" for="contact-email">อีเมล</label>
               <input class="form-control" type="email" id="contact-email" name="email" placeholder="example@email.com" required>
             </div>
-            
+
             <div class="form-group">
               <label class="form-label" for="contact-subject">เรื่อง *</label>
               <input class="form-control" type="text" id="contact-subject" name="subject" placeholder="ระบุเรื่องที่ต้องการติดต่อ" required>
             </div>
-            
+
             <div class="form-group">
               <label class="form-label" for="contact-message">ข้อความ *</label>
               <textarea class="form-control" id="contact-message" name="message" rows="5" placeholder="กรุณาระบุรายละเอียดที่ต้องการสอบถาม..." required></textarea>
             </div>
-            
+
             <button type="submit" class="btn btn-green" style="width:100%;justify-content:center;margin-top:.5rem;"><i class="fa-solid fa-paper-plane"></i> ส่งข้อความ</button>
           </form>
 
@@ -182,7 +181,7 @@
           <p><strong style="color:#fff;">กรมทหารราบ ๙๐๒ รักษาพระองค์</strong><br>ค่ายมหาวชิราลงกรณ์ราชวัลลภ ต.บ้านสวน อ.เมืองชลบุรี จ.ชลบุรี ๒๐๐๐๐</p>
         </div>
         <div><div class="footer-heading">เมนูหลัก</div><div class="footer-links"><a href="../index.html">หน้าหลัก</a><a href="commanders.html">ผู้บังคับบัญชา</a><a href="about.html">ประวัติหน่วย</a><a href="heroic-deeds.html">วีรกรรมหน่วย</a><a href="queens-tiger.html">หลักสูตรทหารเสือราชินี</a><a href="nkt.html">นขต.ร.๙๐๒ รอ.</a><a href="contact.html">ติดต่อเรา</a></div></div>
-        
+
         <div><div class="footer-heading">ติดต่อ</div><div class="footer-links"><a href="tel:038200902"> 038-200-902</a></div></div>
       </div>
       <div class="footer-bottom">
@@ -207,7 +206,7 @@
   <script>
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
       var form = this;
       var btn = form.querySelector('button[type="submit"]');
       var originalText = btn.innerHTML;
@@ -215,7 +214,7 @@
       btn.disabled = true;
 
       var formData = new FormData(form);
-      
+
       fetch("https://formsubmit.co/ajax/r902studio.org.th@gmail.com", {
         method: "POST",
         body: formData,
@@ -227,7 +226,7 @@
       .then(data => {
         btn.innerHTML = originalText;
         btn.disabled = false;
-        
+
         if (data.success === "true" || data.success === true) {
           Swal.fire({
             title: 'ส่งข้อความสำเร็จ!',
@@ -268,3 +267,5 @@
   </style>
 </body>
 </html>
+
+

@@ -8,33 +8,42 @@
   <link rel="icon" href="../images/logo 902.png" type="image/jpeg">
   <link rel="stylesheet" href="../css/style.css">
   <style>
-    .about-intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-      margin-bottom: 4rem;
-    }
-    .about-intro img { border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); }
-    .info-boxes { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-    .info-box {
-      background: #fff;
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      border: 1px solid var(--color-border);
-      border-top: 4px solid var(--color-green-mid);
-      box-shadow: var(--shadow-sm);
-    }
+    .about-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 4rem; }
+    .about-intro img { border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); width: 100%; object-fit: cover; }
+    .info-boxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .info-box { background: #fff; border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--color-border); border-top: 4px solid var(--color-green-mid); box-shadow: var(--shadow-sm); }
     .info-box .info-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-light); margin-bottom: .4rem; }
     .info-box .info-value { font-size: .95rem; font-weight: 600; color: var(--color-text); line-height: 1.5; }
-    @media (max-width: 768px) { .about-intro { grid-template-columns: 1fr; } }
+    
+    .history-card { background: #fff; border-radius: var(--radius-lg); padding: 2.5rem; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); margin-bottom: 2.5rem; transition: transform .3s, box-shadow .3s; }
+    .history-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .history-card h3 { color: var(--color-blue-dark); margin-bottom: 1.5rem; font-size: 1.4rem; display: flex; align-items: center; gap: .75rem; }
+    
+    .history-highlight-box { background: rgba(26,125,196,.05); border-left: 4px solid var(--color-blue); padding: 1.5rem 2rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: 2rem 0; }
+    .history-highlight-box h4 { color: var(--color-blue-dark); margin-bottom: .75rem; font-size: 1.15rem; display: flex; align-items: center; gap: .5rem; }
+    
+    .history-text { font-size: 1.15rem; line-height: 1.85; color: var(--color-text); margin-bottom: 1.5rem; text-indent: 2.5rem; text-align: left !important; word-break: break-word; }
+    .history-text:last-child { margin-bottom: 0; }
+    
+    .section-title { font-size: 2rem; color: var(--color-green-dark); margin-bottom: 2rem; border-bottom: 2px solid var(--color-green-pale); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 1rem; }
+    
+    .image-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .image-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .image-grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    
+    .image-card { width: 100%; background: #e2e8f0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #64748b; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; position: relative; }
+    .image-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .image-card:hover img { transform: scale(1.05); }
+    .image-card.placeholder { min-height: 180px; }
+    .image-card.placeholder i { font-size: 2rem; margin-bottom: .5rem; opacity: .5; }
+    .image-card.placeholder span { font-size: .9rem; font-weight: 600; }
+    
+    @media (max-width: 992px) { .about-intro { grid-template-columns: 1fr; gap: 2rem; } }
+    @media (max-width: 768px) { .history-text { font-size: 1.05rem; text-indent: 1.5rem; } .history-card { padding: 1.5rem; } }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
-
-
   <nav class="navbar">
     <div class="container">
       <div class="navbar-inner">
@@ -87,113 +96,110 @@
   <section class="section" style="padding-top: 4rem;">
     <div class="container">
 
-      <!-- 1. ที่ตั้งหน่วย -->
-      <div class="animate-on-scroll" style="margin-bottom: 4rem;">
-        <h2 style="font-size:2rem;color:var(--color-green-dark);margin-bottom:1rem; border-bottom: 2px solid var(--color-green-pale); padding-bottom: 0.5rem;">๑. ที่ตั้งหน่วย</h2>
-        <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 2rem;">
-          ค่ายมหาวชิราลงกรณ์ราชวัลลภ ๓๐๒ หมู่ ๙ ต.บ้านสวน อ.เมือง จ.ชลบุรี ๒๐๐๐๐<br>
-          <span style="font-size: 1rem; color: var(--color-text-muted);">(ชื่อเดิม ค่ายนวมินทราชินี ตั้งแต่ ๒๙ มิถุนายน ๒๕๑๙ ถึง ๒๘ มกราคม ๒๕๖๙)</span>
-        </p>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem;">
-          <div style="width:100%; height:300px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);">
-            <i class="fa-solid fa-image" style="font-size:2.5rem; margin-bottom:.75rem; opacity:.5;"></i>
-            <span style="font-size:1rem; font-weight:600;">[ รูปที่ตั้งหน่วย 1 ]</span>
+      <!-- Hero / Intro -->
+      <div class="animate-on-scroll about-intro">
+        <div>
+          <h2 style="font-size: 2.2rem; color: var(--color-green-dark); margin-bottom: 1.5rem; line-height: 1.3;">ประวัติความเป็นมาและ<br>การสถาปนาหน่วย</h2>
+          <p class="history-text" style="text-indent: 0; margin-bottom: 0;">
+            กรมทหารราบที่ ๒๑ รักษาพระองค์ หรือ <strong>"ทหารเสือนวมินทราชินี"</strong> กำเนิดขึ้นจากการเป็นหน่วยรบผสมเฉพาะกิจในสงครามเกาหลี จนได้รับการพัฒนาและสถาปนาขึ้นเป็นกรมทหารราบรักษาพระองค์ที่มีเกียรติประวัติอันยาวนาน
+          </p>
+          <div class="info-boxes">
+            <div class="info-box">
+              <div class="info-label"><i class="fa-solid fa-calendar-day"></i> วันสถาปนาหน่วย</div>
+              <div class="info-value">๒๑ สิงหาคม ๒๕๐๔</div>
+            </div>
+            <div class="info-box">
+              <div class="info-label"><i class="fa-solid fa-map-location-dot"></i> ที่ตั้งปัจจุบัน</div>
+              <div class="info-value">ค่ายมหาวชิราลงกรณ์ราชวัลลภ<br>จ.ชลบุรี</div>
+            </div>
           </div>
-          <div style="width:100%; height:300px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);">
-            <i class="fa-solid fa-image" style="font-size:2.5rem; margin-bottom:.75rem; opacity:.5;"></i>
-            <span style="font-size:1rem; font-weight:600;">[ รูปที่ตั้งหน่วย 2 ]</span>
+        </div>
+        <div>
+          <div class="image-grid-2" style="margin-top: 0; gap: 1rem;">
+            <div class="image-card" style="height: 250px;"><img src="../images/history/building_1976_2016.jpg" alt="รูปที่ตั้งหน่วยอดีต"></div>
+            <div class="image-card" style="height: 250px;"><img src="../images/history/building_2016.jpg" alt="รูปที่ตั้งหน่วยปัจจุบัน"></div>
           </div>
         </div>
       </div>
 
-      <!-- 2. วันสถาปนาหน่วย -->
-      <div class="animate-on-scroll" style="margin-bottom: 4rem;">
-        <h2 style="font-size:2rem;color:var(--color-green-dark);margin-bottom:1rem; border-bottom: 2px solid var(--color-green-pale); padding-bottom: 0.5rem;">๒. วันสถาปนาหน่วย</h2>
-        <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 2rem; text-indent: 2.5rem; text-align: justify;">
-          เมื่อวันที่ ๒๑ สิงหาคม ๒๕๐๔ สมเด็จพระนางเจ้าฯพระบรมราชินีนาถ องค์ผู้บังคับการพิเศษฯ เสด็จพระราชดำเนินเยี่ยมกรมทหารราบที่ ๒๑ รักษาพระองค์ฯ ณ ที่ตั้งหน่วย ถนนพระราม ๕ จังหวัดพระนคร เป็นครั้งแรก นับว่าเป็นศุภนิมิตรมงคลอันประเสริฐยิ่ง ดังนั้น กรมทหารราบที่ ๒๑ รักษาพระองค์ฯ จึงได้กำหนดให้ วันที่ ๒๑ สิงหาคม เป็นวันสถาปนาหน่วย ตั้งแต่บัดนั้นเป็นต้นมา
-        </p>
-        <div style="width:100%; max-width:600px; margin: 0 auto; height:350px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);">
-          <i class="fa-solid fa-image" style="font-size:3rem; margin-bottom:1rem; opacity:.5;"></i>
-          <span style="font-size:1.1rem; font-weight:600;">[ รูปวันสถาปนาหน่วย ]</span>
-        </div>
-      </div>
-
-      <!-- 3. ประวัติความเป็นมาของหน่วย -->
-      <div class="animate-on-scroll" style="margin-bottom: 4rem;">
-        <h2 style="font-size:2rem;color:var(--color-green-dark);margin-bottom:1.5rem; border-bottom: 2px solid var(--color-green-pale); padding-bottom: 0.5rem;">๓. ประวัติความเป็นมาของหน่วย</h2>
+      <!-- History Cards -->
+      <div class="animate-on-scroll" style="margin-top: 5rem;">
+        <h2 class="section-title"><i class="fa-solid fa-book-journal-whills"></i> ลำดับเหตุการณ์สำคัญ</h2>
         
-        <!-- 3.1 -->
-        <div style="margin-bottom: 3rem;">
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 1rem; text-indent: 2.5rem; text-align: justify;">
-            <strong>๓.๑</strong> เช้าตรู่วันที่ ๒๕ มิถุนายน พุทธศักราช ๒๔๙๓ เกาหลีเหนือได้บุกรุกข้ามเส้นขนานที่ ๓๘ ลงมายังสาธารณรัฐเกาหลี ซึ่งมีกำลังน้อยกว่า และถูกโจมตีโดยไม่ทันรู้ตัวจึงไม่สามารถยับยั้งข้าศึกได้ ในที่สุดเกาหลีเหนือจึงสามารถยึดกรุงโซล ซึ่งเป็นเมืองหลวงของสาธารณรัฐเกาหลีใต้ องค์การสหประชาชาติได้ร้องขอให้ประเทศสมาชิก ส่งกำลังไปร่วมรบเพื่อผลักดันกองกำลังของเกาหลีเหนือ รัฐบาลไทยในพระบาทสมเด็จพระเจ้าอยู่หัวฯ ในฐานะเป็นสมาชิกขององค์การสหประชาชาติประเทศหนึ่ง โดยการนำของ ฯพณฯ จอมพล ป. พิบูลสงคราม นายกรัฐมนตรีในสมัยนั้น ได้ตอบรับคำขอขององค์การสหประชาชาติ เป็นประเทศแรก
-          </p>
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 1rem; text-indent: 2.5rem; text-align: justify;">
-            เมื่อวันที่ ๒๑ สิงหาคม ๒๔๙๓ กระทรวงกลาโหมแต่งตั้งให้ พ.อ.บริบูรณ์ จุละจาริตต์ เป็นผู้บังคับการ กรมผสมที่ ๒๑ ที่จะไปปฏิบัติร่วมรบกับสหประชาชาติ ณ สมรภูมิเกาหลี และเปิดที่ทำการกองบังคับการกรมผสมที่ ๒๑ ชั่วคราวขึ้น ณ ห้องสมุดในศาลาที่ว่าการกระทรวงกระทรวงกลาโหม
-          </p>
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 2rem; text-indent: 2.5rem; text-align: justify;">
-            สมเด็จพระเจ้าบรมวงศ์เธอกรมพระชัยนาทนเรนทร ผู้สำเร็จราชการแทนพระองค์ ลงนามประกาศทางราชการ พระราชกฤษฎีกาจัดวางระเบียบทางราชการ กองทัพบกในกระทรวงกลาโหมฉบับที่ ๕ พุทธศักราช ๒๔๙๓ เพิ่มกรมผสมที่ ๒๑ เข้าเป็นส่วนกำลังรบ ขึ้นตรงกับกองทัพบก นับว่า กรมผสมที่ ๒๑ ได้กำเนิดตั้งขึ้นเป็นทางการแล้วตั้งแต่บัดนี้ ตั้งกรมผสมที่ ๒๑ เมื่อวันที่ ๒๒ กันยายน พุทธศักราช ๒๔๙๓ เวลา ๑๑ นาฬิกา ๓๐ นาที ตรงกับวันศุกร์ ขึ้น ๑๑ ค่ำ เดือน ๑๐ ปีขาล จุลศักราช ๑๓๑๒
-          </p>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
-            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.9rem; font-weight:600;">[ รูปที่ 1 ]</span></div>
-            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.9rem; font-weight:600;">[ รูปที่ 2 ]</span></div>
-            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.9rem; font-weight:600;">[ รูปที่ 3 ]</span></div>
-            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.9rem; font-weight:600;">[ รูปที่ 4 ]</span></div>
-            <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.9rem; font-weight:600;">[ รูปที่ 5 ]</span></div>
+        <div class="history-card">
+          <h3><i class="fa-solid fa-jet-fighter-up"></i> สงครามเกาหลีและการก่อตั้ง (พ.ศ. ๒๔๙๓)</h3>
+          <p class="history-text">เช้าตรู่วันที่ ๒๕ มิถุนายน พุทธศักราช ๒๔๙๓ เกาหลีเหนือได้บุกรุกข้ามเส้นขนานที่ ๓๘ ลงมายังสาธารณรัฐเกาหลี ซึ่งมีกำลังน้อยกว่า และถูกโจมตีโดยไม่ทันรู้ตัวจึงไม่สามารถยับยั้งข้าศึกได้ ในที่สุดเกาหลีเหนือจึงสามารถยึดกรุงโซล ซึ่งเป็นเมืองหลวงของสาธารณรัฐเกาหลีใต้ องค์การสหประชาชาติได้ร้องขอให้ประเทศสมาชิก ส่งกำลังไปร่วมรบเพื่อผลักดันกองกำลังของเกาหลีเหนือ รัฐบาลไทยในพระบาทสมเด็จพระเจ้าอยู่หัวฯ ในฐานะเป็นสมาชิกขององค์การสหประชาชาติประเทศหนึ่ง โดยการนำของ ฯพณฯ จอมพล ป. พิบูลสงคราม นายกรัฐมนตรีในสมัยนั้น ได้ตอบรับคำขอขององค์การสหประชาชาติ เป็นประเทศแรก</p>
+          <p class="history-text">เมื่อวันที่ ๒๑ สิงหาคม ๒๔๙๓ กระทรวงกลาโหมแต่งตั้งให้ พ.อ.บริบูรณ์ จุละจาริตต์ เป็นผู้บังคับการ กรมผสมที่ ๒๑ ที่จะไปปฏิบัติร่วมรบกับสหประชาชาติ ณ สมรภูมิเกาหลี และเปิดที่ทำการกองบังคับการกรมผสมที่ ๒๑ ชั่วคราวขึ้น ณ ห้องสมุดในศาลาที่ว่าการกระทรวงกระทรวงกลาโหม</p>
+          
+          <div class="history-highlight-box">
+            <h4><i class="fa-solid fa-star"></i> กำเนิดกรมผสมที่ ๒๑</h4>
+            <p style="margin:0; font-size:1.05rem; line-height:1.7;">สมเด็จพระเจ้าบรมวงศ์เธอกรมพระชัยนาทนเรนทร ผู้สำเร็จราชการแทนพระองค์ ลงนามประกาศทางราชการ พระราชกฤษฎีกาจัดวางระเบียบทางราชการ กองทัพบกในกระทรวงกลาโหมฉบับที่ ๕ พุทธศักราช ๒๔๙๓ เพิ่มกรมผสมที่ ๒๑ เข้าเป็นส่วนกำลังรบ ขึ้นตรงกับกองทัพบก นับว่า กรมผสมที่ ๒๑ ได้กำเนิดตั้งขึ้นเป็นทางการแล้วตั้งแต่บัดนี้ ตั้งกรมผสมที่ ๒๑ เมื่อวันที่ ๒๒ กันยายน พุทธศักราช ๒๔๙๓ เวลา ๑๑ นาฬิกา ๓๐ นาที ตรงกับวันศุกร์ ขึ้น ๑๑ ค่ำ เดือน ๑๐ ปีขาล จุลศักราช ๑๓๑๒</p>
+          </div>
+          
+          <div class="image-grid-auto">
+            <div class="image-card placeholder"><i class="fa-solid fa-image"></i><span>[ รูปที่ 1 ]</span></div>
+            <div class="image-card placeholder"><i class="fa-solid fa-image"></i><span>[ รูปที่ 2 ]</span></div>
+            <div class="image-card placeholder"><i class="fa-solid fa-image"></i><span>[ รูปที่ 3 ]</span></div>
+            <div class="image-card placeholder"><i class="fa-solid fa-image"></i><span>[ รูปที่ 4 ]</span></div>
+            <div class="image-card placeholder"><i class="fa-solid fa-image"></i><span>[ รูปที่ 5 ]</span></div>
           </div>
         </div>
 
-        <!-- 3.2 -->
-        <div style="margin-bottom: 3rem;">
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 2rem; text-indent: 2.5rem; text-align: justify;">
-            <strong>๓.๒</strong> เมื่อวันที่ ๑ ธันวาคม ๒๕๐๒ พระบาทสมเด็จพระเจ้าอยู่หัวมี พระบรมราชโองการโปรดเกล้าฯ พระราชทานยศทหารให้ สมเด็จพระนางเจ้าสิริกิติ์พระบรมราชินีนาถ เป็น พันเอกหญิง “ผู้บังคับการพิเศษ กรมทหารราบที่ ๒๑ รักษาพระองค์ฯ” ต่อมากองทัพบกมีคำสั่งให้ กรมผสมที่ ๒๑ แปรสภาพเป็น “กรมทหารราบที่ ๒๑ รักษาพระองค์ ในสมเด็จพระนางเจ้าสิริกิติ์พระบรมราชินีนาถ” โดยให้มีผลบังคับใช้ตั้งแต่วันที่ ๑ ธันวาคม ๒๕๐๒ เช่นเดียวกัน(คำสั่ง ๓๓๙/๒๙๕๘๔)
-          </p>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1rem;">
-            <div style="width:100%; height:250px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:1rem; font-weight:600;">[ รูปที่ 1 ]</span></div>
-            <div style="width:100%; height:250px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:1rem; font-weight:600;">[ รูปที่ 2 ]</span></div>
+        <div class="history-card">
+          <h3><i class="fa-solid fa-crown"></i> สถาปนาเป็นหน่วยรักษาพระองค์ (พ.ศ. ๒๕๐๒)</h3>
+          <p class="history-text">เมื่อวันที่ ๑ ธันวาคม ๒๕๐๒ พระบาทสมเด็จพระเจ้าอยู่หัวมี พระบรมราชโองการโปรดเกล้าฯ พระราชทานยศทหารให้ สมเด็จพระนางเจ้าสิริกิติ์พระบรมราชินีนาถ เป็น พันเอกหญิง “ผู้บังคับการพิเศษ กรมทหารราบที่ ๒๑ รักษาพระองค์ฯ” ต่อมากองทัพบกมีคำสั่งให้ กรมผสมที่ ๒๑ แปรสภาพเป็น “กรมทหารราบที่ ๒๑ รักษาพระองค์ ในสมเด็จพระนางเจ้าสิริกิติ์พระบรมราชินีนาถ” โดยให้มีผลบังคับใช้ตั้งแต่วันที่ ๑ ธันวาคม ๒๕๐๒ เช่นเดียวกัน(คำสั่ง ๓๓๙/๒๙๕๘๔)</p>
+          
+          <div class="history-highlight-box" style="border-color: var(--color-green); background: rgba(39, 174, 96, 0.05);">
+            <h4 style="color: var(--color-green-dark);"><i class="fa-solid fa-seedling"></i> การเสด็จเยี่ยมหน่วยครั้งแรก และวันสถาปนาหน่วย</h4>
+            <p style="margin:0; font-size:1.05rem; line-height:1.7;">เมื่อวันที่ ๒๑ สิงหาคม ๒๕๐๔ สมเด็จพระนางเจ้าฯพระบรมราชินีนาถ องค์ผู้บังคับการพิเศษฯ เสด็จพระราชดำเนินเยี่ยมกรมทหารราบที่ ๒๑ รักษาพระองค์ฯ ณ ที่ตั้งหน่วย ถนนพระราม ๕ จังหวัดพระนคร เป็นครั้งแรก นับว่าเป็นศุภนิมิตรมงคลอันประเสริฐยิ่ง ดังนั้น กรมทหารราบที่ ๒๑ รักษาพระองค์ฯ จึงได้กำหนดให้ วันที่ ๒๑ สิงหาคม เป็นวันสถาปนาหน่วย ตั้งแต่บัดนั้นเป็นต้นมา</p>
+          </div>
+
+          <div class="image-grid-3">
+            <div class="image-card placeholder"><i class="fa-solid fa-image"></i><span>[ รูปที่ 1 ]</span></div>
+            <div class="image-card placeholder"><i class="fa-solid fa-image"></i><span>[ รูปที่ 2 ]</span></div>
+            <div class="image-card placeholder"><i class="fa-solid fa-image"></i><span>[ รูปวันสถาปนาหน่วย ]</span></div>
           </div>
         </div>
 
-        <!-- 3.3 -->
-        <div style="margin-bottom: 3rem;">
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 2rem; text-indent: 2.5rem; text-align: justify;">
-            <strong>๓.๓</strong> เมื่อวันที่ ๒๑ สิงหาคม ๒๕๐๔ สมเด็จพระนางเจ้าฯพระบรมราชินีนาถ องค์ผู้บังคับการพิเศษฯ เสด็จพระราชดำเนินเยี่ยมกรมทหารราบที่ ๒๑ รักษาพระองค์ฯ ณ ที่ตั้งหน่วย ถนนพระราม ๕ จังหวัดพระนคร เป็นครั้งแรก นับว่าเป็นศุภนิมิตรมงคลอันประเสริฐยิ่ง ดังนั้น กรมทหารราบที่ ๒๑ รักษาพระองค์ฯ จึงได้กำหนดให้ วันที่ ๒๑ สิงหาคม เป็นวันสถาปนาหน่วย ตั้งแต่บัดนั้นเป็นต้นมา
-          </p>
-          <div style="width:100%; max-width:600px; margin: 0 auto; height:350px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);">
-            <i class="fa-solid fa-image" style="font-size:2.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:1rem; font-weight:600;">[ รูปที่ 1 ]</span>
+        <div class="history-card">
+          <h3><i class="fa-solid fa-map-pin"></i> การย้ายที่ตั้งและการพระราชทานนามค่าย</h3>
+          <p class="history-text">เมื่อวันที่ ๑๙ ธันวาคม ๒๕๐๔ มีคำสั่งกองทัพบกที่ ๒๘๕/๑๖๖๓๕ ให้โอนและมอบการบังคับบัญชากรมทหารราบที่ ๒๑ รักษาพระองค์ฯ ซึ่งเดิมฝากการบังคับบัญชากับกองพลที่ ๑ กองทัพภาคที่ ๑ ให้ไปขึ้นการบังคับบัญชากับกองพลทหารม้า</p>
+          <p class="history-text">เมื่อวันที่ ๒๘ มิถุนายน ๒๕๑๐ พล.ต.ยศ เทพหัสดินทร์ ณ อยุธยา รับพระราชทานธงชัยเฉลิมพล จาก พระบาทสมเด็จพระบรมชนกาธิเบศก์ มหาภูมิพลดุลยเดชมหารราช ณ พระอุโบสถวัดพระศรีรัตนศาสดาราม บริเวณสนามหน้าศาลาสหทัยสมาคม พระบรมมหาราชวัง</p>
+          
+          <div class="history-highlight-box" style="border-color: var(--color-red); background: rgba(178, 34, 52, 0.05);">
+            <h4 style="color: var(--color-red-dark);"><i class="fa-solid fa-campground"></i> นามค่ายและการย้ายที่ตั้งหน่วย</h4>
+            <p style="margin:0; font-size:1.05rem; line-height:1.7;">เมื่อวันที่ ๔ พฤศจิกายน ๒๕๑๑ กรมทหารราบที่ ๒๑ รักษาพระองค์ฯ ได้ย้ายที่ตั้งจากกรุงเทพมหานคร มาเข้าที่ตั้ง ณ จังหวัดชลบุรี ซึ่งเป็นที่ตั้งในปัจจุบัน โดยใช้ชื่อค่ายว่า “ค่ายกิตติขจร” เลขที่ ๓๐๑ หมู่ ๙ ตำบลบ้านสวน อำเภอเมือง จังหวัดชลบุรี ต่อมาเมื่อวันที่ ๒๙ มิถุนายน ๒๕๑๙ ทรงพระกรุณาโปรดเกล้าฯ พระราชทานนามค่ายใหม่ว่า “ค่ายนวมินทราชินี” และต่อมาเมื่อวันที่ ๒๘ มกราคม ๒๕๖๙ พระบาทสมเด็จพระเจ้าอยู่หัว ทรงพระกรุณาโปรดเกล้าฯ พระราชทานนามค่ายใหม่เป็น “ค่ายมหาวชิราลงกรณ์ราชวัลลภ”</p>
           </div>
         </div>
+      </div>
 
-        <!-- 3.4 -->
-        <div style="margin-bottom: 3rem;">
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 1rem; text-indent: 2.5rem; text-align: justify;">
-            <strong>๓.๔</strong> เมื่อวันที่ ๑๙ ธันวาคม ๒๕๐๔ มีคำสั่งกองทัพบกที่ ๒๘๕/๑๖๖๓๕ ให้โอนและมอบการบังคับบัญชากรมทหารราบที่ ๒๑ รักษาพระองค์ฯ ซึ่งเดิมฝากการบังคับบัญชากับกองพลที่ ๑ กองทัพภาคที่ ๑ ให้ไปขึ้นการบังคับบัญชากับกองพลทหารม้า
-          </p>
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 1rem; text-indent: 2.5rem; text-align: justify;">
-            เมื่อวันที่ ๒๘ มิถุนายน ๒๕๑๐ พล.ต.ยศ เทพหัสดินทร์ ณ อยุธยา รับพระราชทานธงชัยเฉลิมพล จาก พระบาทสมเด็จพระบรมชนกาธิเบศก์ มหาภูมิพลดุลยเดชมหารราช ณ พระอุโบสถวัดพระศรีรัตนศาสดาราม บริเวณสนามหน้าศาลาสหทัยสมาคม พระบรมมหาราชวัง
-          </p>
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 1rem; text-indent: 2.5rem; text-align: justify;">
-            เมื่อวันที่ ๔ พฤศจิกายน ๒๕๑๑ กรมทหารราบที่ ๒๑ รักษาพระองค์ฯ ได้ย้ายที่ตั้งจากกรุงเทพมหานคร มาเข้าที่ตั้ง ณ จังหวัดชลบุรี ซึ่งเป็นที่ตั้งในปัจจุบัน โดยใช้ชื่อค่ายว่า “ค่ายกิตติขจร” เลขที่ ๓๐๑ หมู่ ๙ ตำบลบ้านสวน อำเภอเมือง       </div>��รรมของทหารไทยผู้เป็นบรรพชนในอดีตี่ได้ร่วมรบกับกองกำลังสหประชาชาติสร้างเกียรติประวัติการรบ ไว้จนได้รับสมญานามจากชาติพันธมิตรว่า “ พยัคฆ์น้อย” อันหมายถึง นักรบร่างเล็กแต่เต็มไปด้วยเขี้ยวเล็บ สำหรับรูปแบบของอนุสาวรีย์ จำลองมาจากอนุสาวรีย์ เชิดชูวีรกรรมทหารไทยในสงครามเกาหลี ที่ตำบลอุนชอน จังหวัดโปชอน สาธารณรัฐเกาหลี และในวันที่ ๒๒ ตุลาคม ของทุกปี จัดให้มีพิธีวางพวงมาลาเนื่องใน “วันที่ระลึกทหารผ่านศึกเกาหลี”
-          </p>
-          <div style="width:100%; max-width:600px; margin: 0 auto 2rem auto; height:350px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);">
-            <i class="fa-solid fa-image" style="font-size:3rem; margin-bottom:1rem; opacity:.5;"></i><span style="font-size:1.1rem; font-weight:600;">[ รูปที่ 1 ]</span>
+      <!-- Monument Section -->
+      <div class="animate-on-scroll" style="margin-top: 5rem;">
+        <h2 class="section-title"><i class="fa-solid fa-monument"></i> อนุสาวรีย์เชิดชูเกียรติวีรกรรมทหารไทย</h2>
+        <div class="history-card" style="background: linear-gradient(135deg, #ffffff, #f8fafc); border-top: 4px solid var(--color-gold);">
+          <p class="history-text">อนุสาวรีย์เชิดชูเกียรติวีรกรรมทหารไทย สร้างขึ้นเพื่อเป็นการรำลึกถึงวีรกรรมของทหารไทยผู้เป็นบรรพชนในอดีตี่ได้ร่วมรบกับกองกำลังสหประชาชาติสร้างเกียรติประวัติการรบ ไว้จนได้รับสมญานามจากชาติพันธมิตรว่า “ พยัคฆ์น้อย” อันหมายถึง นักรบร่างเล็กแต่เต็มไปด้วยเขี้ยวเล็บ สำหรับรูปแบบของอนุสาวรีย์ จำลองมาจากอนุสาวรีย์ เชิดชูวีรกรรมทหารไทยในสงครามเกาหลี ที่ตำบลอุนชอน จังหวัดโปชอน สาธารณรัฐเกาหลี และในวันที่ ๒๒ ตุลาคม ของทุกปี จัดให้มีพิธีวางพวงมาลาเนื่องใน “วันที่ระลึกทหารผ่านศึกเกาหลี”</p>
+          
+          <div class="image-card placeholder" style="height: 300px; margin: 2rem 0;">
+            <i class="fa-solid fa-image" style="font-size:3rem; margin-bottom:1rem; opacity:.3;"></i><span style="font-size:1.1rem; font-weight:600;">[ รูปอนุสาวรีย์ ]</span>
           </div>
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 2rem; text-indent: 2.5rem; text-align: justify;">
-            สมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชินีนาถ พระบรมราชชนนีพันปีหลวง ทรงพระกรุณา โปรดเกล้าฯ ให้ พระบาทสมเด็จพระวชิรเกล้าเจ้าอยู่หัว ขณะดำรงตำแหน่ง สมเด็จพระบรมโอรสาธิราชฯ สยามมกุฎราชกุมาร เสด็จพระราชดำเนินแทนพระองค์ ทรงเปิดอนุสาวรีย์ทหารผ่านศึกเกาหลี ณ ค่ายนวมินราชินี เมื่อวันพฤหัสบดีที่ ๒๕ สิงหาคม ๒๕๓๑
-          </p>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:2rem;">
-            <!-- 9 images -->
-            <div style="width:100%; height:160px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.85rem; font-weight:600;">[ รูปที่ 1 ]</span></div>
-            <div style="width:100%; height:160px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.85rem; font-weight:600;">[ รูปที่ 2 ]</span></div>
-            <div style="width:100%; height:160px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.85rem; font-weight:600;">[ รูปที่ 3 ]</span></div>
-            <div style="width:100%; height:160px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.85rem; font-weight:600;">[ รูปที่ 4 ]</span></div>
-            <div style="width:100%; height:160px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.85rem; font-weight:600;">[ รูปที่ 5 ]</span></div>
-            <div style="width:100%; height:160px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.85rem; font-weight:600;">[ รูปที่ 6 ]</span></div>
-            <div style="width:100%; height:160px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.85rem; font-weight:600;">[ รูปที่ 7 ]</span></div>
-            <div style="width:100%; height:160px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.85rem; font-weight:600;">[ รูปที่ 8 ]</span></div>
-            <div style="width:100%; height:160px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.85rem; font-weight:600;">[ รูปที่ 9 ]</span></div>
+          
+          <p class="history-text">สมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชินีนาถ พระบรมราชชนนีพันปีหลวง ทรงพระกรุณา โปรดเกล้าฯ ให้ พระบาทสมเด็จพระวชิรเกล้าเจ้าอยู่หัว ขณะดำรงตำแหน่ง สมเด็จพระบรมโอรสาธิราชฯ สยามมกุฎราชกุมาร เสด็จพระราชดำเนินแทนพระองค์ ทรงเปิดอนุสาวรีย์ทหารผ่านศึกเกาหลี ณ ค่ายนวมินราชินี เมื่อวันพฤหัสบดีที่ ๒๕ สิงหาคม ๒๕๓๑</p>
+          
+          <div class="image-grid-auto">
+            <div class="image-card placeholder" style="height: 140px;"><i class="fa-solid fa-image"></i></div>
+            <div class="image-card placeholder" style="height: 140px;"><i class="fa-solid fa-image"></i></div>
+            <div class="image-card placeholder" style="height: 140px;"><i class="fa-solid fa-image"></i></div>
+            <div class="image-card placeholder" style="height: 140px;"><i class="fa-solid fa-image"></i></div>
+            <div class="image-card placeholder" style="height: 140px;"><i class="fa-solid fa-image"></i></div>
+            <div class="image-card placeholder" style="height: 140px;"><i class="fa-solid fa-image"></i></div>
+            <div class="image-card placeholder" style="height: 140px;"><i class="fa-solid fa-image"></i></div>
+            <div class="image-card placeholder" style="height: 140px;"><i class="fa-solid fa-image"></i></div>
+            <div class="image-card placeholder" style="height: 140px;"><i class="fa-solid fa-image"></i></div>
           </div>
         </div>
-
+      </div>
+      
+    </div>
   </section>
 
   <footer class="footer">
@@ -219,20 +225,5 @@
     </div>
   </footer>
   <script src="../js/main.js"></script>
-  <!-- Admin System -->
-  <script>
-    window.FIREBASE_CONFIG = {
-      apiKey: "AIzaSyAgyNRJoA0zOu4cwOEmlt5p4FXdi0_fOPQ",
-      authDomain: "r902-website.firebaseapp.com",
-      projectId: "r902-website",
-      storageBucket: "r902-website.firebasestorage.app",
-      messagingSenderId: "759289155849",
-      appId: "1:759289155849:web:ffbadffc85e4633e5103d8"
-    };
-  </script>
-  <script src="../js/admin.js"></script>
 </body>
 </html>
-
-
-

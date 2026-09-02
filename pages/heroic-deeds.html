@@ -8,6 +8,34 @@
   <link rel="icon" href="../images/logo 902.png" type="image/jpeg">
   <link rel="stylesheet" href="../css/style.css">
   <style>
+    .heroic-text {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: var(--color-text);
+      margin: 0 auto 2rem auto;
+      text-indent: 2.5rem;
+      text-align: left !important;
+      word-break: break-word;
+      max-width: 950px;
+    }
+    .heroic-gallery-lg {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .heroic-gallery-md {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 768px) {
+      .heroic-text {
+        font-size: 1.05rem;
+        text-indent: 1.5rem;
+      }
+    }
     .about-intro {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -59,6 +87,7 @@
             <div class="dropdown">
               <a href="about.html" class="dropdown-item"><span class="dd-icon"></span>ประวัติหน่วย</a>
               <a href="heroic-deeds.html" class="dropdown-item"><span class="dd-icon"></span>วีรกรรมหน่วย</a>
+              <a href="heroic-deeds.html" class="dropdown-item"><span class="dd-icon"></span>วีรกรรมหน่วย</a>
               <a href="queens-tiger.html" class="dropdown-item"><span class="dd-icon"></span>หลักสูตรทหารเสือราชินี</a>
             </div>
           </li>
@@ -92,10 +121,10 @@
         <!-- 6.3 อนุสาวรีย์ทหารผ่านศึกเกาหลีที่สร้างขึ้นในสาธารณรัฐเกาหลี -->
         <div style="margin-bottom: 4rem;">
           <h3 style="font-size:1.5rem;color:var(--color-green);margin-bottom:1rem;">๖.๓ อนุสาวรีย์ทหารผ่านศึกเกาหลีที่สร้างขึ้นในสาธารณรัฐเกาหลี</h3>
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 2rem; text-indent: 2.5rem; text-align: justify;">
+          <p class="heroic-text">
             เมื่อวันที่ ๒๐ เมษายน ๒๕๑๖ ประธานาธิบดี ปาร์คจุงฮี แห่งเกาหลีใต้ ได้มีคำสั่งให้จัดสร้างอนุสาวรีย์เชิดชูวีรกรรมทหารไทยขึ้น ที่ตำบลอุนชอน (Unchon-ri) จังหวัดโปวอน(Pochon-kun) มณฑลเกียงกี (Kyonggi-do) ทางทิศเหนือของกรุงโซล เพื่อเป็นเกียรติ และรำลึกถึงคุณความดีของทหารไทย ที่เสียสละเลือดเนื้อ และชีวิตปฏิบัติการรบร่วมในกองบัญชาการสหประชาชาติในสงครามเกาหลี กระทรวงกลาโหมเกาหลีใต้ กำหนดก่อสร้างอนุสาวรีย์เชิดชูวีรกรรมทหารไทยขึ้น ตัวอักษรภาษาเกาหลีบนอนุสาวรีย์ เป็นชื่อ “อนุสาวรีย์วีรกรรมทหารไทยในสงครามเกาหลี (Monument Dedicated to Royal Thai Armed Forces in the Korean War)”
           </p>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1rem; margin-bottom:2rem;">
+          <div class="heroic-gallery-lg">
             <!-- 2 images -->
             <div style="width:100%; height:250px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:1rem; font-weight:600;">[ รูปที่ 1 ]</span></div>
             <div style="width:100%; height:250px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:2rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:1rem; font-weight:600;">[ รูปที่ 2 ]</span></div>
@@ -105,10 +134,10 @@
         <!-- 6.4 วีรกรรมการรบ การปราบปรามผู้ก่อการร้ายคอมมิวนิสต์ที่ อำเภอปัว, อำเภอทุ่งช้าง จังหวัดน่าน -->
         <div style="margin-bottom: 4rem;">
           <h3 style="font-size:1.5rem;color:var(--color-green);margin-bottom:1rem;">๖.๔ วีรกรรมการรบ การปราบปรามผู้ก่อการร้ายคอมมิวนิสต์ที่ อำเภอปัว, อำเภอทุ่งช้าง จังหวัดน่าน</h3>
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 2rem; text-indent: 2.5rem; text-align: justify;">
+          <p class="heroic-text">
             ตั้งแต่ปี ๒๕๑๔ ถึงปี ๒๕๒๐ โดยจัดกำลังในนาม พัน.ร.๒๑๒ โดยได้ปะทะกับผู้ก่อการร้าย จำนวน ๙ ครั้ง สามารถรับชัยชนะ ด้วยความทรหด อดทน กล้าหาญและตั้งใจที่จะทำการรบ ทั้งยังใช้สมองและความคิดที่เป็นกลอุบายในการดำเนินกลยุทธ์ตามแบบฉบับสมัยโบราณในประวัติศาสตร์ เช่นเมื่อครั้ง สมเด็จพระนเรศวรมหาราช ใช้ให้พระยาศรีไสยณรงค์ล่อให้พม่าติดตามด้วยความประมาทถึงขั้นแตกพ่าย เพื่อแสดงความดีเด่นในด้านการรบ จึงได้รับพระมหากรุณาธิคุณโปรดเกล้าพระราชทานเหรียญกล้าหาญประดับที่ธงชัยเฉลิมพลของทุกหน่วยในกรมทหารราบที่ ๒๑ รักษาพระองค์ฯ และเป็นพระมหากรุณาธิคุณ ที่พระบาทสมเด็จพระบรมชนกาธิเบศร มหาภูมิพลอดุลยเดชมหาราช บรมนาถบพิตร และสมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชินีนาถ พระบรมราชชนนีพันปีหลวง เสด็จเยี่ยมกำลังพล จังหวัดน่าน
           </p>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:2rem;">
+          <div class="heroic-gallery-md">
             <!-- 7 images -->
             <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.9rem; font-weight:600;">[ รูปที่ 1 ]</span></div>
             <div style="width:100%; height:180px; background:#e2e8f0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; border-radius:var(--radius-md);"><i class="fa-solid fa-image" style="font-size:1.5rem; margin-bottom:.5rem; opacity:.5;"></i><span style="font-size:.9rem; font-weight:600;">[ รูปที่ 2 ]</span></div>
@@ -123,7 +152,7 @@
         <!-- 6.5 วีรกรรมการรบในสมรภูมิเขาพนมปะ อำเภอ ตาพระยา จ.ปราจีนบุรี -->
         <div style="margin-bottom: 1rem;">
           <h3 style="font-size:1.5rem;color:var(--color-green);margin-bottom:1rem;">๖.๕ วีรกรรมการรบในสมรภูมิเขาพนมปะ อำเภอ ตาพระยา จ.ปราจีนบุรี</h3>
-          <p style="font-size:1.15rem;line-height:1.85;color:var(--color-text); margin-bottom: 2rem; text-indent: 2.5rem; text-align: justify;">
+          <p class="heroic-text">
             ตั้งแต่ปี ๒๕๒๐ ถึงปี ๒๕๒๖ กรมทหารราบที่ ๒๑ รักษาพระองค์ฯ ปฏิบัติราชการสนามชายแดนตามแผนป้องกันประเทศ โดยวีรกรรมการรบที่สำคัญได้แก่ การรบที่เขาพนมปะ จากการที่ทหารเวียดนามได้เข้าตีบุกยึดพื้นที่เขาพนมปะ หน่วยจัดกำลังพลเข้าประทะเพื่อยึดรักษาพื้นที่เอาไว้ โดยหน่วยจัดกำลังชุดปฏิบัติการทหารเสือ เพิ่มเติมกำลังเข้าพื้นที่เขาพนมปะ ประกอบได้เปรียบทางภูมิประเทศที่มีกำบังแข็งแรง ประกอบกับกำลังพลมีความกล้าหาญ เด็ดเดี่ยว อดทน ทำให้สามารถพลักดันทหารเวียดนามออกจากพื้นที่ไว้ได้ จากวีรกรรมในครั้งนี้ทำให้ได้รับพระมหากรุณาธิคุณโปรดเกล้าพระราชทานเครื่องราชอิสริยาภรร์อันมีศักดิ์รามาธิบดี เหรียญรามมาลา เข็มกล้ากลางสมร ประดับธงชัยเฉลิมพลของทุกหน่วยในกรมทหารราบที่ ๒๑ รักษาพระองค์ฯ และพระราชทานเหรียญรามาลาให้กับกำลังพล ๙ นาย และและเป็นพระมหากรุณาธิคุณที่พระบาทสมเด็จพระบรมชนกาธิเบศร มหาภูมิพลอดุลยเดชมหาราช บรมนาถบพิตร และสมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชินีนาถ พระบรมราชชนนีพันปีหลวง เสด็จเยี่ยมกำลังพลในพื้นที่
           </p>
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
@@ -150,7 +179,7 @@
           <img src="../images/logo 902.png" alt="ตราหน่วย">
           <p><strong style="color:#fff;">กรมทหารราบ ๙๐๒ รักษาพระองค์</strong><br>ค่ายมหาวชิราลงกรณ์ราชวัลลภ<br>อ.เมืองชลบุรี จ.ชลบุรี 20000</p>
         </div>
-        <div><div class="footer-heading">เมนูหลัก</div><div class="footer-links"><a href="../index.html">หน้าหลัก</a><a href="commanders.html">ผู้บังคับบัญชา</a><a href="about.html">ประวัติหน่วย</a><a href="heroic-deeds.html">วีรกรรมหน่วย</a><a href="queens-tiger.html">หลักสูตรทหารเสือราชินี</a><a href="nkt.html">นขต.ร.๙๐๒ รอ.</a><a href="contact.html">ติดต่อเรา</a></div></div>
+        <div><div class="footer-heading">เมนูหลัก</div><div class="footer-links"><a href="../index.html">หน้าหลัก</a><a href="commanders.html">ผู้บังคับบัญชา</a><a href="about.html">ประวัติหน่วย</a><a href="heroic-deeds.html">วีรกรรมหน่วย</a><a href="heroic-deeds.html">วีรกรรมหน่วย</a><a href="queens-tiger.html">หลักสูตรทหารเสือราชินี</a><a href="nkt.html">นขต.ร.๙๐๒ รอ.</a><a href="contact.html">ติดต่อเรา</a></div></div>
         <div>
           <div class="footer-heading">ติดต่อ</div>
           <div class="footer-links">
@@ -180,6 +209,8 @@
   <script src="../js/admin.js"></script>
 </body>
 </html>
+
+
 
 
 

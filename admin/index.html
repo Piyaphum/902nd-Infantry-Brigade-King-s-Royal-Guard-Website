@@ -95,14 +95,14 @@
 
     <div class="admin-body">
       <div class="container">
-        
+
         <div class="admin-welcome">
           <h1>จัดการระบบเว็บไซต์</h1>
           <p>เลือกระบบที่ต้องการจัดการด้านล่าง</p>
         </div>
 
         <div class="module-grid">
-          
+
           <a href="news.html" class="module-card">
             <span class="module-badge">พร้อมใช้งาน</span>
             <div class="module-icon"><i class="fa-solid fa-newspaper" style="color:var(--color-green);"></i></div>
@@ -145,13 +145,13 @@
         inp.value = ''; inp.focus();
       }
     }
-    
+
     function logout() { 
       sessionStorage.removeItem('masterAdminAuth'); 
       sessionStorage.removeItem('newsAdminAuth'); 
       location.reload(); 
     }
-    
+
     if (sessionStorage.getItem('masterAdminAuth') === '1') {
       document.getElementById('authOverlay').style.display = 'none';
       document.getElementById('adminPage').style.display   = 'block';
