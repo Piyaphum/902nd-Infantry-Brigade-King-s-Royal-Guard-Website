@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  var ADMIN_PASSWORD = 'r902admin';
+  var ADMIN_PASSWORD = '808182R21';
   var SESSION_KEY    = 'masterAdminAuth';
 
   var CSS = [
