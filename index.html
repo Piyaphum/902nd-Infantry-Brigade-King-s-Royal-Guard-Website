@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 
 <head>
@@ -8,7 +8,7 @@
     content="เว็บไซต์ทางการของ กรมทหารราบ ๙๐๒ รักษาพระองค์ ในพระบาทสมเด็จพระเจ้าอยู่หัว — ทหารเสือนวมินทราชินี ค่ายมหาวชิราลงกรณ์ราชวัลลภ จังหวัดชลบุรี">
   <meta name="keywords" content="กรมทหารราบ 902, ร.902 รอ, ทหารเสือราชินี, กองทัพบก, ชลบุรี">
   <title>กรมทหารราบ ๙๐๒ รักษาพระองค์ | ร.๙๐๒ รอ.</title>
-  <link rel="icon" href="images/logo 902.png" type="image/png">
+  <link rel="icon" href="images/logo-902.png" type="image/png">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -19,7 +19,7 @@
     <div class="container">
       <div class="navbar-inner">
         <a href="index.html" class="navbar-brand">
-          <img src="images/logo 902.png" alt="ตราหน่วย ร.๙๐๒ รอ.">
+          <img src="images/logo-902.png" alt="ตราหน่วย ร.๙๐๒ รอ.">
           <div class="brand-text">
             <div class="unit-name">กรมทหารราบ ๙๐๒ รักษาพระองค์</div>
             <div class="unit-sub">ในพระบาทสมเด็จพระเจ้าอยู่หัว</div>
@@ -42,14 +42,11 @@
             <div class="dropdown">
               <a href="pages/about.html" class="dropdown-item"><span class="dd-icon"></span>ประวัติหน่วย</a>
               <a href="pages/heroic-deeds.html" class="dropdown-item"><span class="dd-icon"></span>วีรกรรมหน่วย</a>
-
-                <a href="pages/queens-tiger.html" class="dropdown-item"><span class="dd-icon"></span>หลักสูตรทหารเสือราชินี</a>
+              <a href="pages/queens-tiger.html" class="dropdown-item"><span class="dd-icon"></span>หลักสูตรทหารเสือราชินี</a>
             </div>
           </li>
           <li class="nav-item"><a href="pages/nkt.html" class="nav-link">นขต.ร.๙๐๒ รอ.</a></li>
-
           <li class="nav-item"><a href="pages/contact.html" class="nav-link">ติดต่อเรา</a></li>
-
         </ul>
 
         <button class="navbar-toggle" id="navToggle" aria-label="เปิดเมนู">
@@ -58,7 +55,7 @@
       </div>
     </div>
   </nav>
-  <div id="navOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:150;"
+  <div id="navOverlay" class="nav-overlay"
     onclick="document.querySelector('.nav-menu').classList.remove('open');this.style.display='none';"></div>
 
   <!-- ── Hero Section ─────────────────────────────────────── -->
@@ -78,11 +75,10 @@
         </p>
         <div class="hero-actions">
           <a href="pages/about.html" class="btn btn-primary"> ประวัติหน่วย</a>
-
         </div>
       </div>
     </div>
-    <img src="images/logo 902.png" alt="ตราหน่วย ร.๙๐๒ รอ." class="hero-emblem">
+    <img src="images/logo-902.png" alt="ตราหน่วย ร.๙๐๒ รอ." class="hero-emblem">
   </section>
 
   <!-- ── Stats Bar ─────────────────────────────────────────── -->
@@ -143,7 +139,6 @@
       </div>
       <div class="pride-grid">
         <div class="pride-item pride-main" id="pride-1-container">
-          <!-- YouTube embed -->
           <iframe src="https://www.youtube.com/embed/g2qJj3NIsB8?autoplay=0&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen id="pride-1-frame"></iframe>
           <img src="" id="pride-1-img" style="display:none;" alt="ความภาคภูมิใจ">
           <button class="admin-edit-btn banner-edit-btn" onclick="event.preventDefault(); openMediaEdit('pride-1', 'pride', 'แก้ไขความภาคภูมิใจ')"><i class="fa-solid fa-pen"></i> แก้ไข</button>
@@ -168,71 +163,58 @@
   </section>
 
   <!-- ── Media Edit Modal ────────────────────────────────── -->
-  <div id="mediaEditModal" style="position:fixed;inset:0;z-index:999998;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;padding:1rem;">
-    <div class="aem-card" style="width:100%;max-width:500px;background:#fff;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.3);">
-      <div class="aem-header" style="background:var(--color-red-dark);padding:1rem 1.5rem;border-radius:20px 20px 0 0;display:flex;justify-content:space-between;align-items:center;">
-        <div class="aem-title" id="mediaEditTitle" style="color:#fff;font-weight:700;">แก้ไขสื่อ</div>
-        <button class="aem-close" onclick="closeMediaEdit()" style="background:transparent;border:none;color:#fff;cursor:pointer;font-size:1.2rem;"><i class="fa-solid fa-xmark"></i></button>
+  <div id="mediaEditModal" class="media-edit-modal">
+    <div class="media-edit-card">
+      <div class="media-edit-header">
+        <div class="media-edit-title" id="mediaEditTitle">แก้ไขสื่อ</div>
+        <button class="media-edit-close" onclick="closeMediaEdit()"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <div class="aem-body" style="padding:1.5rem;">
+      <div class="media-edit-body">
         <input type="hidden" id="editMediaId">
         <input type="hidden" id="editMediaCollection">
 
         <div class="form-group">
-          <label class="aem-label" style="display:block;margin-bottom:0.5rem;font-weight:700;font-size:0.85rem;">อัปโหลดรูปภาพ/วิดีโอ จากเครื่อง</label>
-          <input type="file" id="editMediaFile" class="aem-input" accept="image/*,video/*" style="width:100%;padding:0.5rem;border:1px solid #ccc;border-radius:8px;">
-          <div style="font-size:0.75rem;color:#888;margin-top:0.25rem;">(หากเลือกไฟล์ จะใช้ไฟล์อัปโหลดนี้แทนลิงก์ URL ด้านล่าง)</div>
+          <label class="form-label">อัปโหลดรูปภาพ/วิดีโอ จากเครื่อง</label>
+          <input type="file" id="editMediaFile" class="form-input" accept="image/*,video/*">
+          <div class="form-hint">(หากเลือกไฟล์ จะใช้ไฟล์อัปโหลดนี้แทนลิงก์ URL ด้านล่าง)</div>
         </div>
 
-        <div style="text-align:center;margin:1rem 0;color:#aaa;font-weight:700;font-size:0.85rem;">หรือ</div>
+        <div class="form-divider">หรือ</div>
 
         <div class="form-group">
-          <label class="aem-label" style="display:block;margin-bottom:0.5rem;font-weight:700;font-size:0.85rem;">วางลิงก์รูปภาพ / วิดีโอ URL (รองรับลิงก์ YouTube)</label>
-          <input type="text" id="editMediaUrl" class="aem-input" placeholder="https://..." style="width:100%;padding:0.6rem;border:1px solid #ccc;border-radius:8px;">
+          <label class="form-label">วางลิงก์รูปภาพ / วิดีโอ URL (รองรับลิงก์ YouTube)</label>
+          <input type="text" id="editMediaUrl" class="form-input" placeholder="https://...">
         </div>
 
-        <hr style="margin:1.5rem 0;border:0;border-top:1px solid #eee;">
+        <hr class="form-separator">
 
         <div class="form-group">
-          <label class="aem-label" style="display:block;margin-bottom:0.5rem;font-weight:700;font-size:0.85rem;">ลิงก์เมื่อคลิกแบนเนอร์ (ปลายทาง)</label>
-          <input type="text" id="editMediaLink" class="aem-input" placeholder="https://..." style="width:100%;padding:0.6rem;border:1px solid #ccc;border-radius:8px;">
+          <label class="form-label">ลิงก์เมื่อคลิกแบนเนอร์ (ปลายทาง)</label>
+          <input type="text" id="editMediaLink" class="form-input" placeholder="https://...">
         </div>
       </div>
-      <div class="aem-footer" style="padding:1rem 1.5rem;border-top:1px solid #eee;display:flex;justify-content:flex-end;gap:0.5rem;">
-        <button class="aem-cancel" onclick="closeMediaEdit()" style="padding:0.6rem 1.2rem;border:1px solid #ccc;background:#f9f9f9;border-radius:8px;cursor:pointer;font-weight:600;">ยกเลิก</button>
-        <button class="aem-save" id="saveMediaBtn" onclick="saveMediaEdit()" style="padding:0.6rem 1.5rem;background:var(--color-green);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">บันทึกข้อมูล</button>
+      <div class="media-edit-footer">
+        <button class="media-edit-cancel" onclick="closeMediaEdit()">ยกเลิก</button>
+        <button class="media-edit-save" id="saveMediaBtn" onclick="saveMediaEdit()">บันทึกข้อมูล</button>
       </div>
     </div>
   </div>
 
   <!-- ── Modal for reading news (index) ───────────────────── -->
-  <div id="newsModal"
-    style="position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:1rem;backdrop-filter:blur(5px);"
-    onclick="if(event.target===this)closeNewsModal()">
-    <div
-      style="background:#fff;border-radius:var(--radius-xl);width:100%;max-width:650px;max-height:85vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .3s;box-shadow:0 25px 50px -12px rgba(0,0,0,.5);"
-      id="newsModalContent">
-      <button onclick="closeNewsModal()"
-        style="position:sticky;top:1rem;float:right;right:1rem;width:40px;height:40px;background:rgba(0,0,0,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;font-size:1.2rem;cursor:pointer;transition:background .2s;z-index:2;margin-bottom:-40px;backdrop-filter:blur(5px);"><i
-          class="fa-solid fa-xmark"></i></button>
-      <img id="modalImg" src=""
-        style="width:100%;max-height:350px;object-fit:cover;background:var(--color-bg-alt);display:none;">
-      <div style="padding:2.5rem;">
-        <div
-          style="display:flex;align-items:center;gap:1rem;font-size:.9rem;color:var(--color-text-muted);font-weight:500;margin-bottom:1rem;">
-          <span id="modalCat"
-            style="background:var(--color-red-pale);color:var(--color-red-dark);padding:.3rem .8rem;border-radius:var(--radius-full);font-size:.8rem;font-weight:700;"></span>
+  <div id="newsModal" class="news-modal" onclick="if(event.target===this)closeNewsModal()">
+    <div class="news-modal-content" id="newsModalContent">
+      <button class="news-modal-close" onclick="closeNewsModal()"><i class="fa-solid fa-xmark"></i></button>
+      <img id="modalImg" src="" class="news-modal-img">
+      <div class="news-modal-body">
+        <div class="news-modal-meta">
+          <span id="modalCat" class="news-modal-cat"></span>
           <span id="modalDate"></span>
         </div>
-        <h2 id="modalTitle"
-          style="font-size:1.75rem;font-weight:800;color:var(--color-text);line-height:1.4;margin-bottom:1.5rem;"></h2>
-        <div id="modalText" style="font-size:1.05rem;line-height:1.8;color:var(--color-text);white-space:pre-wrap;">
-        </div>
-        <a id="modalLink" href="#" target="_blank"
-          style="display:none;align-items:center;gap:.5rem;margin-top:2rem;padding:.75rem 1.5rem;background:var(--color-blue);color:#fff;text-decoration:none;border-radius:var(--radius-lg);font-weight:700;transition:background .2s;"
-          onmouseover="this.style.background='var(--color-blue-dark)'"
-          onmouseout="this.style.background='var(--color-blue)'"><i class="fa-solid fa-external-link-alt"></i>
-          ดูรายละเอียดเพิ่มเติม</a>
+        <h2 id="modalTitle" class="news-modal-title"></h2>
+        <div id="modalText" class="news-modal-text"></div>
+        <a id="modalLink" href="#" target="_blank" class="news-modal-link">
+          <i class="fa-solid fa-external-link-alt"></i> ดูรายละเอียดเพิ่มเติม
+        </a>
       </div>
     </div>
   </div>
@@ -297,7 +279,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="images/logo 902.png" alt="ตราหน่วย">
+          <img src="images/logo-902.png" alt="ตราหน่วย">
           <p><strong style="color:#fff;">กรมทหารราบ ๙๐๒
               รักษาพระองค์</strong><br>ในพระบาทสมเด็จพระเจ้าอยู่หัว<br>ค่ายมหาวชิราลงกรณ์ราชวัลลภ
             ต.บ้านสวน<br>อ.เมืองชลบุรี จ.ชลบุรี ๒๐๐๐๐</p>
@@ -332,263 +314,10 @@
     </div>
   </footer>
 
+  <!-- ── Scripts ─────────────────────────────────────────────── -->
   <script src="js/main.js"></script>
-
-  <!-- Admin System -->
-  <script>
-    window.FIREBASE_CONFIG = {
-      apiKey: "AIzaSyAgyNRJoA0zOu4cwOEmlt5p4FXdi0_fOPQ",
-      authDomain: "r902-website.firebaseapp.com",
-      projectId: "r902-website",
-      storageBucket: "r902-website.firebasestorage.app",
-      messagingSenderId: "759289155849",
-      appId: "1:759289155849:web:ffbadffc85e4633e5103d8"
-    };
-  </script>
+  <script src="js/firebase-config.js"></script>
   <script src="js/admin.js"></script>
-
-<!-- ── Firebase (News & Banners) ────────────────────────── -->
-<script type="module">
-  const firebaseConfig = window.FIREBASE_CONFIG;
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, collection, getDocs, doc, getDoc, setDoc, query, orderBy, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-
-  let app, db, storage;
-  if (!firebaseConfig.apiKey.startsWith('YOUR_')) {
-    try {
-      app = initializeApp(firebaseConfig);
-      db = getFirestore(app);
-      storage = getStorage(app);
-
-      // --- 1. Load Banners ---
-      const bannersRef = doc(db, 'siteContent', 'banners');
-      getDoc(bannersRef).then(snap => {
-        if (snap.exists()) {
-          const data = snap.data();
-          ['banner-1', 'banner-2', 'banner-3'].forEach(id => {
-            if (data[id]) {
-              const b = data[id];
-              const imgEl = document.getElementById(id + '-img');
-              const linkEl = document.getElementById(id + '-link');
-              if (imgEl && b.imageUrl) imgEl.src = b.imageUrl;
-              if (linkEl && b.targetUrl) linkEl.href = b.targetUrl;
-            }
-          });
-        }
-      }).catch(e => console.error("Error loading banners:", e));
-
-      // --- 1.5 Load Pride ---
-      const prideRef = doc(db, 'siteContent', 'pride');
-      getDoc(prideRef).then(snap => {
-        if (snap.exists()) {
-          const data = snap.data();
-          ['pride-1', 'pride-2', 'pride-3', 'pride-4'].forEach(id => {
-            if (data[id]) {
-              const p = data[id];
-              const frameEl = document.getElementById(id + '-frame');
-              const imgEl = document.getElementById(id + '-img');
-              if (p.imageUrl) {
-                if (p.imageUrl.includes('youtube.com/embed/')) {
-                  if (frameEl) { frameEl.src = p.imageUrl; frameEl.style.display = 'block'; }
-                  if (imgEl) { imgEl.style.display = 'none'; }
-                } else {
-                  if (imgEl) { imgEl.src = p.imageUrl; imgEl.style.display = 'block'; }
-                  if (frameEl) { frameEl.style.display = 'none'; }
-                }
-              }
-            }
-          });
-        }
-      }).catch(e => console.error("Error loading pride:", e));
-
-      // --- 2. Load PR News ---
-      const q = query(collection(db, 'news'), orderBy('publishedAt', 'desc'), limit(20));
-      const snap = await getDocs(q);
-
-      document.getElementById('prSkeleton').style.display = 'none';
-
-      if (snap.empty) {
-        document.getElementById('prList').outerHTML = '<div style="text-align:center;color:#666;">ยังไม่มีข่าวประชาสัมพันธ์</div>';
-      } else {
-        window._homeNewsData = {};
-        let prHtml = '';
-        let count = 0;
-
-        snap.forEach(docSnap => {
-          const n = { id: docSnap.id, ...docSnap.data() };
-          const fullDt = n.publishedAt?.toDate ? n.publishedAt.toDate().toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' }) : (n.date || '');
-          n.formattedDate = fullDt;
-          window._homeNewsData[n.id] = n;
-
-          prHtml += `
-            <div class="news-4col-item" onclick="openNewsModal('${n.id}')" style="cursor:pointer;">
-              ${n.imageUrl ? `<img src="${n.imageUrl}" class="news-4col-thumb" alt="news thumbnail">` : ''}
-              <div class="news-4col-title" title="${n.title}">${n.title}</div>
-              <div class="news-4col-date">${fullDt}</div>
-            </div>
-          `;
-          count++;
-        });
-
-        if (count === 0) prHtml = '<div style="text-align:center;color:#666;">ยังไม่มีข่าวประชาสัมพันธ์</div>';
-        const prListElem = document.getElementById('prList');
-        if(prListElem) {
-          prListElem.innerHTML = prHtml;
-          prListElem.style.display = 'grid';
-        }
-      }
-    } catch (e) {
-      console.error("Firebase Initialization Error:", e);
-      document.getElementById('prSkeleton').textContent = 'ไม่สามารถโหลดข้อมูลได้ (ตั้งค่า Firebase ไม่ถูกต้อง)';
-    }
-  }
-
-  // --- Media Editing Logic ---
-  window.openMediaEdit = function(mediaId, collection, titleText) {
-    document.getElementById('editMediaId').value = mediaId;
-    document.getElementById('editMediaCollection').value = collection;
-    document.getElementById('mediaEditTitle').textContent = titleText || 'แก้ไขสื่อ';
-    document.getElementById('editMediaFile').value = '';
-    document.getElementById('editMediaUrl').value = '';
-    document.getElementById('editMediaLink').value = '';
-
-    // Pre-fill existing data
-    const imgEl = document.getElementById(mediaId + '-img');
-    const frameEl = document.getElementById(mediaId + '-frame');
-    const linkEl = document.getElementById(mediaId + '-link');
-
-    if (frameEl && frameEl.style.display !== 'none' && frameEl.src) {
-      document.getElementById('editMediaUrl').value = frameEl.src;
-    } else if (imgEl && imgEl.src && !imgEl.src.includes('images/banner-') && !imgEl.src.includes('images/pride-')) {
-      document.getElementById('editMediaUrl').value = imgEl.src;
-    }
-
-    if (linkEl && linkEl.href && linkEl.getAttribute('href') !== '#') {
-      document.getElementById('editMediaLink').value = linkEl.getAttribute('href');
-    }
-
-    document.getElementById('mediaEditModal').style.display = 'flex';
-  };
-
-  window.closeMediaEdit = function() {
-    document.getElementById('mediaEditModal').style.display = 'none';
-  };
-
-  function convertToEmbedUrl(url) {
-    if (!url) return url;
-    const youtubeMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
-    if (youtubeMatch && youtubeMatch[1]) {
-      return `https://www.youtube.com/embed/${youtubeMatch[1]}`;
-    }
-    return url;
-  }
-
-  window.saveMediaEdit = async function() {
-    if(!db) {
-      alert("Firebase is not initialized.");
-      return;
-    }
-    const btn = document.getElementById('saveMediaBtn');
-    btn.textContent = 'กำลังบันทึก...';
-    btn.disabled = true;
-
-    try {
-      const mediaId = document.getElementById('editMediaId').value;
-      const collectionName = document.getElementById('editMediaCollection').value || 'banners';
-      const fileInput = document.getElementById('editMediaFile');
-      let finalUrl = document.getElementById('editMediaUrl').value;
-      const targetLink = document.getElementById('editMediaLink').value;
-
-      // Handle File Upload
-      if (fileInput.files && fileInput.files.length > 0 && storage) {
-        const file = fileInput.files[0];
-        const ext = file.name.split('.').pop();
-        const path = `${collectionName}/${mediaId}_${Date.now()}.${ext}`;
-        const storageRef = ref(storage, path);
-
-        const uploadTask = uploadBytes(storageRef, file);
-        const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('Upload timeout (Storage might not be enabled)')), 10000));
-        await Promise.race([uploadTask, timeout]);
-        finalUrl = await getDownloadURL(storageRef);
-      }
-
-      if (!finalUrl) {
-        alert("กรุณาอัปโหลดรูปหรือใส่ลิงก์ URL");
-        btn.textContent = 'บันทึกข้อมูล';
-        btn.disabled = false;
-        return;
-      }
-
-      // Convert YouTube links to embed format
-      finalUrl = convertToEmbedUrl(finalUrl);
-
-      // Save to Firestore
-      const mediaRef = doc(db, 'siteContent', collectionName);
-      await setDoc(mediaRef, {
-        [mediaId]: {
-          imageUrl: finalUrl,
-          targetUrl: targetLink,
-          updatedAt: serverTimestamp()
-        }
-      }, { merge: true });
-
-      // Update DOM
-      const imgEl = document.getElementById(mediaId + '-img');
-      const frameEl = document.getElementById(mediaId + '-frame');
-      const linkEl = document.getElementById(mediaId + '-link');
-
-      if (finalUrl.includes('youtube.com/embed/')) {
-        if (frameEl) { frameEl.src = finalUrl; frameEl.style.display = 'block'; }
-        if (imgEl) { imgEl.style.display = 'none'; }
-      } else {
-        if (imgEl) { imgEl.src = finalUrl; imgEl.style.display = 'block'; }
-        if (frameEl) { frameEl.style.display = 'none'; }
-      }
-
-      if (linkEl) linkEl.href = targetLink || '#';
-
-      window.closeMediaEdit();
-      if(window._adm) window._adm.showToast('บันทึกสำเร็จ', 'ok');
-    } catch (e) {
-      console.error("Error saving media:", e);
-      alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล: " + e.message);
-    } finally {
-      btn.textContent = 'บันทึกข้อมูล';
-      btn.disabled = false;
-    }
-  };
-
-  window.openNewsModal = function (id) {
-    const n = window._homeNewsData[id];
-    if (!n) return;
-    const img = document.getElementById('modalImg');
-    if (n.imageUrl) { img.src = n.imageUrl; img.style.display = 'block'; }
-    else { img.style.display = 'none'; }
-    document.getElementById('modalCat').textContent = n.category || 'ข่าวหน่วย';
-    document.getElementById('modalDate').textContent = ` ${n.formattedDate}`;
-    document.getElementById('modalTitle').textContent = n.title || '';
-    document.getElementById('modalText').textContent = n.content || '';
-    const link = document.getElementById('modalLink');
-    if (n.link) { link.href = n.link; link.style.display = 'inline-flex'; }
-    else { link.style.display = 'none'; }
-
-    const modal = document.getElementById('newsModal');
-    modal.style.opacity = '1';
-    modal.style.pointerEvents = 'auto';
-    document.getElementById('newsModalContent').style.transform = 'translateY(0)';
-    document.body.style.overflow = 'hidden';
-  };
-
-  window.closeNewsModal = function () {
-    const modal = document.getElementById('newsModal');
-    modal.style.opacity = '0';
-    modal.style.pointerEvents = 'none';
-    document.getElementById('newsModalContent').style.transform = 'translateY(20px)';
-    document.body.style.overflow = '';
-  };
-</script>
+  <script type="module" src="js/home.js"></script>
 </body>
 </html>
-
-

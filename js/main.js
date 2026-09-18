@@ -120,4 +120,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ── Lightbox (Image Popup) ──────────────────────────────── */
+  const createLightbox = () => {
+    const lightbox = document.createElement('div');
+    lightbox.id = 'site-lightbox';
+    lightbox.className = 'lightbox';
+    
+    const imgBox = document.createElement('div');
+    imgBox.className = 'lightbox-content';
+    
+    const img = document.createElement('img');
+    const closeBtn = document.createElement('span');
+    closeBtn.className = 'lightbox-close';
+    closeBtn.innerHTML = '&times;';
+    
+    imgBox.appendChild(img);
+    lightbox.appendChild(imgBox);
+    lightbox.appendChild(closeBtn);
+    document.body.appendChild(lightbox);
+    
+    lightbox.addEventListener('click', (e) => {
+      if(e.target !== img) {
+        lightbox.classList.remove('active');
+        setTimeout(() => img.src = '', 300);
+      }
+    });
+    
+    return { lightbox, img };
+  };
+
+  const { lightbox, img: lightboxImg } = createLightbox();
+
+  document.querySelectorAll('img').forEach(image => {
+    // Exclude images inside navbar, footer, and other UI elements
+    if (image.closest('.navbar') || image.closest('.footer') || image.closest('.hero-emblem') || image.closest('.logo') || image.closest('.pride-item') || image.classList.contains('news-4col-thumb')) return;
+    
+    image.style.cursor = 'zoom-in';
+    image.addEventListener('click', (e) => {
+      e.preventDefault();
+      lightboxImg.src = image.src;
+      lightbox.classList.add('active');
+    });
+  });
+
 });

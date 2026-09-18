@@ -3,99 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>จัดการข่าวและกิจกรรม | ร.๙๐๒ รอ.</title>
-  <link rel="icon" href="../images/logo 902.png" type="image/png">
+  <title>จัดการข่าวและ�  <link rel="icon" href="../images/logo-902.png" type="image/png">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin-auth.css">
   <style>
-    body { background: var(--color-bg); }
+    /* ── News Manager-specific styles ──────────────────── */
+    .admin-body { padding: 2rem 0 4rem; }
+    .admin-grid { display: grid; grid-template-columns: 420px 1fr; gap: 2rem; align-items: start; }
 
-    /* ── Auth overlay ─────────────────────────────────────── */
-    #authOverlay {
-      position: fixed; inset: 0;
-      background: linear-gradient(135deg,#8B1A28 0%,#B22234 50%,#922030 100%);
-      z-index: 9999; display: flex; align-items: center; justify-content: center;
-    }
-    .auth-card { background:#fff; border-radius:var(--radius-xl); padding:2.5rem 2rem; max-width:380px; width:90%; box-shadow:0 30px 80px rgba(0,0,0,.3); text-align:center; animation:slideUp .4s cubic-bezier(.4,0,.2,1); }
-    @keyframes slideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-    .auth-logo { width:80px; height:80px; object-fit:contain; margin-bottom:1rem; }
-    .auth-title { font-size:1.1rem; font-weight:800; color:var(--color-red-dark); margin-bottom:.25rem; }
-    .auth-sub { font-size:.85rem; color:var(--color-text-muted); margin-bottom:1.5rem; }
-    .auth-input { width:100%; border:2px solid var(--color-border); border-radius:var(--radius-lg); padding:.75rem 1rem; font-size:1rem; font-family:var(--font-thai); text-align:center; letter-spacing:.15em; outline:none; transition:var(--transition); margin-bottom:.5rem; box-sizing:border-box; }
-    .auth-input:focus { border-color:var(--color-red); }
-    .auth-input.error { border-color:var(--color-danger); animation:shake .3s; }
-    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
-    .auth-btn { width:100%; padding:.8rem; background:linear-gradient(135deg,var(--color-red-dark),var(--color-red)); color:#fff; border:none; border-radius:var(--radius-lg); font-size:1rem; font-weight:700; cursor:pointer; font-family:var(--font-thai); transition:var(--transition); margin-top:.5rem; }
-    .auth-btn:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(178,34,52,.4); }
-    .auth-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
-    .auth-err { color:var(--color-danger); font-size:.85rem; margin-top:.5rem; min-height:1.2em; }
-    .auth-loading { color:var(--color-text-muted); font-size:.82rem; margin-top:.4rem; min-height:1.2em; }
+    /* ── Form card ──────────────────────────────────────── */
+    .form-card { background: #fff; border-radius: var(--radius-xl); border: 1px solid var(--color-border); box-shadow: var(--shadow-md); padding: 1.75rem; position: sticky; top: 1.5rem; }
+    .form-card h2 { font-size: 1rem; font-weight: 800; color: var(--color-text); margin-bottom: 1.5rem; display: flex; align-items: center; gap: .5rem; }
+    .form-card h2::before { content: ''; display: inline-block; width: 4px; height: 1em; background: var(--color-red); border-radius: 2px; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-size: .78rem; font-weight: 700; color: var(--color-text-muted); margin-bottom: .35rem; text-transform: uppercase; letter-spacing: .05em; }
+    .form-control { width: 100%; border: 2px solid var(--color-border); border-radius: var(--radius-md); padding: .6rem .9rem; font-size: .9rem; font-family: var(--font-thai); outline: none; transition: var(--transition); color: var(--color-text); box-sizing: border-box; }
+    .form-control:focus { border-color: var(--color-red-mid); }
+    .cat-chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .4rem; }
+    .cat-chip { padding: .3rem .8rem; border-radius: var(--radius-full); font-size: .78rem; font-weight: 600; border: 2px solid var(--color-border); background: #fff; color: var(--color-text-muted); cursor: pointer; font-family: var(--font-thai); transition: var(--transition); }
+    .cat-chip.sel, .cat-chip:hover { border-color: var(--color-red); color: var(--color-red); background: var(--color-red-pale); }
 
-    /* ── Admin page ───────────────────────────────────────── */
-    #adminPage { display:none; min-height:100vh; }
-    .admin-header { background:linear-gradient(135deg,var(--color-red-dark),var(--color-red)); padding:1.25rem 0; border-bottom:3px solid var(--color-gold); }
-    .admin-header .container { display:flex; align-items:center; justify-content:space-between; }
-    .admin-brand { display:flex; align-items:center; gap:.9rem; }
-    .admin-brand img { width:42px; height:42px; object-fit:contain; }
-    .admin-brand .title { color:#fff; font-size:1rem; font-weight:700; }
-    .admin-brand .sub { color:rgba(255,255,255,.7); font-size:.78rem; }
-    .hdr-actions { display:flex; gap:.6rem; }
-    .btn-hdr { padding:.4rem 1rem; border-radius:var(--radius-full); font-size:.82rem; font-weight:600; cursor:pointer; font-family:var(--font-thai); transition:var(--transition); border:none; }
-    .btn-view { background:rgba(255,255,255,.15); color:#fff; text-decoration:none; display:inline-flex; align-items:center; }
-    .btn-view:hover { background:rgba(255,255,255,.25); }
-    .btn-out { background:rgba(255,255,255,.9); color:var(--color-red-dark); }
-    .btn-out:hover { background:#fff; }
-
-    /* ── Layout ───────────────────────────────────────────── */
-    .admin-body { padding:2rem 0 4rem; }
-    .admin-grid { display:grid; grid-template-columns:420px 1fr; gap:2rem; align-items:start; }
-
-    /* ── Form card ────────────────────────────────────────── */
-    .form-card { background:#fff; border-radius:var(--radius-xl); border:1px solid var(--color-border); box-shadow:var(--shadow-md); padding:1.75rem; position:sticky; top:1.5rem; }
-    .form-card h2 { font-size:1rem; font-weight:800; color:var(--color-text); margin-bottom:1.5rem; display:flex; align-items:center; gap:.5rem; }
-    .form-card h2::before { content:''; display:inline-block; width:4px; height:1em; background:var(--color-red); border-radius:2px; }
-    .form-group { margin-bottom:1.1rem; }
-    .form-group label { display:block; font-size:.78rem; font-weight:700; color:var(--color-text-muted); margin-bottom:.35rem; text-transform:uppercase; letter-spacing:.05em; }
-    .form-control { width:100%; border:2px solid var(--color-border); border-radius:var(--radius-md); padding:.6rem .9rem; font-size:.9rem; font-family:var(--font-thai); outline:none; transition:var(--transition); color:var(--color-text); box-sizing:border-box; }
-    .form-control:focus { border-color:var(--color-red-mid); }
-    .cat-chips { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.4rem; }
-    .cat-chip { padding:.3rem .8rem; border-radius:var(--radius-full); font-size:.78rem; font-weight:600; border:2px solid var(--color-border); background:#fff; color:var(--color-text-muted); cursor:pointer; font-family:var(--font-thai); transition:var(--transition); }
-    .cat-chip.sel, .cat-chip:hover { border-color:var(--color-red); color:var(--color-red); background:var(--color-red-pale); }
-
-    .btn-submit { width:100%; padding:.85rem; background:linear-gradient(135deg,var(--color-red-dark),var(--color-red)); color:#fff; border:none; border-radius:var(--radius-lg); font-size:1rem; font-weight:700; cursor:pointer; font-family:var(--font-thai); transition:var(--transition); margin-top:.5rem; }
-    .btn-submit:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 6px 20px rgba(178,34,52,.35); }
-    .btn-submit:disabled { opacity:.6; cursor:not-allowed; }
-    .btn-cancel { width:100%; padding:.6rem; background:transparent; color:var(--color-text-muted); border:2px solid var(--color-border); border-radius:var(--radius-lg); font-size:.88rem; font-weight:600; cursor:pointer; font-family:var(--font-thai); transition:var(--transition); margin-top:.5rem; }
-    .btn-cancel:hover { background:var(--color-bg-alt); }
+    .btn-submit { width: 100%; padding: .85rem; background: linear-gradient(135deg, var(--color-red-dark), var(--color-red)); color: #fff; border: none; border-radius: var(--radius-lg); font-size: 1rem; font-weight: 700; cursor: pointer; font-family: var(--font-thai); transition: var(--transition); margin-top: .5rem; }
+    .btn-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(178,34,52,.35); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; }
+    .btn-cancel { width: 100%; padding: .6rem; background: transparent; color: var(--color-text-muted); border: 2px solid var(--color-border); border-radius: var(--radius-lg); font-size: .88rem; font-weight: 600; cursor: pointer; font-family: var(--font-thai); transition: var(--transition); margin-top: .5rem; }
+    .btn-cancel:hover { background: var(--color-bg-alt); }
 
     /* Progress */
-    .upload-prog { background:var(--color-bg-alt); border-radius:var(--radius-full); height:8px; overflow:hidden; margin-top:.75rem; display:none; }
-    .upload-prog-fill { height:100%; background:linear-gradient(90deg,var(--color-red),var(--color-gold)); border-radius:var(--radius-full); transition:width .3s; }
-    .prog-msg { font-size:.78rem; color:var(--color-text-muted); margin-top:.4rem; text-align:center; }
+    .upload-prog { background: var(--color-bg-alt); border-radius: var(--radius-full); height: 8px; overflow: hidden; margin-top: .75rem; display: none; }
+    .upload-prog-fill { height: 100%; background: linear-gradient(90deg, var(--color-red), var(--color-gold)); border-radius: var(--radius-full); transition: width .3s; }
+    .prog-msg { font-size: .78rem; color: var(--color-text-muted); margin-top: .4rem; text-align: center; }
 
-    /* ── News list ────────────────────────────────────────── */
-    .news-list-card { background:#fff; border-radius:var(--radius-xl); border:1px solid var(--color-border); box-shadow:var(--shadow-sm); padding:1.5rem; }
-    .news-list-card h2 { font-size:1rem; font-weight:800; color:var(--color-text); margin-bottom:1.25rem; display:flex; align-items:center; gap:.5rem; }
-    .news-list-card h2::before { content:''; display:inline-block; width:4px; height:1em; background:var(--color-red); border-radius:2px; }
-    .news-item { display:flex; gap:1rem; align-items:flex-start; padding:1rem 0; border-bottom:1px solid var(--color-bg-alt); }
-    .news-item:last-child { border-bottom:none; }
-    .news-item-img { width:80px; height:60px; border-radius:var(--radius-md); object-fit:cover; flex-shrink:0; background:var(--color-bg-alt); }
-    .news-item-img.no-img { display:flex; align-items:center; justify-content:center; font-size:1.5rem; color:var(--color-text-light); }
-    .news-item-body { flex:1; min-width:0; }
-    .news-item-title { font-size:.88rem; font-weight:700; color:var(--color-text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .news-item-meta { font-size:.75rem; color:var(--color-text-muted); margin-top:.25rem; display:flex; gap:.5rem; flex-wrap:wrap; }
-    .news-item-actions { display:flex; gap:.4rem; margin-top:.5rem; }
-    .btn-edit { padding:.25rem .7rem; font-size:.73rem; font-weight:600; border-radius:var(--radius-md); cursor:pointer; font-family:var(--font-thai); transition:var(--transition); border:1px solid var(--color-blue); background:var(--color-blue-pale); color:var(--color-blue-dark); }
-    .btn-edit:hover { background:var(--color-blue); color:#fff; }
-    .btn-del { padding:.25rem .7rem; font-size:.73rem; font-weight:600; border-radius:var(--radius-md); cursor:pointer; font-family:var(--font-thai); transition:var(--transition); border:1px solid var(--color-red-mid); background:var(--color-red-pale); color:var(--color-red); }
-    .btn-del:hover { background:var(--color-red); color:#fff; }
-    .badge-cat { font-size:.68rem; font-weight:700; padding:.15rem .55rem; border-radius:var(--radius-full); background:var(--color-red-pale); color:var(--color-red-dark); }
+    /* ── News list ──────────────────────────────────────── */
+    .news-list-card { background: #fff; border-radius: var(--radius-xl); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); padding: 1.5rem; }
+    .news-list-card h2 { font-size: 1rem; font-weight: 800; color: var(--color-text); margin-bottom: 1.25rem; display: flex; align-items: center; gap: .5rem; }
+    .news-list-card h2::before { content: ''; display: inline-block; width: 4px; height: 1em; background: var(--color-red); border-radius: 2px; }
+    .news-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid var(--color-bg-alt); }
+    .news-item:last-child { border-bottom: none; }
+    .news-item-img { width: 80px; height: 60px; border-radius: var(--radius-md); object-fit: cover; flex-shrink: 0; background: var(--color-bg-alt); }
+    .news-item-img.no-img { display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--color-text-light); }
+    .news-item-body { flex: 1; min-width: 0; }
+    .news-item-title { font-size: .88rem; font-weight: 700; color: var(--color-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .news-item-meta { font-size: .75rem; color: var(--color-text-muted); margin-top: .25rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+    .news-item-actions { display: flex; gap: .4rem; margin-top: .5rem; }
+    .btn-edit { padding: .25rem .7rem; font-size: .73rem; font-weight: 600; border-radius: var(--radius-md); cursor: pointer; font-family: var(--font-thai); transition: var(--transition); border: 1px solid var(--color-blue); background: var(--color-blue-pale); color: var(--color-blue-dark); }
+    .btn-edit:hover { background: var(--color-blue); color: #fff; }
+    .btn-del { padding: .25rem .7rem; font-size: .73rem; font-weight: 600; border-radius: var(--radius-md); cursor: pointer; font-family: var(--font-thai); transition: var(--transition); border: 1px solid var(--color-red-mid); background: var(--color-red-pale); color: var(--color-red); }
+    .btn-del:hover { background: var(--color-red); color: #fff; }
+    .badge-cat { font-size: .68rem; font-weight: 700; padding: .15rem .55rem; border-radius: var(--radius-full); background: var(--color-red-pale); color: var(--color-red-dark); }
 
     /* Empty state */
-    .empty-state { text-align:center; padding:3rem 1rem; color:var(--color-text-muted); }
-    .empty-state .icon { font-size:2.5rem; margin-bottom:.75rem; opacity:.4; }
+    .empty-state { text-align: center; padding: 3rem 1rem; color: var(--color-text-muted); }
+    .empty-state .icon { font-size: 2.5rem; margin-bottom: .75rem; opacity: .4; }
 
-    /* Toast */
-    #toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(100px); background:var(--color-text); color:#fff; padding:.75rem 1.5rem; border-radius:var(--radius-full); font-size:.88rem; font-weight:600; z-index:9998; transition:transform .3s; }
+    @media (max-width: 900px) { .admin-grid { grid-template-columns: 1fr; } .form-card { position: static; } }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>-full); font-size:.88rem; font-weight:600; z-index:9998; transition:transform .3s; }
     #toast.show { transform:translateX(-50%) translateY(0); }
     #toast.success { background:var(--color-success); }
     #toast.error { background:var(--color-danger); }
@@ -109,7 +73,7 @@
   <!-- ── Auth Overlay ──────────────────────────────────────── -->
   <div id="authOverlay">
     <div class="auth-card">
-      <img src="../images/logo 902.png" alt="ตราหน่วย" class="auth-logo">
+      <img src="../images/logo-902.png" alt="ตราหน่วย" class="auth-logo">
       <div style="display:inline-block;background:var(--color-red-pale);color:var(--color-red-dark);border-radius:var(--radius-full);padding:.3rem .9rem;font-size:.72rem;font-weight:700;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.06em;">&#x1F512; Admin Only</div>
       <div class="auth-title">ระบบจัดการข่าวและกิจกรรม</div>
       <div class="auth-sub">กรมทหารราบ ๙๐๒ รักษาพระองค์<br>เฉพาะผู้ดูแลระบบที่ได้รับอนุญาตเท่านั้น</div>
@@ -124,7 +88,7 @@
     <div class="admin-header">
       <div class="container">
         <div class="admin-brand">
-          <img src="../images/logo 902.png" alt="ตราหน่วย">
+          <img src="../images/logo-902.png" alt="ตราหน่วย">
           <div>
             <div class="title"> จัดการข่าวและกิจกรรม</div>
             <div class="sub">ร.๙๐๒ รอ. — ผู้ดูแลระบบ</div>
